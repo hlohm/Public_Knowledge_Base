@@ -17,6 +17,10 @@ and shared in case any of it is useful to others.
   security — with concept maps, study paths, and a cross-IT "false friends" reference
   for commonly confused pairs. Grown out of the original security-vocabulary vault,
   which lives on intact as the Security branch.
+- **[Field Manual](./Field-Manual/_Home.md)** — hands-on operations & development
+  reference: cheat-sheets, runbooks, playbooks, and reusable boilerplate for the everyday
+  command line, systems administration, and coding. The practical *how-to* counterpart to
+  the IT-Dictionary's conceptual *what/why*.
 
 *More subjects may join over time, each as its own vault.*
 
