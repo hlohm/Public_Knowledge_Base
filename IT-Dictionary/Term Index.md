@@ -1,0 +1,127 @@
+---
+type: "reference"
+tags: [reference, index]
+---
+
+# Term Index
+
+**630 terms** currently in the vault. Below: an A–Z of what exists, then a per-branch backlog of high-value terms still worth adding. The backlog is a checklist toward fuller coverage, not a contract — extend it freely.
+
+## A–Z (existing terms)
+
+**A** — [[AAA]] · [[ABAC]] · [[ABI]] · [[Abstraction]] · [[Accessibility]] · [[ACID]] · [[ACME]] · [[Active Directory]] · [[Adversary Emulation]] · [[Air Gap]] · [[ALU]] · [[Antivirus]] · [[API]] · [[Application Allowlisting]] · [[APT]] · [[ARP]] · [[Array]] · [[ASCII]] · [[Assertion]] · [[Asset]] · [[AST]] · [[Asymmetric Encryption]] · [[Async-Await]] · [[Attack Surface]] · [[Attention]] · [[Audit]] · [[Authentication]] · [[Authorization]]
+
+**B** — [[B-tree]] · [[Backpropagation]] · [[Backward Compatibility]] · [[Bandwidth]] · [[BASE]] · [[Bastion Host]] · [[BCP and DRP]] · [[Beacon]] · [[Bearer Token]] · [[BEC]] · [[BIA]] · [[Big-O Notation]] · [[Binary]] · [[Binary Search]] · [[Binary Search Tree]] · [[BIOS]] · [[Bit]] · [[Blast Radius]] · [[Block Cipher]] · [[Bloom Filter]] · [[Blue Team]] · [[Blue-green Deployment]] · [[Boot Loader]] · [[Bootkit]] · [[Botnet]] · [[Branch]] · [[Branch Divergence]] · [[Branch Prediction]] · [[Breadth-First Search]] · [[Brute Force]] · [[BSI]] · [[Buffer Overflow]] · [[Bug Bounty]] · [[BYOVD]] · [[Byte]] · [[Bytecode]]
+
+**C** — [[C2]] · [[C2 Framework]] · [[Cache]] · [[Cache Coherence]] · [[Cache Line]] · [[Cache Miss]] · [[Canary Release]] · [[CAP Theorem]] · [[CASB]] · [[CCPA]] · [[CDN]] · [[Certificate Authority]] · [[Certificate Pinning]] · [[Chain of Custody]] · [[Chain of Trust]] · [[Checksum]] · [[Chomsky Hierarchy]] · [[Church-Turing Thesis]] · [[CI]] · [[CI-CD]] · [[CIA Triad]] · [[CIDR]] · [[CIEM]] · [[CIS Benchmarks]] · [[CIS Controls]] · [[CISC]] · [[Claim]] · [[Closure]] · [[Cloud Computing]] · [[CMMC]] · [[CNAPP]] · [[COBIT]] · [[Code Point]] · [[Code Signing]] · [[Codec]] · [[Cohesion]] · [[Cold Start]] · [[Collective Communication]] · [[Color Space]] · [[Commit]] · [[Compartmentalization]] · [[Compiler]] · [[Computability]] · [[Concurrency]] · [[Confidential Computing]] · [[Consent]] · [[Container]] · [[Container Security]] · [[Context Switch]] · [[Context Window]] · [[Context-free Grammar]] · [[Continuous Delivery]] · [[Control]] · [[Control Plane]] · [[Cookie]] · [[Coordinated Disclosure]] · [[Core]] · [[Coroutine]] · [[CORS]] · [[Coupling]] · [[CPU]] · [[Credential Guard]] · [[Critical Section]] · [[CRL and OCSP]] · [[CSP]] · [[CSPM]] · [[CSR]] · [[CSRF]] · [[CTF]] · [[CVE]] · [[CVSS]] · [[CWE]] · [[CWPP]] · [[Cyber Kill Chain]]
+
+**D** — [[Daemon]] · [[DAST]] · [[Data Classification]] · [[Database]] · [[DBSC]] · [[DCSync]] · [[DDoS]] · [[Deadlock]] · [[Decidability]] · [[Declarative Configuration]] · [[Deep Learning]] · [[Defense in Depth]] · [[Denormalization]] · [[Dependency]] · [[Dependency Confusion]] · [[Dependency Injection]] · [[Deployment]] · [[Depth-First Search]] · [[Dereference]] · [[Design Pattern]] · [[Detection Engineering]] · [[DevOps]] · [[DFIR]] · [[DHCP]] · [[Digital Signature]] · [[Dijkstra's Algorithm]] · [[Directory Traversal]] · [[Distributed System]] · [[Divide and Conquer]] · [[DKIM]] · [[DKOM]] · [[DLP]] · [[DMARC]] · [[DMZ]] · [[DNS]] · [[DNS Security]] · [[Docker]] · [[DOM]] · [[DORA]] · [[DPI]] · [[Driver]] · [[DRY]] · [[Dwell Time]] · [[Dynamic Programming]] · [[Dynamic Typing]]
+
+**E** — [[East-West vs North-South Traffic]] · [[eBPF]] · [[ECMA]] · [[EDR]] · [[Embedding]] · [[Endianness]] · [[Entry Guard]] · [[Enumeration]] · [[Epoch]] · [[EPP]] · [[EPSS]] · [[Error Budget]] · [[Ethernet]] · [[Event-driven Architecture]] · [[Eventual Consistency]] · [[Exfiltration]] · [[Exploit]]
+
+**F** — [[FaaS]] · [[Factor]] · [[Fail Secure]] · [[False Positive]] · [[Feature Flag]] · [[Federation]] · [[FedRAMP]] · [[FIDO2 and WebAuthn]] · [[File Descriptor]] · [[File System]] · [[Fine-tuning]] · [[Finite State Machine]] · [[Firewall]] · [[Firmware]] · [[Floating Point]] · [[Flynn's Taxonomy]] · [[Font]] · [[Foreign Key]] · [[Forward Secrecy]] · [[Framework]] · [[Full Disclosure]] · [[Functional Programming]] · [[Fuzzing]]
+
+**G** — [[Garbage Collection]] · [[GDPR]] · [[Generics]] · [[GET]] · [[Git]] · [[GitOps]] · [[Golden SAML]] · [[Golden Ticket]] · [[GPU]] · [[Gradient Descent]] · [[Graph]] · [[GraphQL]] · [[GRC]] · [[Greedy Algorithm]] · [[Group Policy]]
+
+**H** — [[Hallucination]] · [[Halting Problem]] · [[Hardcoded Secret]] · [[Hardening]] · [[Hash Function]] · [[Hash Table]] · [[Heap]] · [[Hexadecimal]] · [[HIDS and HIPS]] · [[HIPAA]] · [[HMAC]] · [[Honeypot]] · [[HSM]] · [[HTML]] · [[HTTP]] · [[HTTPS]] · [[HVCI]] · [[Hypervisor]]
+
+**I** — [[IaaS]] · [[IaaS PaaS SaaS]] · [[IAM]] · [[IAST]] · [[ICMP]] · [[Idempotent]] · [[Identity]] · [[IdP and SP]] · [[IDS and IPS]] · [[IEEE]] · [[IEEE 754]] · [[IETF]] · [[IMDS]] · [[Incident Response]] · [[Index]] · [[IndexedDB]] · [[Infrastructure as Code]] · [[Inherent Risk]] · [[Inheritance]] · [[Injection Attacks]] · [[Inode]] · [[Input Validation]] · [[Instruction Set]] · [[Integer Overflow]] · [[Interface]] · [[Interoperability]] · [[Interpreter]] · [[Interrupt]] · [[Inversion of Control]] · [[IOA]] · [[IOC]] · [[IP]] · [[IPv4]] · [[IPv6]] · [[ISO]] · [[ISO 27001]] · [[ISO 8601]] · [[Isolation Level]] · [[IT-Grundschutz]] · [[ITIL]] · [[IV]]
+
+**J** — [[JavaScript]] · [[JIT Access]] · [[JIT Compilation]] · [[Join]] · [[JSON]] · [[JWT]]
+
+**K** — [[KDF]] · [[Kerberos]] · [[Kernel]] · [[Kernel Space]] · [[KEV]] · [[Key Exchange]] · [[KSPM]] · [[Kubernetes]]
+
+**L** — [[Lambda]] · [[Lambda Calculus]] · [[Latency]] · [[Latency Hiding]] · [[Lateral Movement]] · [[LDAP]] · [[Least Privilege]] · [[Lexer]] · [[Library]] · [[Linked List]] · [[LLM]] · [[Load Balancer]] · [[Locality of Reference]] · [[Loss Function]] · [[Lossless Compression]] · [[Lossy Compression]] · [[LotL]]
+
+**M** — [[MAC Address]] · [[Machine Learning]] · [[Malware]] · [[MDR]] · [[Measured Boot]] · [[Memoization]] · [[Memory Hierarchy]] · [[Memory Safety]] · [[Merge]] · [[Message Passing]] · [[MFA]] · [[Microkernel]] · [[Microsegmentation]] · [[Microservices]] · [[MITM]] · [[MITRE ATT&CK]] · [[MMU]] · [[Mock]] · [[Monitoring]] · [[Monolith]] · [[Monolithic Kernel]] · [[Moore's Law]] · [[mTLS]] · [[MTTD and MTTR]] · [[Mutex]] · [[MVCC]]
+
+**N** — [[N-Day]] · [[NAC]] · [[NAT]] · [[Need to Know]] · [[Network Segmentation]] · [[Neural Network]] · [[NGFW]] · [[NIS2]] · [[NIST]] · [[NIST CSF]] · [[NIST SP 800-171]] · [[NIST SP 800-53]] · [[Non-repudiation]] · [[Nonce]] · [[Normalization]] · [[NoSQL]] · [[NP-complete]] · [[NP-hard]] · [[NTLM]] · [[Null]] · [[Null Pointer]] · [[NUMA]] · [[NVLink]]
+
+**O** — [[OAuth 2.0]] · [[Observability]] · [[OIDC]] · [[OLAP]] · [[OLTP]] · [[Onion Routing]] · [[Open Standard]] · [[Operating System]] · [[ORM]] · [[OSI Model]] · [[OSINT]] · [[Out-of-Order Execution]] · [[Overfitting]] · [[OWASP]] · [[OWASP ASVS]] · [[OWASP SAMM]] · [[OWASP Top 10]]
+
+**P** — [[P vs NP]] · [[PaaS]] · [[Packet]] · [[Page Fault]] · [[Paging]] · [[PAM]] · [[Parallelism]] · [[Parser]] · [[Pass-the-Hash]] · [[Passkey]] · [[Password Spraying]] · [[Passwordless]] · [[Patch Management]] · [[Patch Tuesday]] · [[Payload]] · [[PCI DSS]] · [[Penetration Test]] · [[Pepper]] · [[Permissions]] · [[Persistence]] · [[Phishing]] · [[Pipeline]] · [[Pivoting]] · [[Pixel]] · [[PKI]] · [[Plaintext and Ciphertext]] · [[Playbook]] · [[Pluggable Transport]] · [[Pod]] · [[Pointer]] · [[Policy Standard Procedure Guideline]] · [[Polymorphism]] · [[Port]] · [[POST]] · [[Postmortem]] · [[PQC]] · [[Preemption]] · [[Primary Key]] · [[Principal]] · [[Priority Queue]] · [[Privilege Escalation]] · [[Process]] · [[Proof of Possession]] · [[Protection Ring]] · [[Proxy]] · [[Pure Function]] · [[Purple Team]] · [[Pushdown Automaton]] · [[Pyramid of Pain]]
+
+**Q** — [[Query Optimizer]] · [[Queue]] · [[QUIC]] · [[Quicksort]]
+
+**R** — [[Race Condition]] · [[RAG]] · [[RAII]] · [[RAM]] · [[Ransomware]] · [[RASP]] · [[Raster]] · [[RAT]] · [[Ray Tracing]] · [[RBAC]] · [[RCE]] · [[RDBMS]] · [[RDMA]] · [[Rebase]] · [[Recursion]] · [[Red Team]] · [[Reference]] · [[Register]] · [[Regular Expression]] · [[Remote Attestation]] · [[Rendering]] · [[Replay Attack]] · [[Replication]] · [[Residual Risk]] · [[Resolution]] · [[REST]] · [[Reverse Proxy]] · [[Reverse Shell]] · [[RFC]] · [[Rice's Theorem]] · [[RISC]] · [[Risk]] · [[Risk Appetite]] · [[Risk Treatment]] · [[Rollback]] · [[Rootkit]] · [[Router]] · [[RPO]] · [[RTO]]
+
+**S** — [[SaaS]] · [[Salt]] · [[Same-Origin Policy]] · [[SAML]] · [[Sandbox]] · [[SASE]] · [[SAST]] · [[SBOM]] · [[SCA]] · [[Scheduler]] · [[Scope]] · [[SDLC]] · [[SDN]] · [[Secret]] · [[Secrets Manager]] · [[Secure Boot]] · [[Secure by Design]] · [[Security through Obscurity]] · [[Semantic Versioning]] · [[Semaphore]] · [[Separation of Duties]] · [[Serialization]] · [[Serverless]] · [[Service Account]] · [[Service Mesh]] · [[Session]] · [[Session Fixation]] · [[Session Hijacking]] · [[Shader]] · [[Sharding]] · [[Shared Memory]] · [[Shared Responsibility Model]] · [[Shell]] · [[Shellcode]] · [[Shift Left]] · [[Side Effect]] · [[Sidecar]] · [[SIEM]] · [[SIMD]] · [[SIMT]] · [[SLA]] · [[SLI]] · [[SLO]] · [[Smishing and Vishing]] · [[SMTP]] · [[SoA]] · [[SOAR]] · [[SOC]] · [[SOC 1 and SOC 3]] · [[SOC 2]] · [[Social Engineering]] · [[Socket]] · [[SOLID]] · [[Sorting]] · [[Space Complexity]] · [[Spear Phishing]] · [[Speculative Execution]] · [[SPF]] · [[SQL]] · [[SRE]] · [[SSD]] · [[SSE]] · [[SSO]] · [[SSRF]] · [[Stack]] · [[Static Typing]] · [[Status Code]] · [[Streaming Multiprocessor]] · [[STRIDE]] · [[Strong Consistency]] · [[Subnet]] · [[Supervised Learning]] · [[Supply Chain Attack]] · [[Swap]] · [[SWG]] · [[Switch]] · [[Symmetric Encryption]] · [[System Call]] · [[Systolic Array]]
+
+**T** — [[Tabletop Exercise]] · [[TCP]] · [[TDD]] · [[Tenant]] · [[Tensor]] · [[Tensor Core]] · [[Terraform]] · [[Thread]] · [[Threat]] · [[Threat Actor]] · [[Threat Hunting]] · [[Threat Intelligence]] · [[Threat Modeling]] · [[Three-way Handshake]] · [[Throughput]] · [[Time Complexity]] · [[TLS]] · [[TLS Inspection]] · [[Toil]] · [[Token]] · [[Topological Sort]] · [[Tor]] · [[Tor Bridge]] · [[TOTP]] · [[TPM]] · [[TPRM]] · [[Traffic Correlation Attack]] · [[Training]] · [[Transaction]] · [[Transformer]] · [[Tree]] · [[Trie]] · [[Trojan]] · [[TTPs]] · [[Turing Machine]] · [[Twelve-factor App]] · [[Two's Complement]] · [[Type Inference]] · [[Type System]] · [[Typosquatting]]
+
+**U** — [[UDP]] · [[UEFI]] · [[Undefined Behavior]] · [[Unicode]] · [[Unit Test]] · [[Unix Time]] · [[User Space]] · [[UTF-8]]
+
+**V** — [[Variable]] · [[VBS]] · [[Vector Graphics]] · [[Version Control]] · [[Virtual Machine]] · [[Virtual Memory]] · [[Virtualization]] · [[Virus]] · [[VLAN]] · [[VPN]] · [[Vulnerability]] · [[Vulnerability Management]] · [[Vulnerability Scanner]]
+
+**W** — [[W3C]] · [[WAF]] · [[Warehouse-Scale Computer]] · [[Warp]] · [[WASM]] · [[Watering Hole]] · [[Web Storage]] · [[WebSocket]] · [[Whaling]] · [[Wiper]] · [[Word]] · [[Worm]]
+
+**X** — [[X.509]] · [[XDR]] · [[XSS]]
+
+**Z** — [[Zero Day]] · [[Zero Trust]] · [[ZTNA]]
+
+## Coverage roadmap (backlog)
+
+Curated terms still worth writing, by branch. `code` = not yet written; write it by copying the template. This is where the path toward broad, ~2,500-term coverage lives — fill in as you go.
+
+### Computing Foundations  (22/46 written)
+
+`Nibble` · `Octal` · `Boolean` · `Logic Gate` · `Truth Table` · `Encapsulation` · `State` · `Determinism` · `Parity Bit` · `Gray Code` · `Base64` · `Bitwise Operation` · `Bitmask` · `Most Significant Bit` · `Sign Extension` · `Fixed Point` · `Rounding Error` · `Magic Number` · `Off-by-one Error` · `Undefined` · `NaN` · `Big-endian vs Little-endian` · `Kibibyte` · `Data Type`
+
+### Hardware & Architecture  (30/63 written)
+
+`Control Unit` · `Clock Speed` · `x86` · `ARM` · `RISC-V` · `Microarchitecture` · `Superscalar` · `L1 L2 L3 Cache` · `MESI Protocol` · `DRAM` · `SRAM` · `ROM` · `Flash Memory` · `HDD` · `NVMe` · `Bus` · `PCIe` · `DMA` · `IRQ` · `TLB` · `Page` · `Word Size` · `Bit Width` · `TPU` · `FPGA` · `ASIC` · `Hyperthreading` · `Die` · `Transistor` · `Dennard Scaling` · `Thermal Design Power` · `Von Neumann Architecture` · `Harvard Architecture`
+
+### Operating Systems  (27/57 written)
+
+`Segmentation` · `Memory Protection` · `Spinlock` · `Livelock` · `IPC` · `Pipe` · `Signal` · `Journaling` · `Mount` · `Symlink` · `Hard Link` · `setuid` · `Init System` · `systemd` · `Environment Variable` · `Fork` · `Exec` · `Zombie Process` · `Orphan Process` · `cgroups` · `Namespace` · `Capabilities` · `POSIX` · `Real-time OS` · `Page Table` · `Copy-on-write` · `Demand Paging` · `Thrashing` · `Working Set` · `Round Robin Scheduling`
+
+### Networking  (27/54 written)
+
+`TCP/IP Model` · `Frame` · `Datagram` · `Gateway` · `Default Route` · `Routing Table` · `BGP` · `OSPF` · `MTU` · `QoS` · `Multicast` · `Broadcast` · `Anycast` · `Jitter` · `Packet Loss` · `Congestion Control` · `Flow Control` · `Wi-Fi` · `802.11` · `VLAN Trunking` · `Spanning Tree` · `Traceroute` · `Ping` · `Loopback` · `Localhost` · `Port Forwarding` · `SD-WAN`
+
+### Internet & Web  (21/55 written)
+
+`HTTP/2` · `HTTP/3` · `URL` · `URI` · `URN` · `Domain Name` · `TLD` · `Cache-Control` · `ETag` · `SOAP` · `XML` · `YAML` · `AJAX` · `PUT` · `DELETE` · `PATCH` · `User Agent` · `Web Server` · `Browser Engine` · `Hydration` · `SSR` · `CSR` · `SPA` · `PWA` · `Webhook` · `MIME Type` · `Content Negotiation` · `CSS` · `JavaScript` · `Favicon` · `robots.txt` · `OpenAPI` · `RSS` · `OAuth Flow`
+
+### Data & Databases  (24/47 written)
+
+`Table` · `Schema` · `Partitioning` · `Materialized View` · `Stored Procedure` · `Trigger` · `Query Plan` · `LSM Tree` · `Write-ahead Log` · `Document Store` · `Key-value Store` · `Column Store` · `Graph Database` · `Time-series Database` · `Data Warehouse` · `Data Lake` · `ETL` · `ELT` · `Cardinality` · `Referential Integrity` · `Optimistic Locking` · `Pessimistic Locking` · `Connection Pool`
+
+### Programming Languages  (37/56 written)
+
+`Function` · `Iteration` · `Strong Typing` · `Weak Typing` · `Encapsulation` · `Abstract Class` · `Object` · `Class` · `Method` · `Immutable` · `Mutable` · `First-class Function` · `Higher-order Function` · `Currying` · `Referential Transparency` · `Monad` · `Imperative Programming` · `Declarative Programming` · `Exception`
+
+### Software Engineering  (27/51 written)
+
+`Pull Request` · `Repository` · `Monorepo` · `Package Manager` · `Build System` · `Linter` · `Code Review` · `Refactoring` · `Technical Debt` · `Integration Test` · `Code Coverage` · `YAGNI` · `KISS` · `Separation of Concerns` · `Message Queue` · `Idempotency Key` · `Code Smell` · `Regression` · `Edge Case` · `Boilerplate` · `SDK` · `Documentation` · `Changelog` · `License`
+
+### Algorithms & Data Structures  (28/43 written)
+
+`Binary Tree` · `Set` · `Map` · `Mergesort` · `Backtracking` · `Hashing` · `Collision` · `Load Factor` · `Amortized Analysis` · `Adjacency List` · `Tree Traversal` · `Balanced Tree` · `Red-Black Tree` · `Consistent Hashing` · `LRU Cache`
+
+### Theory of Computation  (15/27 written)
+
+`Automata` · `Complexity Class` · `Reduction` · `Formal Language` · `Undecidable Problem` · `Polynomial Time` · `Exponential Time` · `Tractable` · `Intractable` · `Boolean Satisfiability` · `Pumping Lemma` · `State Space`
+
+### Cloud & Infrastructure  (18/38 written)
+
+`Orchestration` · `Elasticity` · `Auto-scaling` · `Region` · `Availability Zone` · `Multi-tenancy` · `Object Storage` · `Block Storage` · `Bare Metal` · `Immutable Infrastructure` · `Node` · `Ingress` · `Provisioning` · `Cloud-native` · `Lift and Shift` · `Spot Instance` · `Edge Computing` · `Managed Service` · `Data Plane` · `Overlay Network`
+
+### DevOps & SRE  (18/36 written)
+
+`Continuous Integration` · `Continuous Deployment` · `Rolling Update` · `Metrics` · `Logging` · `Tracing` · `Incident` · `On-call` · `Runbook` · `Chaos Engineering` · `Artifact` · `Build Artifact` · `Configuration Drift` · `Health Check` · `Heartbeat` · `Alert Fatigue` · `MTTR` · `MTBF`
+
+### AI & Machine Learning  (18/39 written)
+
+`Unsupervised Learning` · `Reinforcement Learning` · `Inference` · `Model` · `Feature` · `Label` · `Underfitting` · `Regularization` · `Epoch` · `Batch` · `Hyperparameter` · `Prompt` · `Activation Function` · `Convolutional Neural Network` · `Recurrent Neural Network` · `Transfer Learning` · `Vector Database` · `Quantization` · `Diffusion Model` · `Zero-shot Learning` · `Bias-variance Tradeoff`
+
+### Graphics, Media & HCI  (13/34 written)
+
+`RGB` · `Compression` · `Frame Rate` · `Bitrate` · `Rasterization` · `Anti-aliasing` · `Aspect Ratio` · `Font Rendering` · `Subpixel` · `Gamma` · `Alpha Channel` · `Sprite` · `Texture` · `Responsive Design` · `WCAG` · `Affordance` · `Latency Perception` · `Color Depth` · `HDR` · `Container Format` · `Sampling Rate`
+
+### Standards, Formats & Bodies  (13/30 written)
+
+`ANSI` · `Unicode Consortium` · `ITU` · `OASIS` · `Internet Standard` · `De Facto Standard` · `Forward Compatibility` · `Specification` · `Reference Implementation` · `Conformance` · `POSIX` · `MIME` · `Calendar Versioning` · `SPDX` · `Open Source License` · `Copyleft` · `Permissive License`
+
+---
+← Back to [[_Home]]

@@ -1,0 +1,62 @@
+filters:
+  and:
+    - type == "term"
+properties:
+  file.name:
+    displayName: Term
+  branch:
+    displayName: Branch
+  domain:
+    displayName: Security domain
+  status:
+    displayName: Status
+views:
+  - type: table
+    name: All terms
+    order:
+      - file.name
+      - branch
+      - domain
+      - status
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: To grow (notes & stubs)
+    filters:
+      and:
+        - status != "developed"
+    order:
+      - file.name
+      - branch
+      - status
+    sort:
+      - property: status
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: Security by domain
+    filters:
+      and:
+        - branch == "Security"
+    order:
+      - file.name
+      - domain
+      - status
+    sort:
+      - property: domain
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: By branch
+    order:
+      - file.name
+      - branch
+      - status
+    sort:
+      - property: branch
+        direction: ASC
+      - property: file.name
+        direction: ASC

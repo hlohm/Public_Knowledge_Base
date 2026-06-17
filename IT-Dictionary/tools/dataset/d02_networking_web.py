@@ -1,0 +1,158 @@
+TERMS = [
+# ============================ NETWORKING (terse — your domain) ============================
+{"term": "OSI Model", "branch": "Networking", "tags": ["fundamental"], "wikipedia": "OSI model",
+ "def": "A 7-layer reference model (Physical, Data Link, Network, Transport, Session, Presentation, Application) for reasoning about network functions.",
+ "context": "More teaching tool than implementation map — the real stack is TCP/IP's 4-ish layers. Still the shared vocabulary: 'a layer-7 firewall', 'an L2 switch', 'works at layer 3'.",
+ "see_also": ["TCP/IP Model", "Frame", "Packet"]},
+
+{"term": "TCP", "branch": "Networking", "aliases": ["Transmission Control Protocol"],
+ "tags": ["fundamental"], "wikipedia": "Transmission Control Protocol",
+ "def": "Connection-oriented transport giving ordered, reliable, byte-stream delivery with flow and congestion control, atop unreliable IP.",
+ "context": "The reliability and ordering cost setup latency (the handshake) and head-of-line blocking — the gap QUIC/HTTP-3 closes.",
+ "see_also": ["UDP", "Three-way Handshake", "Congestion Control", "QUIC"],
+ "confused": [("UDP", "TCP guarantees order + delivery; UDP is fire-and-forget with lower overhead.")]},
+
+{"term": "UDP", "branch": "Networking", "aliases": ["User Datagram Protocol"],
+ "tags": ["fundamental"], "wikipedia": "User Datagram Protocol",
+ "def": "Connectionless transport: send datagrams with no handshake, ordering, or delivery guarantee — minimal overhead.",
+ "context": "Right when loss is tolerable or recoverable in the app (DNS, VoIP, gaming, QUIC). The app, not the transport, owns any reliability it needs.",
+ "see_also": ["TCP", "Datagram", "QUIC"]},
+
+{"term": "IP", "branch": "Networking", "aliases": ["Internet Protocol"],
+ "tags": ["fundamental"], "wikipedia": "Internet Protocol",
+ "def": "The network-layer protocol that addresses and routes packets across interconnected networks, best-effort and connectionless.",
+ "context": "Everything above (TCP, UDP) rides on IP's unreliable delivery; reliability is layered on top, not built in.",
+ "see_also": ["IPv4", "IPv6", "Packet", "Router"]},
+
+{"term": "Three-way Handshake", "branch": "Networking", "tags": [], "wikipedia": "Transmission Control Protocol",
+ "def": "TCP's connection setup: SYN, SYN-ACK, ACK — synchronising sequence numbers before data flows.",
+ "context": "The one round-trip of setup latency that makes short TCP connections feel slow, and the basis of the SYN-flood DoS.",
+ "see_also": ["TCP", "Congestion Control"]},
+
+{"term": "NAT", "branch": "Networking", "aliases": ["Network Address Translation"],
+ "tags": [], "wikipedia": "Network address translation",
+ "def": "Rewriting IP addresses/ports at a boundary so many private hosts share one public address.",
+ "context": "Bought IPv4 a couple of decades by hiding whole networks behind one address; the cost is broken end-to-end addressing and the NAT-traversal dance (STUN/TURN).",
+ "see_also": ["IPv4", "IPv6", "CIDR", "Gateway"]},
+
+{"term": "DNS", "branch": "Networking", "aliases": ["Domain Name System"],
+ "tags": ["fundamental"], "wikipedia": "Domain Name System",
+ "def": "The distributed, hierarchical directory translating human names (example.com) into IP addresses and other records.",
+ "context": "Effectively a global cache with TTLs, which is why changes 'propagate' slowly. 'It's always DNS' is an ops cliché because it underlies almost everything and fails opaquely.",
+ "see_also": ["Domain Name", "TLD", "DNS Security"]},
+
+{"term": "Socket", "branch": "Networking", "aliases": ["Network Socket"],
+ "tags": ["fundamental"], "wikipedia": "Network socket",
+ "def": "The OS endpoint for network communication, identified by IP + port + protocol; the programming interface apps use to send/receive.",
+ "context": "The Berkeley sockets API is the near-universal model; a socket is the file-descriptor-shaped handle your code reads and writes.",
+ "see_also": ["Port", "File Descriptor", "TCP", "UDP"]},
+
+{"term": "Latency", "branch": "Networking", "de": "Latenz", "tags": ["fundamental"], "wikipedia": "Latency (engineering)",
+ "def": "The time for one unit of data to travel from source to destination — a delay, measured in milliseconds.",
+ "context": "Bounded by physics (speed of light ≈ 5 µs/km in fibre), so it can't be 'bought away' like bandwidth. The metric users actually feel.",
+ "see_also": ["Bandwidth", "Throughput", "Jitter"],
+ "confused": [("Bandwidth", "Latency = delay of one trip; bandwidth = capacity. A fat, slow-to-respond pipe still feels laggy.")]},
+
+{"term": "Bandwidth", "branch": "Networking", "de": "Bandbreite", "tags": ["fundamental"], "wikipedia": "Bandwidth (computing)",
+ "def": "The maximum rate a link can carry data, e.g. 1 Gb/s — the width of the pipe, not the speed of a trip through it.",
+ "context": "Quoted in bits/s; divide by 8 for bytes/s. Achievable throughput is usually below this headline figure due to overhead and congestion.",
+ "see_also": ["Latency", "Throughput", "Bit"]},
+
+{"term": "Load Balancer", "branch": "Networking", "tags": [], "wikipedia": "Load balancing (computing)",
+ "def": "A device/service distributing incoming traffic across multiple backend servers for capacity and availability.",
+ "context": "L4 balances on IP/port; L7 understands HTTP and can route by path/header. Also a health-check chokepoint — it stops sending to dead backends.",
+ "see_also": ["Reverse Proxy", "Round Robin Scheduling", "High Availability"]},
+
+{"term": "QUIC", "branch": "Networking", "tags": ["modern"], "wikipedia": "QUIC",
+ "def": "A UDP-based transport with built-in TLS 1.3, multiplexed streams, and 0/1-RTT setup — the foundation of HTTP/3.",
+ "context": "Lives in user space, so it evolves without OS/kernel updates, and its per-stream model removes TCP's head-of-line blocking.",
+ "see_also": ["UDP", "HTTP/3", "TLS"]},
+
+# ============================ INTERNET & WEB ============================
+{"term": "HTTP", "branch": "Internet & Web", "aliases": ["Hypertext Transfer Protocol"],
+ "tags": ["fundamental"], "wikipedia": "HTTP",
+ "def": "The request/response application protocol of the web: a client asks for a resource with a method (GET, POST…), a server answers with a status code and body.",
+ "context": "It's *stateless* by design — each request is independent — so state (login) is bolted on via cookies/tokens. Understanding statelessness explains most of web architecture.",
+ "see_also": ["HTTPS", "Status Code", "GET", "POST", "Cookie"]},
+
+{"term": "HTTPS", "branch": "Internet & Web", "tags": ["fundamental"], "wikipedia": "HTTPS",
+ "def": "HTTP carried inside a TLS-encrypted connection, providing confidentiality, integrity, and server authentication.",
+ "context": "Now effectively mandatory (browsers shame plain HTTP; HSTS forces upgrades). The 'S' protects data in transit only — not at rest, and not from the server itself.",
+ "see_also": ["HTTP", "TLS", "Certificate"]},
+
+{"term": "REST", "branch": "Internet & Web", "aliases": ["Representational State Transfer"],
+ "tags": ["fundamental"], "wikipedia": "REST",
+ "def": "An architectural style (Fielding) for web APIs: resources identified by URLs, manipulated with standard HTTP methods, stateless interactions.",
+ "context": "Most 'REST APIs' are really JSON-over-HTTP that ignore REST's stricter constraints (HATEOAS). Its strength is leaning on HTTP's existing semantics — caching, idempotency, status codes — instead of reinventing them.",
+ "see_also": ["HTTP", "GraphQL", "JSON", "Idempotent"],
+ "confused": [("GraphQL", "REST = many endpoints, fixed shapes; GraphQL = one endpoint, client picks the shape.")]},
+
+{"term": "GraphQL", "branch": "Internet & Web", "tags": ["modern"], "wikipedia": "GraphQL",
+ "def": "A query language and runtime for APIs where the client specifies exactly which fields it wants from a typed schema, in a single request.",
+ "context": "Solves REST's over-/under-fetching, but moves complexity to the server and complicates caching and rate-limiting (one URL, arbitrary cost queries).",
+ "see_also": ["REST", "API", "JSON"]},
+
+{"term": "JSON", "branch": "Internet & Web", "aliases": ["JavaScript Object Notation"],
+ "tags": ["fundamental"], "wikipedia": "JSON",
+ "def": "A lightweight, human-readable data format of nested objects, arrays, strings, numbers, booleans, and null — the default for web APIs.",
+ "context": "Won over XML by being terser and mapping directly to data structures. Watch its gotchas: no comments, no trailing commas, and numbers are IEEE-754 doubles (so big 64-bit integers lose precision).",
+ "see_also": ["XML", "YAML", "Serialization", "REST"],
+ "confused": [("XML", "JSON is terser and data-shaped; XML carries richer markup, namespaces, and schemas.")]},
+
+{"term": "Cookie", "branch": "Internet & Web", "tags": ["fundamental"], "wikipedia": "HTTP cookie",
+ "def": "A small piece of data a server sets in the browser and that the browser sends back on later requests — the standard way to add state to stateless HTTP.",
+ "context": "Carries sessions and preferences. The security flags matter: `HttpOnly` (hide from JS), `Secure` (HTTPS only), `SameSite` (CSRF defence). Third-party cookies are being phased out for tracking reasons.",
+ "see_also": ["Session", "HTTP", "CSRF", "Same-origin Policy"]},
+
+{"term": "DOM", "branch": "Internet & Web", "aliases": ["Document Object Model"],
+ "tags": [], "wikipedia": "Document Object Model",
+ "def": "The browser's in-memory tree representation of an HTML page that scripts can read and modify to change what's displayed.",
+ "context": "Direct DOM manipulation is slow, which is why frameworks (React) diff a 'virtual DOM' and batch real updates. XSS is fundamentally an attacker writing into your DOM.",
+ "see_also": ["HTML", "JavaScript", "Rendering"]},
+
+{"term": "CORS", "branch": "Internet & Web", "aliases": ["Cross-Origin Resource Sharing"],
+ "tags": [], "wikipedia": "Cross-origin resource sharing",
+ "def": "A browser mechanism letting a server opt in to requests from web pages on other origins, relaxing the same-origin policy under controlled rules.",
+ "context": "The error everyone hits: CORS isn't a server-side security control, it's the *browser* enforcing what a server permits via response headers. It protects users, not your API.",
+ "see_also": ["Same-origin Policy", "HTTP", "Cookie"]},
+
+{"term": "Status Code", "branch": "Internet & Web", "aliases": ["HTTP Status Code"],
+ "tags": [], "wikipedia": "List of HTTP status codes",
+ "def": "A three-digit number in an HTTP response signalling outcome: 2xx success, 3xx redirect, 4xx client error, 5xx server error.",
+ "context": "Using them correctly makes APIs debuggable and cacheable. Common confusions: 401 (unauthenticated) vs 403 (authenticated but forbidden); 401 means 'who are you?', 403 means 'no'.",
+ "see_also": ["HTTP", "Authentication", "Authorization"]},
+
+{"term": "GET", "branch": "Internet & Web", "tags": [], "wikipedia": "HTTP",
+ "def": "The HTTP method for retrieving a resource. Defined to be safe (no side effects) and idempotent, and is cacheable.",
+ "context": "Never use GET for actions that change state — caches, prefetchers, and crawlers will replay it, and parameters land in logs and history.",
+ "see_also": ["POST", "HTTP", "Idempotent", "Safe (HTTP)"],
+ "confused": [("POST", "GET retrieves (safe, cacheable); POST submits/changes state (not safe, not cacheable by default).")]},
+
+{"term": "POST", "branch": "Internet & Web", "tags": [], "wikipedia": "HTTP",
+ "def": "The HTTP method for submitting data to be processed, typically creating a resource or triggering a state change. Not safe, not idempotent.",
+ "context": "Because it isn't idempotent, a retried POST can double-submit — hence the 'press refresh to resubmit?' prompt, and why idempotency keys exist for payments.",
+ "see_also": ["GET", "PUT", "HTTP", "Idempotency Key"]},
+
+{"term": "WebSocket", "branch": "Internet & Web", "tags": ["modern"], "wikipedia": "WebSocket",
+ "def": "A protocol providing a persistent, full-duplex connection between browser and server over a single TCP connection, after an HTTP upgrade handshake.",
+ "context": "The fix for HTTP's request/response one-directionality when you need server push (chat, live dashboards) without polling. Stateful, so it complicates load balancing and scaling.",
+ "see_also": ["HTTP", "TCP", "Server-Sent Events"]},
+
+{"term": "Reverse Proxy", "branch": "Internet & Web", "tags": [], "wikipedia": "Reverse proxy",
+ "def": "A server sitting in front of backend servers, receiving client requests and forwarding them — handling TLS, caching, compression, and routing.",
+ "context": "nginx/Envoy/Traefik in this role centralise concerns (TLS termination, rate limiting) off the app. A *forward* proxy fronts clients; a reverse proxy fronts servers.",
+ "see_also": ["Proxy", "Load Balancer", "CDN"],
+ "confused": [("Proxy", "A forward proxy represents the client to the internet; a reverse proxy represents the server to clients.")]},
+
+{"term": "CDN", "branch": "Internet & Web", "aliases": ["Content Delivery Network"],
+ "tags": [], "wikipedia": "Content delivery network",
+ "def": "A geographically distributed network of caching servers that serve content from a location near each user, cutting latency and origin load.",
+ "context": "Wins on the physics of latency by moving bytes closer. Also a front-line DDoS absorber and TLS terminator. Cache invalidation (purging stale content) is the perennial headache.",
+ "see_also": ["Cache", "Latency", "Reverse Proxy", "Edge Computing"]},
+
+{"term": "WASM", "branch": "Internet & Web", "aliases": ["WebAssembly"],
+ "tags": ["modern"], "wikipedia": "WebAssembly",
+ "def": "A portable binary instruction format that runs in browsers (and beyond) at near-native speed, as a compilation target for C, Rust, Go, and more.",
+ "context": "Lets non-JavaScript languages run on the web in a sandbox, and is increasingly used server-side and at the edge as a lightweight, secure alternative to containers.",
+ "see_also": ["JavaScript", "Bytecode", "Sandbox"]},
+]
