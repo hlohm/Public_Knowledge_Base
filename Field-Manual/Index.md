@@ -38,11 +38,11 @@ what you actually run into; it's a checklist, not a contract.
 - Python · C · Java · Perl · JavaScript · SQL
 
 ### [[Networking & Protocols]]
-- **[[ssh]]** · DNS (dig/host) · HTTP (curl) · (S)FTP/SCP · TLS/openssl · netcat
+- **[[ssh]]** · DNS (dig/host) · HTTP (curl) · (S)FTP/SCP · TLS/openssl · **[[nc]]** (netcat)
 
 ## By type
 
-- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[docker]] · [[git]] · [[nvim]] · [[ssh]] · [[systemd]] · [[tmux]]
+- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[systemd]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]]
 - **Playbooks:** [[Service Down — Triage & Recovery]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]

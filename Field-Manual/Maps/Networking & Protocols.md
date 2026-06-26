@@ -17,7 +17,7 @@ The *concepts* (what TCP, DNS, TLS are) live in the IT-Dictionary; this is the
 - HTTP — `curl` for requests, headers, debugging
 - (S)FTP / SCP — file transfer over SSH and FTP
 - TLS / openssl — inspecting certs, testing endpoints
-- netcat (`nc`) — raw TCP/UDP, port checks
+- **[[nc]]** — netcat: raw TCP/UDP, port checks, banner grabbing, ad-hoc transfer
 
 ## See also
 - [[Linux Administration]] · [[CLI Tools]]

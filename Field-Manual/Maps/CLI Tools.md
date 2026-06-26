@@ -12,6 +12,7 @@ status: working
 - **[[git]]** — version control
 - **[[nvim]]** — modal editor
 - **[[tmux]]** — terminal multiplexer (persistent sessions, panes)
+- [[nc]] — networking swiss army knife
 - curl — HTTP from the command line *(see [[Networking & Protocols]])*
 - jq — JSON processor
 - rsync — fast incremental file copy/sync
