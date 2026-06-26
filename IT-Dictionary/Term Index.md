@@ -5,7 +5,7 @@ tags: [reference, index]
 
 # Term Index
 
-**630 terms** currently in the vault. Below: an A–Z of what exists, then a per-branch backlog of high-value terms still worth adding. The backlog is a checklist toward fuller coverage, not a contract — extend it freely.
+**631 terms** currently in the vault. Below: an A–Z of what exists, then a per-branch backlog of high-value terms still worth adding. The backlog is a checklist toward fuller coverage, not a contract — extend it freely.
 
 ## A–Z (existing terms)
 
@@ -21,7 +21,7 @@ tags: [reference, index]
 
 **F** — [[FaaS]] · [[Factor]] · [[Fail Secure]] · [[False Positive]] · [[Feature Flag]] · [[Federation]] · [[FedRAMP]] · [[FIDO2 and WebAuthn]] · [[File Descriptor]] · [[File System]] · [[Fine-tuning]] · [[Finite State Machine]] · [[Firewall]] · [[Firmware]] · [[Floating Point]] · [[Flynn's Taxonomy]] · [[Font]] · [[Foreign Key]] · [[Forward Secrecy]] · [[Framework]] · [[Full Disclosure]] · [[Functional Programming]] · [[Fuzzing]]
 
-**G** — [[Garbage Collection]] · [[GDPR]] · [[Generics]] · [[GET]] · [[Git]] · [[GitOps]] · [[Golden SAML]] · [[Golden Ticket]] · [[GPU]] · [[Gradient Descent]] · [[Graph]] · [[GraphQL]] · [[GRC]] · [[Greedy Algorithm]] · [[Group Policy]]
+**G** — [[Garbage Collection]] · [[Gateway]] · [[GDPR]] · [[Generics]] · [[GET]] · [[Git]] · [[GitOps]] · [[Golden SAML]] · [[Golden Ticket]] · [[GPU]] · [[Gradient Descent]] · [[Graph]] · [[GraphQL]] · [[GRC]] · [[Greedy Algorithm]] · [[Group Policy]]
 
 **H** — [[Hallucination]] · [[Halting Problem]] · [[Hardcoded Secret]] · [[Hardening]] · [[Hash Function]] · [[Hash Table]] · [[Heap]] · [[Hexadecimal]] · [[HIDS and HIPS]] · [[HIPAA]] · [[HMAC]] · [[Honeypot]] · [[HSM]] · [[HTML]] · [[HTTP]] · [[HTTPS]] · [[HVCI]] · [[Hypervisor]]
 
@@ -75,9 +75,9 @@ Curated terms still worth writing, by branch. `code` = not yet written; write it
 
 `Segmentation` · `Memory Protection` · `Spinlock` · `Livelock` · `IPC` · `Pipe` · `Signal` · `Journaling` · `Mount` · `Symlink` · `Hard Link` · `setuid` · `Init System` · `systemd` · `Environment Variable` · `Fork` · `Exec` · `Zombie Process` · `Orphan Process` · `cgroups` · `Namespace` · `Capabilities` · `POSIX` · `Real-time OS` · `Page Table` · `Copy-on-write` · `Demand Paging` · `Thrashing` · `Working Set` · `Round Robin Scheduling`
 
-### Networking  (27/54 written)
+### Networking  (28/54 written)
 
-`TCP/IP Model` · `Frame` · `Datagram` · `Gateway` · `Default Route` · `Routing Table` · `BGP` · `OSPF` · `MTU` · `QoS` · `Multicast` · `Broadcast` · `Anycast` · `Jitter` · `Packet Loss` · `Congestion Control` · `Flow Control` · `Wi-Fi` · `802.11` · `VLAN Trunking` · `Spanning Tree` · `Traceroute` · `Ping` · `Loopback` · `Localhost` · `Port Forwarding` · `SD-WAN`
+`TCP/IP Model` · `Frame` · `Datagram` · `Default Route` · `Routing Table` · `BGP` · `OSPF` · `MTU` · `QoS` · `Multicast` · `Broadcast` · `Anycast` · `Jitter` · `Packet Loss` · `Congestion Control` · `Flow Control` · `Wi-Fi` · `802.11` · `VLAN Trunking` · `Spanning Tree` · `Traceroute` · `Ping` · `Loopback` · `Localhost` · `Port Forwarding` · `SD-WAN`
 
 ### Internet & Web  (21/55 written)
 

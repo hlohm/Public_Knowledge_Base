@@ -23,6 +23,7 @@ tags: [map, net]
 - [[Dynamic DNS]] — Keeping a DNS record automatically updated as a host's IP changes — typically a client that pushes its current address to the DNS provider on a schedule or on change.
 - [[Ethernet]] — The dominant wired LAN technology (IEEE 802.3): frames addressed by MAC, carried today over twisted pair or fiber at 1/10/25/100+ Gb/s.
 - [[FQDN]] — A fully qualified domain name: a name complete to the root, unambiguous on its own — conventionally written with a trailing dot, `host.example.com.`.
+- [[Gateway]] — The next-hop router a host uses for anything outside its own subnet (the 'default gateway'); also, more broadly, a device that translates between otherwise-incompatible protocols.
 - [[Glue Record]] — An A/AAAA record for a nameserver, served by the _parent_ zone, to resolve a circular dependency where the nameserver's name lives inside the zone it serves.
 - [[ICMP]] — IP's control channel: echo request/reply (ping), destination unreachable, TTL exceeded (traceroute), fragmentation needed.
 - [[IP]] — The network-layer protocol that addresses and routes packets across interconnected networks, best-effort and connectionless.
