@@ -27,7 +27,7 @@ what you actually run into; it's a checklist, not a contract.
 - runbooks: **[[Backup Restore Drill]]** · bare-metal restore
 
 ### [[Linux Administration]]
-- **[[systemd]]** · users & permissions · package management (apt/dnf/pacman) · networking (ip/ss/nmcli) · storage (lsblk/mount/LVM) · processes & performance (ps/top/htop) · logging & journald · cron & timers · SSH server hardening
+- **[[systemd]]** · [[systemd.exec]] *(unit hardening / sandboxing)* · **[[btrfs]]** *(incl. snapper)* · users & permissions · package management (apt/dnf/pacman) · networking (ip/ss/nmcli) · storage (lsblk/mount/LVM) · processes & performance (ps/top/htop) · logging & journald · cron & timers · SSH server hardening
 - playbooks: **[[Service Down — Triage & Recovery]]** · disk full · out of memory
 - snippets: **[[systemd Service and Timer]]**
 
@@ -42,7 +42,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[systemd]] · [[tmux]]
+- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[btrfs]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[systemd]] · [[systemd.exec]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]]
 - **Playbooks:** [[Service Down — Triage & Recovery]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]

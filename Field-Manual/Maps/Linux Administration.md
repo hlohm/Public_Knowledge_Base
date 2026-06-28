@@ -13,6 +13,8 @@ grows (see [[How to Extend]]).
 
 ## In this area
 - **[[systemd]]** — services, units, timers, journald (`systemctl` / `journalctl`)
+- **[[systemd.exec]]** *(unit hardening / sandboxing)*
+- **[[btrfs]]** *(incl. snapper)*
 - users & permissions — `useradd`, groups, `sudo`, file modes & ACLs
 - package management — apt / dnf / pacman side by side
 - networking — `ip`, `ss`, `nmcli`, routing, DNS resolution

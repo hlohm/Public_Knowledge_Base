@@ -251,6 +251,10 @@ sudo systemctl enable --now borgmatic.timer
 ```
 
 See also [[systemd]] for the unit/timer surface, and [[systemd Service and Timer]] for a template.
+If you use a **filesystem-snapshot hook** (btrfs/LVM/ZFS), it runs *inside* this hardened unit:
+the btrfs hook needs `PrivateDevices=no` plus `CAP_SYS_ADMIN`/`CAP_DAC_OVERRIDE`, or the snapshot
+fails with a misleading "Permission denied". See [[btrfs]] for the snapshot mechanics and
+[[systemd.exec]] for the sandbox carve-outs and how to diagnose the denial.
 
 ---
 
