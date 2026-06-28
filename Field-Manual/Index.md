@@ -29,7 +29,7 @@ what you actually run into; it's a checklist, not a contract.
 ### [[Linux Administration]]
 - **[[systemd]]** · [[systemd.exec]] *(unit hardening / sandboxing)* · **[[btrfs]]** *(incl. snapper)* · users & permissions · package management (apt/dnf/pacman) · networking (ip/ss/nmcli) · storage (lsblk/mount/LVM) · processes & performance (ps/top/htop) · logging & journald · cron & timers · SSH server hardening
 - playbooks: **[[Service Down — Triage & Recovery]]** · disk full · out of memory
-- runbooks: **[[Hardened Syncthing Node on an Untrusted Host]]**
+- runbooks: **[[Hardened Syncthing Node on an Untrusted Host]]** · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - snippets: **[[systemd Service and Timer]]**
 
 ### [[Windows Administration]]
@@ -44,7 +44,7 @@ what you actually run into; it's a checklist, not a contract.
 ## By type
 
 - **Cheatsheets:** [[bash]] · [[borgmatic]] · [[btrfs]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tmux]]
-- **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]]
+- **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
 

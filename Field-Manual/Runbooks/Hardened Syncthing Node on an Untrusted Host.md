@@ -14,12 +14,9 @@ VPS, a colo box, anywhere the operator could read the disk — such that it impr
 connectivity and holds an off-site replica **without ever holding your plaintext**. The lever is
 Syncthing's **untrusted (receive-encrypted)** device mode: concede the host, deny the data.
 
-> Threat model is bounded on purpose: you cannot defend against the hypervisor/provider, and you
-> don't try. You defend the network surface, the blast radius, cluster hygiene (exactly one device
-> identity), and — for free — data-at-rest readability via receive-encryption.
+> Threat model is bounded on purpose: you cannot defend against the hypervisor/provider, and you don't try. You defend the network surface, the blast radius, cluster hygiene (exactly one device identity), and — for free — data-at-rest readability via receive-encryption.
 >
-> "Relay" here is loose: this is a reachable **encrypted replica** that helps NAT'd peers connect,
-> **not** a Syncthing `strelaysrv` relay server. Debian/Ubuntu-family commands; adapt for others.
+> "Relay" here is loose: this is a reachable **encrypted replica** that helps NAT'd peers connect, **not** a Syncthing `strelaysrv` relay server. Debian/Ubuntu-family commands; adapt for others.
 
 ## When to use
 - You want an off-site, always-reachable Syncthing node on hardware outside your trust boundary,
