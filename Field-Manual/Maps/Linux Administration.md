@@ -29,6 +29,9 @@ grows (see [[How to Extend]]).
 - disk full — find it, free it, prevent it
 - out of memory — the OOM killer and how to read it
 
+## Runbooks
+- **[[Hardened Syncthing Node on an Untrusted Host]]** — deploy a sandboxed, receive-encrypted [[syncthing]] node on hardware you don't trust
+
 ## Boilerplate
 - **[[systemd Service and Timer]]**
 
