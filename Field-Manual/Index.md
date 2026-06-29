@@ -17,7 +17,7 @@ what you actually run into; it's a checklist, not a contract.
 - snippets: **[[Bash Strict Mode Header]]** · argument-parsing skeleton · getopts template
 
 ### [[CLI Tools]]
-- **[[git]]** · **[[nvim]]** · **[[tmux]]** · curl · jq · rsync · fzf · ripgrep · find · sed · awk · tar
+- **[[git]]** · **[[nvim]]** · **[[tmux]]** · **[[curl]]** · **[[jq]]** · **[[rsync]]** · **[[tar]]** · fzf · ripgrep · find · sed · awk
 
 ### [[Containers]]
 - **[[docker]]** *(incl. Compose)* · podman · kubectl · Dockerfile patterns
@@ -43,14 +43,12 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[btrfs]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tmux]]
+- **Cheatsheets:** [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[docker]] · [[git]] · [[jq]] · [[nc]] · [[nvim]] · [[rsync]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
 
 ## Roadmap notes
 
-- The everyday spine is seeded; the next highest-value additions are **curl**, **rsync**,
-  and a **Linux Administration** split (users/permissions, packages, networking).
 - Languages start as one solid sheet each (the 80% you reach for), then split into
   sub-notes as they grow — see [[How to Extend]].

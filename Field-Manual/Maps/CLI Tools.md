@@ -12,14 +12,14 @@ status: working
 - **[[git]]** — version control
 - **[[nvim]]** — modal editor
 - **[[tmux]]** — terminal multiplexer (persistent sessions, panes)
-- [[nc]] — networking swiss army knife
-- curl — HTTP from the command line *(see [[Networking & Protocols]])*
-- jq — JSON processor
-- rsync — fast incremental file copy/sync
-- fzf — fuzzy finder
-- ripgrep (`rg`) — fast recursive search
-- find / sed / awk — the text-processing trio
-- tar — archives
+- **[[nc]]** — networking swiss army knife
+- **[[curl]]** — HTTP from the command line *(also [[Networking & Protocols]])*
+- **[[jq]]** — JSON processor
+- **[[rsync]]** — fast incremental file copy/sync; hard-link snapshot backups
+- **[[tar]]** — archives and compression
+- [[fzf]] — fuzzy finder
+- [[ripgrep]] — fast recursive search (`rg`)
+- [[find]] · [[sed]] · [[awk]] — the text-processing trio
 
 ## See also
 - [[Shells & Scripting]] · [[Networking & Protocols]]
