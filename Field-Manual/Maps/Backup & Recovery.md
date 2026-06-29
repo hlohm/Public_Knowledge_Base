@@ -18,7 +18,7 @@ path is rehearsed before you need it.
 
 ## Runbooks
 - **[[Backup Restore Drill]]** — verify you can restore, on a schedule
-- [[bare-metal restore]] — rebuild a host from nothing
+- **[[Bare Metal Restore]]** — rebuild a host from nothing: disk prep, chroot, bootloader, fstab/LUKS
 
 ## See also
 - [[Linux Administration]] · [[CLI Tools]]

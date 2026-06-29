@@ -13,8 +13,8 @@ what you actually run into; it's a checklist, not a contract.
 ## By area
 
 ### [[Shells & Scripting]]
-- **[[bash]]** · sh · zsh · fish · PowerShell *(see [[Windows Administration]])*
-- snippets: **[[Bash Strict Mode Header]]** · argument-parsing skeleton · getopts template
+- **[[bash]]** · **[[sh]]** · **[[zsh]]** · **[[fish]]** · PowerShell *(see [[Windows Administration]])*
+- snippets: **[[Bash Strict Mode Header]]** · **[[Argument Parsing Skeleton]]** · **[[getopts Template]]**
 
 ### [[CLI Tools]]
 - **[[git]]** · **[[nvim]]** · **[[tmux]]** · **[[curl]]** · **[[jq]]** · **[[rsync]]** · **[[tar]]** · **[[fzf]]** · **[[ripgrep]]** · **[[find]]** · **[[sed]]** · **[[awk]]**
@@ -24,7 +24,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ### [[Backup & Recovery]]
 - **[[borgmatic]]** · **[[restic]]** · **[[rsync-snapshots]]**
-- runbooks: **[[Backup Restore Drill]]** · bare-metal restore
+- runbooks: **[[Backup Restore Drill]]** · **[[Bare Metal Restore]]**
 
 ### [[Linux Administration]]
 - **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]** · SSH server hardening
@@ -43,10 +43,10 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[powershell]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]]
-- **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[powershell]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
+- **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
-- **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
+- **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[systemd Service and Timer]]
 
 ## Roadmap notes
 

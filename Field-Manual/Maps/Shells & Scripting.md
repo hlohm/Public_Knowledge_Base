@@ -15,13 +15,15 @@ Windows native (filed under [[Windows Administration]]).
 
 ## In this area
 - **[[bash]]** — the default Linux shell and scripting workhorse
-- sh — the POSIX baseline (portability target for scripts)
-- zsh — bash-compatible interactive shell (completion, theming)
-- fish — friendly interactive shell (non-POSIX scripting)
+- **[[sh]]** — POSIX baseline: portability, `[ ]` vs `[[ ]]`, getopts, POSIX-safe idioms
+- **[[zsh]]** — interactive: completion, extended globbing, parameter expansion, setopt
+- **[[fish]]** — friendly interactive shell: autosuggestions, abbreviations, argparse
 - PowerShell — see [[Windows Administration]]
 
 ## Boilerplate
 - **[[Bash Strict Mode Header]]** — the safe script preamble
+- **[[Argument Parsing Skeleton]]** — bash long-option parsing skeleton
+- **[[getopts Template]]** — POSIX-compatible short-option parsing
 
 ## See also
 - [[CLI Tools]] · [[Linux Administration]]
