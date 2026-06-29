@@ -15,13 +15,13 @@ grows (see [[How to Extend]]).
 - **[[systemd]]** — services, units, timers, journald (`systemctl` / `journalctl`)
 - **[[systemd.exec]]** *(unit hardening / sandboxing)*
 - **[[btrfs]]** *(incl. snapper)*
-- users & permissions — `useradd`, groups, `sudo`, file modes & ACLs
-- package management — apt / dnf / pacman side by side
-- networking — `ip`, `ss`, `nmcli`, routing, DNS resolution
-- storage — `lsblk`, `mount`, fstab, LVM, filesystems
-- processes & performance — `ps`, `top`/`htop`, `nice`, load, OOM
-- logging & journald — querying and pruning logs *(also in [[systemd]])*
-- cron & timers — scheduling (cron vs systemd timers)
+- **[[linux-users]]** — `useradd`, groups, `sudo`, file modes, ACLs, PAM
+- **[[linux-packages]]** — apt / dnf / pacman / apk side by side
+- **[[linux-networking]]** — `ip`, `ss`, `nmcli`, routing, DNS resolution
+- **[[linux-processes]]** — `ps`, `top`/`htop`, `nice`, load, I/O, OOM signals
+- [[linux-storage]] — `lsblk`, `mount`, fstab, LVM, filesystems
+- [[linux-logging]] — querying and pruning logs *(also in [[systemd]])*
+- [[linux-timers]] — scheduling (cron vs systemd timers)
 - SSH server hardening — `sshd_config`, keys-only, fail2ban *(client in [[ssh]])*
 
 ## Playbooks
