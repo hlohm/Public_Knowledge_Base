@@ -13,12 +13,12 @@ actually use, gotchas) and **splits into sub-notes as it grows** — don't let o
 a book (see [[How to Extend]]).
 
 ## In this area
-- Python — the everyday scripting & glue language
+- **[[python]]** — types, comprehensions, exceptions, context managers, stdlib highlights (pathlib, json, subprocess, re)
+- **[[javascript]]** — ES2020+: destructuring, async/await, array methods, modules, TypeScript essentials
+- **[[sql]]** — SELECT patterns, JOINs, CTEs, window functions, upsert, NULL handling, indexing
 - C — pointers, memory, build/compile, undefined-behavior traps
 - Java — types, build (Maven/Gradle), the verbose-but-safe path
 - Perl — text munging and one-liners
-- JavaScript — the language and its runtime quirks (Node + browser)
-- SQL — queries, joins, indexing reminders *(concepts live in the IT-Dictionary)*
 
 ## See also
 - [[CLI Tools]] · [[Shells & Scripting]]
