@@ -39,11 +39,11 @@ what you actually run into; it's a checklist, not a contract.
 - Python · C · Java · Perl · JavaScript · SQL
 
 ### [[Networking & Protocols]]
-- **[[ssh]]** · DNS (dig/host) · HTTP (curl) · (S)FTP/SCP · TLS/openssl · **[[nc]]** (netcat) · **[[syncthing]]**
+- **[[ssh]]** · **[[dns]]** (dig/host) · HTTP *(see [[curl]])* · **[[scp-sftp]]** · **[[openssl]]** (TLS) · **[[nc]]** (netcat) · **[[syncthing]]**
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[docker]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[nc]] · [[nvim]] · [[ripgrep]] · [[rsync]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[nc]] · [[nvim]] · [[openssl]] · [[ripgrep]] · [[rsync]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]

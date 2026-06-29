@@ -13,10 +13,10 @@ The *concepts* (what TCP, DNS, TLS are) live in the IT-Dictionary; this is the
 
 ## In this area
 - **[[ssh]]** — remote shell, keys, config, tunnels, plus `scp`/`sftp`
-- DNS — `dig`, `host`, record types in practice, resolution troubleshooting
+- **[[dns]]** — `dig`, `host`, record types, DNSSEC validation, troubleshooting
 - HTTP — **[[curl]]** for requests, headers, debugging *(also [[CLI Tools]])*
-- (S)FTP / SCP — file transfer over SSH and FTP
-- TLS / openssl — inspecting certs, testing endpoints
+- **[[scp-sftp]]** — SCP and SFTP file transfer over SSH; FTP legacy reference
+- **[[openssl]]** — inspecting certs, testing TLS endpoints, generating keys/CSRs
 - **[[nc]]** — netcat: raw TCP/UDP, port checks, banner grabbing, ad-hoc transfer
 - **[[syncthing]]** — continuous P2P file sync: devices, folders, untrusted/receive-encrypted, the CLI
 
