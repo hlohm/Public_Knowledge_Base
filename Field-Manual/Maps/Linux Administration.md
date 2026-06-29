@@ -26,6 +26,7 @@ grows (see [[How to Extend]]).
 
 ## Playbooks
 - **[[Service Down — Triage & Recovery]]**
+- **[[Unix OS Hardening]]** — decision-tree hardening reference across all Unix families (Linux, BSDs, macOS), every threat model (TM0–TM3), and every form factor (server, VM, cloud, container host, appliance, workstation, laptop, embedded)
 - disk full — find it, free it, prevent it
 - out of memory — the OOM killer and how to read it
 
