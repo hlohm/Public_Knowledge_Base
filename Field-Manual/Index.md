@@ -33,7 +33,7 @@ what you actually run into; it's a checklist, not a contract.
 - snippets: **[[systemd Service and Timer]]**
 
 ### [[Windows Administration]]
-- PowerShell · winget · services & scheduled tasks · event logs · WSL
+- **[[powershell]]** · **[[winget]]** · **[[windows-services]]** · **[[windows-events]]** · **[[wsl]]**
 
 ### [[Programming Languages]]
 - Python · C · Java · Perl · JavaScript · SQL
@@ -43,7 +43,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[powershell]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
