@@ -20,5 +20,8 @@ The *concepts* (what TCP, DNS, TLS are) live in the IT-Dictionary; this is the
 - **[[nc]]** — netcat: raw TCP/UDP, port checks, banner grabbing, ad-hoc transfer
 - **[[syncthing]]** — continuous P2P file sync: devices, folders, untrusted/receive-encrypted, the CLI
 
+## Playbooks
+- **[[Network Infrastructure Hardening]]** — decision-tree hardening reference for routers, switches, firewalls, DNS, VPN gateways, and wireless infrastructure; covers the three-plane model (management/control/data), BGP/RPKI, L2 security, DNSSEC, and OOB management across Cisco IOS, JunOS, Arista EOS, VyOS, and pfSense
+
 ## See also
 - [[Linux Administration]] · [[CLI Tools]]

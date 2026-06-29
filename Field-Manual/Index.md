@@ -45,7 +45,7 @@ what you actually run into; it's a checklist, not a contract.
 
 - **Cheatsheets:** [[bash]] · [[borgmatic]] · [[btrfs]] · [[docker]] · [[git]] · [[nc]] · [[nvim]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
-- **Playbooks:** [[Service Down — Triage & Recovery]] · [[Unix OS Hardening]] · [[Windows OS Hardening]]
+- **Playbooks:** [[Service Down — Triage & Recovery]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
 
 ## Roadmap notes
@@ -54,4 +54,3 @@ what you actually run into; it's a checklist, not a contract.
   and a **Linux Administration** split (users/permissions, packages, networking).
 - Languages start as one solid sheet each (the 80% you reach for), then split into
   sub-notes as they grow — see [[How to Extend]].
-- **Planned playbooks:** Network Infrastructure Hardening
