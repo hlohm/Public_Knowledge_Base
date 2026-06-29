@@ -15,5 +15,8 @@ status: working
 - event logs — `Get-WinEvent`, the Event Viewer model
 - WSL — running Linux under Windows (bridges to [[Linux Administration]])
 
+## Playbooks
+- **[[Windows OS Hardening]]** — decision-tree hardening reference covering all threat models (TM0–TM3), all profiles (internet server, DC, VM, workstation, laptop, PAW), and Windows 10/11/Server 2016–2022
+
 ## See also
-- [[Shells & Scripting]] · [[Networking & Protocols]]
+- [[Shells & Scripting]] · [[Networking & Protocols]] · [[Linux Administration]]
