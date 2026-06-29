@@ -20,10 +20,10 @@ what you actually run into; it's a checklist, not a contract.
 - **[[git]]** · **[[nvim]]** · **[[tmux]]** · **[[curl]]** · **[[jq]]** · **[[rsync]]** · **[[tar]]** · **[[fzf]]** · **[[ripgrep]]** · **[[find]]** · **[[sed]]** · **[[awk]]**
 
 ### [[Containers]]
-- **[[docker]]** *(incl. Compose)* · podman · kubectl · Dockerfile patterns
+- **[[docker]]** *(incl. Compose)* · **[[podman]]** · **[[kubectl]]** · **[[dockerfile]]**
 
 ### [[Backup & Recovery]]
-- **[[borgmatic]]** · restic · rsync snapshots
+- **[[borgmatic]]** · **[[restic]]** · **[[rsync-snapshots]]**
 - runbooks: **[[Backup Restore Drill]]** · bare-metal restore
 
 ### [[Linux Administration]]
@@ -43,7 +43,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[ripgrep]] · [[rsync]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]

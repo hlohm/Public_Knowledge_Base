@@ -13,12 +13,12 @@ path is rehearsed before you need it.
 
 ## In this area
 - **[[borgmatic]]** — declarative front-end over `borg` (dedup, encryption, retention)
-- restic — single-binary alternative backup tool
-- rsync snapshots — hard-link snapshot scheme
+- **[[restic]]** — single-binary, encrypted, deduplicated backup to local/SFTP/S3/B2
+- **[[rsync-snapshots]]** — hard-link snapshot scheme: plain-directory, no special software to restore
 
 ## Runbooks
 - **[[Backup Restore Drill]]** — verify you can restore, on a schedule
-- bare-metal restore — rebuild a host from nothing
+- [[bare-metal restore]] — rebuild a host from nothing
 
 ## See also
 - [[Linux Administration]] · [[CLI Tools]]

@@ -10,9 +10,9 @@ status: working
 
 ## In this area
 - **[[docker]]** — engine, CLI, and Compose (the everyday surface)
-- podman — daemonless, rootless-first Docker-compatible engine
-- kubectl — driving Kubernetes
-- Dockerfile patterns — multi-stage builds, cache ordering, distroless
+- **[[podman]]** — daemonless, rootless-first Docker-compatible engine; Quadlet, pods
+- **[[kubectl]]** — driving Kubernetes: deployments, logs, exec, rollouts, debugging
+- **[[dockerfile]]** — Dockerfile patterns: multi-stage builds, cache ordering, distroless, ENTRYPOINT vs CMD
 
 ## See also
 - [[Linux Administration]] · [[CLI Tools]]
