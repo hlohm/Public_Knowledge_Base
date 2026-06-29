@@ -27,8 +27,8 @@ what you actually run into; it's a checklist, not a contract.
 - runbooks: **[[Backup Restore Drill]]** · bare-metal restore
 
 ### [[Linux Administration]]
-- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · [[linux-storage]] · [[linux-logging]] · [[linux-timers]] · SSH server hardening
-- playbooks: **[[Service Down — Triage & Recovery]]** · disk full · out of memory
+- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]** · SSH server hardening
+- playbooks: **[[Service Down — Triage & Recovery]]** · **[[Disk Full]]** · **[[Out of Memory]]**
 - runbooks: **[[Hardened Syncthing Node on an Untrusted Host]]** · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - snippets: **[[systemd Service and Timer]]**
 
@@ -43,9 +43,9 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[ripgrep]] · [[rsync]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[find]] · [[fzf]] · [[git]] · [[jq]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[ripgrep]] · [[rsync]] · [[scp-sftp]] · [[sed]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
-- **Playbooks:** [[Service Down — Triage & Recovery]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
+- **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Bash Strict Mode Header]] · [[systemd Service and Timer]]
 
 ## Roadmap notes

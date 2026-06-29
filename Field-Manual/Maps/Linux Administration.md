@@ -19,16 +19,16 @@ grows (see [[How to Extend]]).
 - **[[linux-packages]]** — apt / dnf / pacman / apk side by side
 - **[[linux-networking]]** — `ip`, `ss`, `nmcli`, routing, DNS resolution
 - **[[linux-processes]]** — `ps`, `top`/`htop`, `nice`, load, I/O, OOM signals
-- [[linux-storage]] — `lsblk`, `mount`, fstab, LVM, filesystems
-- [[linux-logging]] — querying and pruning logs *(also in [[systemd]])*
-- [[linux-timers]] — scheduling (cron vs systemd timers)
+- **[[linux-storage]]** — `lsblk`, `mount`, fstab, LVM, SMART
+- **[[linux-logging]]** — journalctl, /var/log, logrotate, rsyslog forwarding
+- **[[linux-timers]]** — crontab, `at`, systemd timer units
 - SSH server hardening — `sshd_config`, keys-only, fail2ban *(client in [[ssh]])*
 
 ## Playbooks
 - **[[Service Down — Triage & Recovery]]**
 - **[[Unix OS Hardening]]** — decision-tree hardening reference across all Unix families (Linux, BSDs, macOS), every threat model (TM0–TM3), and every form factor (server, VM, cloud, container host, appliance, workstation, laptop, embedded)
-- disk full — find it, free it, prevent it
-- out of memory — the OOM killer and how to read it
+- **[[Disk Full]]** — find the culprit, free space, prevent recurrence
+- **[[Out of Memory]]** — OOM killer, swap pressure, leak investigation, cgroup limits
 
 ## Runbooks
 - **[[Hardened Syncthing Node on an Untrusted Host]]** — deploy a sandboxed, receive-encrypted [[syncthing]] node on hardware you don't trust
