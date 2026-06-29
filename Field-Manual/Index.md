@@ -36,14 +36,14 @@ what you actually run into; it's a checklist, not a contract.
 - **[[powershell]]** · **[[winget]]** · **[[windows-services]]** · **[[windows-events]]** · **[[wsl]]**
 
 ### [[Programming Languages]]
-- **[[python]]** · **[[javascript]]** · **[[sql]]** · C · Java · Perl
+- **[[python]]** · **[[javascript]]** · **[[sql]]** · **[[c]]** · **[[java]]** · **[[perl]]**
 
 ### [[Networking & Protocols]]
 - **[[ssh]]** · **[[dns]]** (dig/host) · HTTP *(see [[curl]])* · **[[scp-sftp]]** · **[[openssl]]** (TLS) · **[[nc]]** (netcat) · **[[syncthing]]**
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[podman]] · [[powershell]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[systemd Service and Timer]]
