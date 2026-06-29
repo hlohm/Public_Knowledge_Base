@@ -27,9 +27,9 @@ what you actually run into; it's a checklist, not a contract.
 - runbooks: **[[Backup Restore Drill]]** · **[[Bare Metal Restore]]**
 
 ### [[Linux Administration]]
-- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]** · SSH server hardening
+- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]**
 - playbooks: **[[Service Down — Triage & Recovery]]** · **[[Disk Full]]** · **[[Out of Memory]]**
-- runbooks: **[[Hardened Syncthing Node on an Untrusted Host]]** · [[Hardened Golden Base Image for a Single-Purpose Host]]
+- runbooks: **[[SSH Server Hardening]]** · **[[Hardened Syncthing Node on an Untrusted Host]]** · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - snippets: **[[systemd Service and Timer]]**
 
 ### [[Windows Administration]]
@@ -44,7 +44,7 @@ what you actually run into; it's a checklist, not a contract.
 ## By type
 
 - **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
-- **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
+- **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[SSH Server Hardening]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[systemd Service and Timer]]
 

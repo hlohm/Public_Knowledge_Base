@@ -22,7 +22,7 @@ grows (see [[How to Extend]]).
 - **[[linux-storage]]** — `lsblk`, `mount`, fstab, LVM, SMART
 - **[[linux-logging]]** — journalctl, /var/log, logrotate, rsyslog forwarding
 - **[[linux-timers]]** — crontab, `at`, systemd timer units
-- SSH server hardening — `sshd_config`, keys-only, fail2ban *(client in [[ssh]])*
+- SSH server hardening — see runbook below *(client-side in [[ssh]])*
 
 ## Playbooks
 - **[[Service Down — Triage & Recovery]]**
@@ -31,6 +31,7 @@ grows (see [[How to Extend]]).
 - **[[Out of Memory]]** — OOM killer, swap pressure, leak investigation, cgroup limits
 
 ## Runbooks
+- **[[SSH Server Hardening]]** — sshd_config, keys-only, algorithm whitelist, fail2ban
 - **[[Hardened Syncthing Node on an Untrusted Host]]** — deploy a sandboxed, receive-encrypted [[syncthing]] node on hardware you don't trust
 - **[[Hardened Golden Base Image for a Single-Purpose Host]]** — reproducible, sandboxed, firewalled base image you can clone fast and trust
 
