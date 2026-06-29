@@ -17,9 +17,9 @@ status: working
 - **[[jq]]** — JSON processor
 - **[[rsync]]** — fast incremental file copy/sync; hard-link snapshot backups
 - **[[tar]]** — archives and compression
-- [[fzf]] — fuzzy finder
-- [[ripgrep]] — fast recursive search (`rg`)
-- [[find]] · [[sed]] · [[awk]] — the text-processing trio
+- **[[fzf]]** — interactive fuzzy finder; shell integration for history/files/dirs
+- **[[ripgrep]]** — fast recursive text search (`rg`); gitignore-aware grep replacement
+- **[[find]]** · **[[sed]]** · **[[awk]]** — the text-processing trio
 
 ## See also
 - [[Shells & Scripting]] · [[Networking & Protocols]]
