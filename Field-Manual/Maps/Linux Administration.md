@@ -35,8 +35,9 @@ grows (see [[How to Extend]]).
 - **[[Hardened Syncthing Node on an Untrusted Host]]** — deploy a sandboxed, receive-encrypted [[syncthing]] node on hardware you don't trust
 - **[[Hardened Golden Base Image for a Single-Purpose Host]]** — reproducible, sandboxed, firewalled base image you can clone fast and trust
 
-## Boilerplate
+## Snippets
 - **[[systemd Service and Timer]]**
+- **[[Swap File Setup]]** — add swap to a running system; swappiness tuning; Btrfs gotcha
 
 ## See also
 - [[Networking & Protocols]] · [[Containers]] · [[Backup & Recovery]]
