@@ -17,7 +17,7 @@ what you actually run into; it's a checklist, not a contract.
 - snippets: **[[Bash Strict Mode Header]]** · **[[Argument Parsing Skeleton]]** · **[[getopts Template]]**
 
 ### [[CLI Tools]]
-- **[[git]]** · **[[nvim]]** · **[[tmux]]** · **[[curl]]** · **[[jq]]** · **[[rsync]]** · **[[tar]]** · **[[fzf]]** · **[[ripgrep]]** · **[[find]]** · **[[sed]]** · **[[awk]]**
+- **[[git]]** · **[[nvim]]** · **[[tmux]]** · **[[curl]]** · **[[jq]]** · **[[rsync]]** · **[[tar]]** · **[[fzf]]** · **[[ripgrep]]** · **[[find]]** · **[[sed]]** · **[[awk]]** · **[[claude-code]]**
 
 ### [[Containers]]
 - **[[docker]]** *(incl. Compose)* · **[[podman]]** · **[[kubectl]]** · **[[dockerfile]]**
@@ -43,7 +43,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[claude-code]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[winget]] · [[wsl]] · [[zsh]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[SSH Server Hardening]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]]
 - **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[Swap File Setup]] · [[systemd Service and Timer]]

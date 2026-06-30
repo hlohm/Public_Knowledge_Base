@@ -20,6 +20,7 @@ status: working
 - **[[fzf]]** — interactive fuzzy finder; shell integration for history/files/dirs
 - **[[ripgrep]]** — fast recursive text search (`rg`); gitignore-aware grep replacement
 - **[[find]]** · **[[sed]]** · **[[awk]]** — the text-processing trio
+- **[[claude-code]]** — AI coding agent: slash commands, hooks, CLAUDE.md, MCP servers, non-interactive scripting
 
 ## See also
 - [[Shells & Scripting]] · [[Networking & Protocols]]
