@@ -88,7 +88,84 @@ greet "World"
 # No $1, $2 — always use $argv
 ```
 
-## 3. Abbreviations (instant expand)
+## 3. Functions
+
+```fish
+# Basic definition
+function greet
+    echo "Hello, $argv[1]"
+end
+greet World                        # Hello, World
+
+# Named arguments instead of $argv[1], $argv[2]
+function greet --argument-names name greeting
+    echo "$greeting, $name"
+end
+greet Alice "Good morning"
+
+# Description (shown in tab completion and `functions`)
+function greet --description 'Say hello to someone'
+    echo "Hello, $argv[1]"
+end
+
+# --wraps: inherit another command's completions
+function gco --wraps 'git checkout'
+    git checkout $argv
+end
+
+# Local variables — always scope with -l inside a function
+function counter
+    set -l count 0
+    set count (math $count + 1)
+    echo $count
+end
+```
+
+### Introspection and persistence
+
+```fish
+functions                 # list all defined functions
+functions greet           # print the source of one function
+functions -e greet        # erase a function (session only)
+functions -c greet greet2 # copy to a new name
+
+funced greet               # open a function in $EDITOR for interactive editing
+funcsave greet              # save the current definition to ~/.config/fish/functions/greet.fish
+```
+
+### Autoloading
+
+Fish loads functions **lazily** — a function doesn't need to be defined in `config.fish`; drop it in `~/.config/fish/functions/<name>.fish` and fish loads it on first call:
+
+```fish
+# ~/.config/fish/functions/greet.fish
+function greet
+    echo "Hello, $argv[1]"
+end
+```
+
+`funcsave` writes exactly this file for you — that's the normal workflow: prototype with `function`/`funced`, persist with `funcsave`.
+
+### Event handlers
+
+```fish
+# Run a function when a variable changes
+function on_editor_change --on-variable EDITOR
+    echo "EDITOR is now $EDITOR"
+end
+
+# Run a function when a signal is received
+function on_sigint --on-signal SIGINT
+    echo "Caught Ctrl+C"
+end
+
+# Run a function after every command
+function after_command --on-event fish_postexec
+    echo "Ran: $argv"
+end
+```
+
+## 4. Abbreviations (instant expand)
 
 Abbreviations are like aliases but they expand immediately in the command line (you see what you're actually running):
 
@@ -103,7 +180,7 @@ abbr -e gs           # erase an abbreviation
 
 Stored in `~/.config/fish/config.fish`.
 
-## 4. Key bindings
+## 5. Key bindings
 
 | Key | Action |
 |---|---|
@@ -118,7 +195,7 @@ Stored in `~/.config/fish/config.fish`.
 | `Alt+L` | List directory (like `ls`) |
 | `Ctrl+C` | Cancel current command |
 
-## 5. Configuration
+## 6. Configuration
 
 ```fish
 # ~/.config/fish/config.fish — sourced on every interactive session
@@ -151,7 +228,7 @@ set -U fish_color_command blue
 set -U MY_TOKEN "abc123"
 ```
 
-## 6. Completions
+## 7. Completions
 
 Fish generates completions from man pages automatically. To write a custom completion:
 
@@ -163,7 +240,7 @@ complete -c myapp -l dry-run -d 'Dry run'
 complete -c myapp -n '__fish_no_arguments' -a '(ls *.conf)' -d 'Config file'
 ```
 
-## 7. Scripts
+## 8. Scripts
 
 Fish scripts have `.fish` extension and use fish syntax, not bash:
 
@@ -215,6 +292,14 @@ bash -c 'echo $BASH_VERSION'
 /bin/bash script.sh
 ```
 
+### "Turn a one-off command into a permanent function"
+```fish
+function weather --description 'Show weather for a city'
+    curl -s "wttr.in/$argv[1]"
+end
+funcsave weather        # persists to ~/.config/fish/functions/weather.fish
+```
+
 ## Gotchas / Golden rules
 
 1. **`$argv` not `$@` or `$1`** — fish uses `$argv` for arguments (1-indexed); `$argv[1]` is the first, `$argv[-1]` is the last.
@@ -222,3 +307,6 @@ bash -c 'echo $BASH_VERSION'
 3. **`and` / `or` are statements, not operators** — `and echo "yes"` runs if the previous command succeeded; use them on their own lines or after `;`.
 4. **Universal variables persist forever** — `set -U VAR val` survives reboots; unlike environment variables which are per-session. Erase them explicitly with `set -Ue VAR`.
 5. **Don't use fish as a shebang for scripts that run outside fish** — cron, systemd, and most CI runners run scripts under `/bin/sh`; a `#!/usr/bin/env fish` script will fail if fish is not installed system-wide.
+6. **Functions don't run in a subshell — variables leak unless scoped** — `set count 0` inside a function changes the global (or outer) `$count` if one exists; always `set -l` for a variable that should stay local to the function.
+7. **`return` sets an exit status, not a value** — fish functions have no return-value mechanism like other languages; to "return" data, `echo` it and capture with command substitution: `set result (myfunc)`.
+8. **Editing a function in memory (`function`/`funced`) doesn't persist it** — it's gone when the shell exits unless you `funcsave` it, or define it in `~/.config/fish/functions/<name>.fish` directly.
