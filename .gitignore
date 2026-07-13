@@ -3,3 +3,17 @@
 **/.obsidian/cache
 .trash/
 *.sync-conflict-*
+
+# Stray local environment/editor files (not vault content)
+/.bash_profile
+/.bashrc
+/.claude/
+/.gitconfig
+/.gitmodules
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile
+/.zshrc

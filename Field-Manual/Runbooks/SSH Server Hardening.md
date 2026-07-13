@@ -235,6 +235,7 @@ sudo fail2ban-client set sshd unbanip <your-ip>
 ## See also
 
 - [[ssh]] — client-side: key generation, `~/.ssh/config`, agent, tunnels, port forwarding
+- [[SSH Key Management]] — provisioning, rotation, offboarding, compromise response, fleet audit
 - [[linux-users]] — PAM, password policy, sudo hardening
 - [[Hardened Golden Base Image for a Single-Purpose Host]] — broader system hardening including SSH
 - [[Unix OS Hardening]] — full playbook covering SSH as one component

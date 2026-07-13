@@ -19,6 +19,7 @@ status: "developed"
 ## See also
 
 - [[ZTNA]]
+- [[WireGuard]]
 - [[TLS]]
 
 ## Further reading

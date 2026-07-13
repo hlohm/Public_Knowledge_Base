@@ -12,7 +12,8 @@ The *concepts* (what TCP, DNS, TLS are) live in the IT-Dictionary; this is the
 *operational* side — the commands, the troubleshooting, the day-to-day.
 
 ## In this area
-- **[[ssh]]** — remote shell, keys, config, tunnels, plus `scp`/`sftp`
+- **[[ssh]]** — remote shell, keys, tunnels, plus `scp`/`sftp`
+- **[[ssh_config]]** — client config file: `Host`/`Match` blocks, jump hosts, multiplexing
 - **[[dns]]** — `dig`, `host`, record types, DNSSEC validation, troubleshooting
 - HTTP — **[[curl]]** for requests, headers, debugging *(also [[CLI Tools]])*
 - **[[scp-sftp]]** — SCP and SFTP file transfer over SSH; FTP legacy reference

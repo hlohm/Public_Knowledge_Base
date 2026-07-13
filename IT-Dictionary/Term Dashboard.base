@@ -21,6 +21,8 @@ views:
     sort:
       - property: file.name
         direction: ASC
+    columnSize:
+      note.domain: 184
   - type: table
     name: To grow (notes & stubs)
     filters:

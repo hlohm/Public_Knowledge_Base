@@ -17,6 +17,7 @@ Wrapping a message in successive layers of encryption — one per relay on the p
 ## See also
 
 - [[Tor]]
+- [[Mixnet]]
 - [[Forward Secrecy]]
 - [[Proxy]]
 

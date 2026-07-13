@@ -1,17 +1,8 @@
 ---
-branch: "Security"
-domain: "SecOps, Detection & Response"
-aliases: ["After-Action Review"]
-tags: [secops, ir]
+type: "redirect"
+merged-into: "[[Postmortem]]"
 ---
 
 # Post-Mortem
 
-> **Domain:** [[11 - SecOps Detection and Response|SecOps, Detection & Response]]
-> **Also known as:** After-Action Review
-
-Blameless analysis after an incident. Also: after-action review.
-
-## See also
-
-- [[Incident Response]]
+> Merged into [[Postmortem]], which carries **Post-Mortem** and **After-Action Review** as aliases. This stub is kept only so the link resolves; it is safe to delete.

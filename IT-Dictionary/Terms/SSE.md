@@ -6,7 +6,7 @@ aliases: ["Security Service Edge"]
 tags: ["cloud", "network"]
 status: "note"
 ---
-
+****
 # SSE
 
 > **Domain:** [[10 - Cloud and Modern Architecture|Cloud & Modern Architecture]]

@@ -13,6 +13,7 @@ tags: [domain]
 - [[Bastion Host]] — Hardened entry point used to reach internal systems.
 - [[CAA Record]] — A DNS record listing which CAs are permitted to issue certificates for a domain.
 - [[CDS and CDNSKEY]] — Child-published records that signal the desired DS (CDS) or key (CDNSKEY) to the parent, so DS updates can be automated instead of hand-carried to the registrar.
+- [[Cover Traffic]] — Fake traffic sent to mask the pattern of the real messages.
 - [[DANE]] — Publishing a TLS certificate (or its CA, or public key) as a signed TLSA record in DNS, so a client can verify the server's cert against DNS instead of — or in addition to — the public CA system.
 - [[DKIM]] — DomainKeys Identified Mail — cryptographic signature on outbound mail.
 - [[DMARC]] — Ties SPF + DKIM to the visible From:, sets a fail policy, and reports.
@@ -29,6 +30,7 @@ tags: [domain]
 - [[Honeypot]] — Decoy system designed to attract attackers, gather intel, and waste their time.
 - [[IDS and IPS]] — Intrusion Detection / Prevention System.
 - [[Microsegmentation]] — Segmentation at workload or process level, often in cloud or SDN environments.
+- [[Mixnet]] — Anonymity network that batches, reorders, and delays messages to defeat traffic analysis.
 - [[MTA-STS]] — A policy that lets a domain require inbound SMTP be delivered over authenticated TLS, published over HTTPS and discovered via a DNS TXT record — the non-DNSSEC alternative to DANE.
 - [[NAC]] — Network Access Control.
 - [[Network Segmentation]] — Splitting networks into zones so a breach in one doesn't spread.
@@ -40,13 +42,16 @@ tags: [domain]
 - [[RRSIG]] — The signature record covering a set of DNS records of one type/name — the actual cryptographic proof a validating resolver checks against the zone's DNSKEY.
 - [[SDN]] — Software-Defined Networking.
 - [[SPF]] — Sender Policy Framework — DNS list of authorized sending IPs.
+- [[Sphinx Packet Format]] — Fixed-size onion packet format for mix networks; unlinkable, replay-resistant, supports anonymous replies.
 - [[SRS]] — A scheme for rewriting the envelope sender when _forwarding_ mail, so the forwarded message still passes SPF at the final destination.
+- [[SURB]] — Single-Use Reply Block: a sealed return path for replying to an anonymous sender.
 - [[TLS Inspection]] — Terminating TLS at a gateway to inspect content, then re-encrypting.
 - [[Tor]] — Volunteer anonymity network; layered encryption across three relays.
 - [[Tor Bridge]] — Unlisted Tor entry, for reaching Tor where it's blocked.
 - [[VLAN]] — Virtual Local Area Network.
 - [[VPN]] — Virtual Private Network.
 - [[WAF]] — Web Application Firewall.
+- [[WireGuard]] — Small, modern, kernel-level VPN tunnel protocol keyed by public keys.
 
 ---
 ← Back to [[_Home]]

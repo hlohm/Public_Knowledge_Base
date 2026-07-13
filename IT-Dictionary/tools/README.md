@@ -4,8 +4,14 @@ This vault was **scaffolded** by these scripts. They are included so the structu
 is reproducible and auditable, not because you need them day to day.
 
 ```
-python build.py      # regenerates Terms/ and Maps/ from the dataset
+python build.py            # regenerates Terms/ and Maps/ from the dataset (archival — see warning)
+python gen_term_index.py   # rebuilds the Term Index A–Z + count from Terms/ (safe, run anytime)
 ```
+
+`gen_term_index.py` is the one you'll actually use: it reads `Terms/`, keeps only
+`type: term` notes (the same rule `Term Dashboard.base` counts by), and rewrites the
+A–Z block and headline count in `Term Index.md`. It touches nothing else, so it's
+safe to run against the hand-edited vault — unlike `build.py`.
 
 ## ⚠ Read before running
 

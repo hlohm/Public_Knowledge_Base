@@ -64,21 +64,10 @@ Host myserver
     User you
     Port 2222
     IdentityFile ~/.ssh/id_ed25519
-
-Host *.internal
-    ProxyJump bastion            # everything *.internal hops via 'bastion'
-
-Host bastion
-    HostName bastion.example.com
-    User you
-
-# Defaults for all hosts
-Host *
-    ServerAliveInterval 60       # keep idle connections from dropping
-    AddKeysToAgent yes
 ```
 
-Then: `ssh myserver`, `scp file myserver:`, `rsync ... myserver:` all use it.
+Then: `ssh myserver`, `scp file myserver:`, `rsync ... myserver:` all use it. For jump hosts,
+multiplexing, `Match` blocks, and debugging what config actually applies, see [[ssh_config]].
 
 ---
 
@@ -169,7 +158,7 @@ rsync -avz --partial --progress dir/ user@host:/dest/
 
 | Path | What |
 | --- | --- |
-| `~/.ssh/config` | client config (Host blocks) |
+| `~/.ssh/config` | client config (Host blocks) — see [[ssh_config]] |
 | `~/.ssh/id_ed25519` / `.pub` | your private / public key |
 | `~/.ssh/known_hosts` | fingerprints of servers you've connected to |
 | `~/.ssh/authorized_keys` | *(on the server)* keys allowed to log in as that user |

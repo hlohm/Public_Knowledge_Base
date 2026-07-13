@@ -17,6 +17,7 @@ tags: [domain]
 - [[Authentication]] — Proving you are who you claim to be.
 - [[Authorization]] — Determining what an authenticated principal is allowed to do.
 - [[Bearer Token]] — Whoever holds the token can use it — like cash.
+- [[Break-Glass Access]] — Sealed, audited emergency credential for when the normal access path fails.
 - [[Capability-Based Security]] — Access via unforgeable tokens carrying their own authority; no ambient authority.
 - [[Claim]] — A piece of information about a principal inside a token (e.g.
 - [[Consent]] — The user's explicit approval for an app to access scoped resources.
