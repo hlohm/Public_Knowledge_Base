@@ -3,6 +3,7 @@
 **/.obsidian/cache
 .trash/
 *.sync-conflict-*
+**/*CLAUDE.md
 
 # Stray local environment/editor files (not vault content)
 /.bash_profile
