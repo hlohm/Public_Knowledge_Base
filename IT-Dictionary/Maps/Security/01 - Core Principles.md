@@ -20,7 +20,9 @@ tags: [domain]
 - [[Need to Know]] — Stricter cousin of least privilege focused on *information* rather than *permissions*.
 - [[Non-repudiation]] — Inability of a party to deny having performed an action.
 - [[Security through Obscurity]] — Relying on secrets *about the design* rather than secrets *within the design* (keys).
+- [[Trusted Computing Base]] — The components that must be trusted for security to hold; keep it small and named.
 - [[Separation of Duties]] — Split sensitive actions across multiple people (e.g.
+- [[Unlinkability]] — An observer cannot tell whether two actions, messages, or identities are related.
 - [[Zero Trust]] — 'Never trust, always verify.' Treat every request as if it originated from an untrusted network, regardless of location.
 
 ---

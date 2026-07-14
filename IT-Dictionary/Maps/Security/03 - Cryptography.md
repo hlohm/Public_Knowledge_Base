@@ -39,6 +39,7 @@ tags: [domain]
 - [[TLS]] — Transport Layer Security.
 - [[Wildcard Certificate]] — A TLS certificate valid for all single-label subdomains of a name via a `*.example.com` entry, so one cert covers `a.example.com`, `b.example.com`, and so on.
 - [[X.509]] — Standard certificate format binding a public key to an identity, signed by a CA.
+- [[Zero-Knowledge Proof]] — Proving a statement true without revealing anything beyond its truth.
 
 ---
 ← Back to [[_Home]]

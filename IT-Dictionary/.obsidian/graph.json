@@ -118,6 +118,34 @@
         "a": 1,
         "rgb": 9342694
       }
+    },
+    {
+      "query": "[\"type\":map",
+      "color": {
+        "a": 1,
+        "rgb": 255
+      }
+    },
+    {
+      "query": "[\"type\":reference",
+      "color": {
+        "a": 1,
+        "rgb": 148
+      }
+    },
+    {
+      "query": "[\"type\":domain",
+      "color": {
+        "a": 1,
+        "rgb": 7340032
+      }
+    },
+    {
+      "query": "[\"type\":home",
+      "color": {
+        "a": 1,
+        "rgb": 8731648
+      }
     }
   ],
   "collapse-display": false,
@@ -130,6 +158,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.2962963016668752,
+  "scale": 0.19753086897137873,
   "close": true
 }

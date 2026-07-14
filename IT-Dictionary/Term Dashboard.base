@@ -62,3 +62,12 @@ views:
         direction: ASC
       - property: file.name
         direction: ASC
+  - type: table
+    name: Recent edits
+    order:
+      - file.name
+      - file.mtime
+      - file.folder
+    sort:
+      - property: file.mtime
+        direction: DESC

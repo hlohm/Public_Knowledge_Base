@@ -22,6 +22,7 @@ An anonymity network that routes each message through a chain of relays ("mixes"
 - [[Cover Traffic]]
 - [[Sphinx Packet Format]]
 - [[Traffic Correlation Attack]]
+- [[Unlinkability]]
 
 ## Further reading
 

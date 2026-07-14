@@ -18,3 +18,6 @@ Isolated execution environment used to analyze suspicious files or run untrusted
 
 - [[EDR]]
 - [[Container Security]]
+- [[Sandbox Escape]]
+- [[seccomp]]
+- [[AI Agent]]

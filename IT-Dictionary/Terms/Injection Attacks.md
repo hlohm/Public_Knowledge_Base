@@ -2,7 +2,7 @@
 type: "term"
 branch: "Security"
 domain: "Threats & Attacks"
-aliases: ["SQL Injection", "\"Command Injection\"", "\"Prompt Injection\""]
+aliases: ["SQL Injection", "Command Injection"]
 tags: ["threat", "appsec"]
 status: "note"
 ---
@@ -10,7 +10,7 @@ status: "note"
 # Injection Attacks
 
 > **Domain:** [[07 - Threats and Attacks|Threats & Attacks]]
-> **Also known as:** SQL Injection, "Command Injection", "Prompt Injection"
+> **Also known as:** SQL Injection, Command Injection
 
 Tricking an interpreter into running attacker-controlled input: **SQL injection**, **command injection**, **LDAP injection**, **NoSQL injection**, **prompt injection**.
 

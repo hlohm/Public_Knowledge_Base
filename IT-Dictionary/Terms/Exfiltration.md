@@ -18,3 +18,6 @@ The unauthorized transfer of data out of a controlled environment — the "actio
 
 - [[DLP]]
 - [[C2]]
+- [[Egress Filtering]]
+- [[Lethal Trifecta]]
+- [[Prompt Injection]]

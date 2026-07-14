@@ -24,6 +24,7 @@ tags: [domain]
 - [[Patch Management]] — Process of testing and deploying vendor fixes.
 - [[Remote Attestation]] — Proving to a remote party what software a machine booted.
 - [[Sandbox]] — Isolated execution environment used to analyze suspicious files or run untrusted code safely.
+- [[Sandbox Escape]] — Code breaking out of the isolation meant to contain it, up to and including VM/hypervisor escape.
 - [[seccomp]] — Filter which syscalls a process may make at all.
 - [[SELinux]] — Label-based mandatory access control: default deny, binds root, queryable policy.
 - [[Type Enforcement]] — SELinux's workhorse: typed subjects and objects, whitelisted interactions.

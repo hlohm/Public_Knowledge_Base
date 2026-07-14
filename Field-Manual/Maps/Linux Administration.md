@@ -26,6 +26,7 @@ grows (see [[How to Extend]]).
 
 ## Playbooks
 - **[[Service Down — Triage & Recovery]]**
+- **[[Agentic AI Sandboxing]]** — contain an autonomous LLM agent: profile selection (dirty workshop / curator / vendor-hosted / computer use), enforcement-plane rules, adversarial verification
 - **[[Unix OS Hardening]]** — decision-tree hardening reference across all Unix families (Linux, BSDs, macOS), every threat model (TM0–TM3), and every form factor (server, VM, cloud, container host, appliance, workstation, laptop, embedded)
 - **[[Disk Full]]** — find the culprit, free space, prevent recurrence
 - **[[Out of Memory]]** — OOM killer, swap pressure, leak investigation, cgroup limits

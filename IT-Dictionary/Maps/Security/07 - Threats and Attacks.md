@@ -19,7 +19,9 @@ tags: [domain]
 - [[Directory Traversal]] — `../../../etc/passwd` and friends.
 - [[Exfiltration]] — Getting stolen data out.
 - [[Injection Attacks]] — Tricking an interpreter into running attacker-controlled input: SQL injection, command injection, LDAP injection, NoSQL injection, prompt injection.
+- [[Jailbreak]] — Defeating a system's built-in restrictions as its own user (device lockdown, or an LLM's safety refusals).
 - [[Lateral Movement]] — Moving from initial foothold to other systems inside the network.
+- [[Lethal Trifecta]] — Private data + untrusted content + external communication: the combination that turns an AI agent into an exfiltration machine.
 - [[LotL]] — Living off the Land.
 - [[Malware]] — Umbrella term for malicious software: virus, worm, trojan, rootkit, bootkit, spyware, adware, bot, ransomware, wiper, dropper/loader.
 - [[MITM]] — Man-In-The-Middle (also AitM = Adversary-in-the-Middle).
@@ -28,6 +30,7 @@ tags: [domain]
 - [[Password Spraying]] — Trying a few common passwords against many accounts (evades lockouts).
 - [[Persistence]] — Maintaining access across reboots and credential changes.
 - [[Phishing]] — Social engineering via message to trick users into clicking, opening, or revealing.
+- [[Prompt Injection]] — Planting instructions in content an LLM processes so it follows the attacker instead of its operator.
 - [[Ransomware]] — Encrypts data and demands payment.
 - [[RAT]] — Remote Access Trojan.
 - [[RCE]] — Remote Code Execution.
