@@ -15,7 +15,7 @@
   "file-recovery": true,
   "bases": true,
   "canvas": true,
-  "footnotes": false,
+  "footnotes": true,
   "properties": true,
   "daily-notes": false,
   "slash-command": false,
@@ -24,10 +24,10 @@
   "markdown-importer": false,
   "zk-prefixer": false,
   "random-note": false,
-  "slides": false,
+  "slides": true,
   "audio-recorder": false,
   "workspaces": false,
   "publish": false,
   "sync": true,
-  "webviewer": false
+  "webviewer": true
 }

@@ -18,6 +18,7 @@ Hardened entry point used to reach internal systems. Also called a **jump box**.
 
 ## See also
 
+- [[SSH]]
 - [[VPN]]
 - [[ZTNA]]
 - [[PAM]]

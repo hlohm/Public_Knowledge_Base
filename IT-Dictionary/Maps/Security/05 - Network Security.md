@@ -44,6 +44,8 @@ tags: [domain]
 - [[SPF]] — Sender Policy Framework — DNS list of authorized sending IPs.
 - [[Sphinx Packet Format]] — Fixed-size onion packet format for mix networks; unlinkable, replay-resistant, supports anonymous replies.
 - [[SRS]] — A scheme for rewriting the envelope sender when _forwarding_ mail, so the forwarded message still passes SPF at the final destination.
+- [[SSH]] — Secure Shell: encrypted remote login, command execution, and transport for file transfer and tunneling.
+- [[SSH Tunneling]] — Forwarding arbitrary TCP connections through an authenticated SSH session (local, remote/reverse, dynamic).
 - [[SURB]] — Single-Use Reply Block: a sealed return path for replying to an anonymous sender.
 - [[TLS Inspection]] — Terminating TLS at a gateway to inspect content, then re-encrypting.
 - [[Tor]] — Volunteer anonymity network; layered encryption across three relays.
