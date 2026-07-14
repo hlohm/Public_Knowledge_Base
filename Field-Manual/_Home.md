@@ -33,6 +33,7 @@ Each note has one home **area** (its Map). Browse a Map top-to-bottom, or follow
 - [[Windows Administration]] — PowerShell-first administration of Windows hosts
 - [[Programming Languages]] — Python, C, Java, Perl, JavaScript, SQL reference
 - [[Networking & Protocols]] — ssh, DNS, HTTP, (S)FTP, TLS on the wire
+- [[Writing & Docs]] — markup and authoring: markdown, LaTeX, HTML, CSS
 
 ## How this vault works
 

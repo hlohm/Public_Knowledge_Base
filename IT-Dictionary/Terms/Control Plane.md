@@ -15,3 +15,12 @@ status: "note"
 Management/API surface. Distinct from **data plane** (the surface that handles workload traffic).
 
 **Context.** Where cloud security concentrates: data-plane compromise gets you one workload, control-plane compromise gets you the account — every resource creatable, every permission grantable. Practical consequences: MFA/FIDO2 on cloud consoles, scoped and short-lived API credentials, and audit logging (CloudTrail, Azure Activity Log) treated as tier-zero telemetry.
+
+## See also
+
+- [[Tenant]]
+- [[Blast Radius]]
+- [[Least Privilege]]
+- [[IMDS]]
+- [[Zero Trust]]
+- [[SDN]]

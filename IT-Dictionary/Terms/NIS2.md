@@ -14,6 +14,15 @@ EU directive expanding cybersecurity obligations for critical and important enti
 
 **Context.** The EU's floor for cybersecurity in critical and important sectors — energy, health, transport, digital infrastructure, manufacturing, and more — with management personally liable for ignoring it. German transposition (NIS2UmsuCG) makes the BSI the supervisory authority. Core duties: risk management measures, incident reporting (24h early warning, 72h notification), and supply-chain security.
 
+## See also
+
+- [[DORA]]
+- [[BSI]]
+- [[IT-Grundschutz]]
+- [[GRC]]
+- [[Incident Response]]
+- [[Supply Chain Attack]]
+
 ## Further reading
 
 - [EUR-Lex: Directive (EU) 2022/2555 (NIS2)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022L2555)

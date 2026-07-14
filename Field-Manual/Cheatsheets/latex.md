@@ -3,7 +3,7 @@ type: cheatsheet
 area: writing
 aliases: [LaTeX, TeX, latexmk]
 tags: [cheatsheet, latex, writing, typesetting]
-status: draft
+status: working
 ---
 
 # latex
@@ -155,7 +155,74 @@ latexmk -pdf -pvc main.tex       # watch mode: recompile on save
 latexmk -c                       # clean aux files, keep pdf
 
 pdflatex main.tex                # single manual pass — refs need 2-3 passes
+
+lualatex main.tex                # modern engine: system fonts (fontspec), full Unicode
+xelatex  main.tex                # likewise; pick one and let latexmk drive it
+latexmk -pdflua -pvc main.tex    # latexmk with the LuaLaTeX engine, watch mode
 ```
+
+## 9. Math environments (amsmath)
+
+```latex
+% cases — piecewise definitions
+f(x) = \begin{cases}
+    x^2 & x \geq 0 \\
+    -x  & x < 0
+\end{cases}
+
+% matrices — pmatrix (), bmatrix [], vmatrix ||
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+
+% multi-line derivation, aligned at & (equation numbers via align, or align* for none)
+\begin{align*}
+    (a+b)^2 &= a^2 + 2ab + b^2 \\
+            &\leq 2(a^2 + b^2)
+\end{align*}
+```
+
+## 10. Theorems & proofs (amsthm)
+
+```latex
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]   % numbered 1.1, 1.2, ... per section
+\newtheorem{lemma}[theorem]{Lemma}       % shares the theorem counter
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\begin{theorem}[Pythagoras]\label{thm:pyth}
+    For a right triangle, $a^2 + b^2 = c^2$.
+\end{theorem}
+\begin{proof}
+    ... \qedhere                          % \qed box is automatic at proof end
+\end{proof}
+```
+
+## 11. Cross-referencing (cleveref)
+
+```latex
+\usepackage{cleveref}        % load AFTER hyperref
+\cref{thm:pyth}              % prints "Theorem 1.1" — knows the type from the label
+\Cref{fig:plot}             % capitalized for sentence start: "Figure 2"
+\cref{eq:euler,eq:two}      % ranges/lists: "Equations 1 and 2" automatically
+```
+
+Label-prefix convention keeps references legible: `sec:`, `fig:`, `tab:`, `eq:`, `thm:`, `lst:`.
+
+## Common packages
+
+| Package | What it buys |
+|---|---|
+| `amsmath, amssymb, amsthm` | Serious math: environments, symbols, theorems |
+| `graphicx` | `\includegraphics` |
+| `booktabs` | `\toprule/\midrule/\bottomrule` — never use vertical rules again |
+| `hyperref` | Clickable refs, links, PDF metadata — load near-last |
+| `cleveref` | Type-aware `\cref` — load *after* hyperref |
+| `geometry` | `\usepackage[margin=1in]{geometry}` page margins |
+| `biblatex` | Modern bibliography (with `biber`) |
+| `fontspec` | System fonts — LuaLaTeX/XeLaTeX only |
+| `siunitx` | `\SI{9.8}{m/s^2}` — numbers and units done right |
+| `tikz` | Programmatic vector graphics and diagrams |
+| `listings` / `minted` | Source-code listings (`minted` needs `-shell-escape` + Pygments) |
 
 ## Files & locations
 
@@ -177,3 +244,12 @@ main.aux .log .toc .bbl ...     # regenerable build files — gitignore them
 - **Straight quotes `"` come out wrong** — use ``` `` ``` and `''`.
 - **Error messages point past the real error** — read the *first* error, fix, recompile; later errors are usually cascade.
 - **The log is noisy** but `grep -n "Warning\|Error" main.log` finds what matters.
+- **Load order matters:** `hyperref` near-last, `cleveref` after it — the wrong order breaks references silently.
+- **`minted` needs `-shell-escape`** (`latexmk -pdf -shell-escape`) and Python's Pygments installed, or compilation fails.
+- **`inputenc`/`fontenc` are legacy** — on LuaLaTeX/XeLaTeX drop them and use `fontspec` instead.
+
+## Further reading
+
+- [The Not So Short Introduction to LaTeX (lshort)](https://tobi.oetiker.ch/lshort/lshort.pdf) — the canonical starter
+- [Overleaf documentation](https://www.overleaf.com/learn) — task-oriented, well-indexed
+- [amsmath User's Guide](https://ctan.org/pkg/amsmath) · [booktabs](https://ctan.org/pkg/booktabs) · [cleveref](https://ctan.org/pkg/cleveref)

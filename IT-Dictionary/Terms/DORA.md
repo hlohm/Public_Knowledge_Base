@@ -16,6 +16,14 @@ status: "developed"
 
 **Context.** Applies since January 2025 to EU financial entities *and* their critical ICT providers — which pulls IT service companies into scope through their banking customers. Pillars: ICT risk management, incident reporting, resilience testing (up to threat-led pentests), and third-party risk including contract requirements.
 
+## See also
+
+- [[NIS2]]
+- [[TPRM]]
+- [[Penetration Test]]
+- [[Incident Response]]
+- [[GRC]]
+
 ## Further reading
 
 - [EUR-Lex: Regulation (EU) 2022/2554 (DORA)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554)

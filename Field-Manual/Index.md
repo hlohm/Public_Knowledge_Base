@@ -42,9 +42,12 @@ what you actually run into; it's a checklist, not a contract.
 ### [[Networking & Protocols]]
 - **[[ssh]]** · **[[ssh_config]]** · **[[dns]]** (dig/host) · HTTP *(see [[curl]])* · **[[scp-sftp]]** · **[[openssl]]** (TLS) · **[[nc]]** (netcat) · **[[syncthing]]**
 
+### [[Writing & Docs]]
+- **[[markdown]]** · **[[latex]]** · **[[html]]** · **[[css]]**
+
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[claude-code]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[powershell-cmdlets]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[ssh_config]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[windows-users]] · [[winget]] · [[wsl]] · [[zsh]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[claude-code]] · [[css]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[html]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[latex]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[markdown]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[powershell-cmdlets]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[ssh_config]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[windows-users]] · [[winget]] · [[wsl]] · [[zsh]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[SSH Server Hardening]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]] · [[Primary Domain Controller — New Forest Setup]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[SSH Key Management]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Network Infrastructure Hardening]] · [[Agentic AI Sandboxing]]
 - **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[Swap File Setup]] · [[systemd Service and Timer]]

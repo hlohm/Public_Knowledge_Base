@@ -3,7 +3,7 @@ type: cheatsheet
 area: writing
 aliases: [CSS, CSS3, stylesheet]
 tags: [cheatsheet, css, web, writing]
-status: draft
+status: working
 ---
 
 # css
@@ -148,6 +148,61 @@ position: sticky; top: 0;            /* in flow until it hits the edge */
 z-index: 10;                         /* only works on positioned elements */
 ```
 
+## 10. Transitions, transforms & animation
+
+```css
+/* transition: animate a property change (hover, class toggle) */
+.button {
+    transition: background 150ms ease, transform 150ms ease;  /* name the props, not "all" */
+}
+.button:hover { background: #04c; transform: translateY(-2px); }
+
+/* transform: move/scale/rotate without touching layout (GPU-friendly) */
+transform: translate(10px, 0) scale(1.05) rotate(3deg);
+
+/* keyframes: multi-step animation */
+@keyframes pulse {
+    from { opacity: 1; }
+    to   { opacity: 0.4; }
+}
+.spinner { animation: pulse 1s ease-in-out infinite alternate; }
+
+/* respect users who opt out of motion */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+```
+
+Animate `transform` and `opacity` only for smooth 60fps — animating `width`, `top`, or `margin` forces layout reflow and stutters.
+
+## 11. Modern niceties
+
+```css
+/* Fluid sizing without media queries: never below 1rem, scale with viewport, cap at 2rem */
+font-size: clamp(1rem, 2.5vw, 2rem);
+
+/* Native nesting (no preprocessor needed in current browsers) */
+.card {
+    padding: 1rem;
+    & .title { font-weight: 700; }       /* & = the parent selector */
+    &:hover { box-shadow: 0 2px 8px #0002; }
+}
+
+/* :is() / :where() flatten selector lists; :where() adds zero specificity */
+:is(h1, h2, h3) { line-height: 1.2; }
+
+/* Container queries: style by parent width, not viewport */
+.sidebar { container-type: inline-size; }
+@container (min-width: 400px) { .widget { display: grid; } }
+
+/* aspect-ratio: no more padding-top:56.25% hacks */
+.video { aspect-ratio: 16 / 9; }
+
+/* logical properties: writing-mode-aware margins/padding */
+margin-inline: auto;                     /* left+right in LTR; direction-agnostic */
+padding-block: 1rem;                     /* top+bottom */
+```
+
 ## Daily workflows
 
 ```css
@@ -171,3 +226,12 @@ z-index: 10;                         /* only works on positioned elements */
 - **`height: 100%` needs every ancestor sized** — usually you want `min-height: 100vh` or flexbox.
 - **Prefer classes over ids for styling** — ids are for anchors and JS.
 - **Unitless `line-height`**; `line-height: 24px` breaks on nested font-size changes.
+- **Animate only `transform`/`opacity`** for smoothness; animating layout properties (`width`, `top`, `margin`) causes reflow jank.
+- **Honor `prefers-reduced-motion`** — gratuitous animation is an accessibility problem, not just taste.
+- **`transition: all` is a footgun** — it animates properties you didn't mean to; list the properties explicitly.
+
+## Further reading
+
+- [MDN: CSS reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) — the authoritative per-property docs
+- [MDN: Learn CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS) — layout, box model, from the ground up
+- [web.dev: Learn CSS](https://web.dev/learn/css/) · [A Complete Guide to Flexbox / Grid (CSS-Tricks)](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)

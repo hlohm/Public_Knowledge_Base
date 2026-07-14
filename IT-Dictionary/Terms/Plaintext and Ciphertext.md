@@ -15,3 +15,11 @@ status: "note"
 Pre- and post-encryption data.
 
 **Context.** Worth keeping precise in incident write-ups and configs: "plaintext" also describes any data stored or sent unencrypted (plaintext passwords, plaintext HTTP). "Cleartext" specifically means never-encrypted. Ciphertext should be indistinguishable from random noise — visible structure means something is broken.
+
+## See also
+
+- [[Symmetric Encryption]]
+- [[Asymmetric Encryption]]
+- [[Block Cipher]]
+- [[Hash Function]]
+- [[TLS]]
