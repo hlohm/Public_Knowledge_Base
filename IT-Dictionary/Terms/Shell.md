@@ -18,6 +18,7 @@ A program that interprets your commands and runs other programs — the text int
 - [[Environment Variable]]
 - [[Pipe]]
 - [[System Call]]
+- [[TUI]]
 
 ## Further reading
 

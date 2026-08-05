@@ -131,7 +131,42 @@ scope it to specific `Host` blocks you actually trust, never `Host *`.
 
 ---
 
-## 7. Host key checking
+## 7. Port forwarding
+
+The config-file equivalents of `-L`/`-R`/`-D` (see [[ssh]] §5 for the one-off command forms) —
+put them in a `Host` block and the tunnels come up automatically on every connection:
+
+```sshconfig
+Host dbhost
+    LocalForward 5433 localhost:5432     # = ssh -L 5433:localhost:5432 — local :5433 → remote's :5432
+
+Host demo
+    RemoteForward 9000 localhost:3000    # = ssh -R 9000:localhost:3000 — remote :9000 → your local :3000
+
+Host proxy
+    DynamicForward 1080                  # = ssh -D 1080 — SOCKS proxy on local :1080
+
+Host *
+    ExitOnForwardFailure yes             # fail the connection if a forward can't bind, don't limp on
+```
+
+Syntax note: the config directives use a **space** between listen port and destination
+(`LocalForward 5433 localhost:5432`), not the colon the CLI flags use. The destination
+(`localhost` here) is resolved **from the remote host's perspective** for `LocalForward` and
+from *your* machine's for `RemoteForward` — same semantics as the flags.
+
+By default forwards bind to loopback only. Prepend a bind address to listen wider
+(`LocalForward 0.0.0.0:5433 localhost:5432` — exposes the tunnel to your LAN, so mean it).
+For `RemoteForward` a non-loopback bind additionally requires `GatewayPorts yes` in the
+*server's* `sshd_config` — the client config alone can't grant that.
+
+`ExitOnForwardFailure yes` matters for anything scripted or automatic: without it, ssh
+prints a warning when the port is already taken and connects anyway, and whatever depends
+on the tunnel fails later with a much more confusing error.
+
+---
+
+## 8. Host key checking
 
 ```sshconfig
 Host *
@@ -149,7 +184,7 @@ that holds real data or credentials.
 
 ---
 
-## 8. Match blocks (conditional config)
+## 9. Match blocks (conditional config)
 
 ```sshconfig
 # Only apply when NOT already inside a tmux/ssh session on this host
@@ -167,7 +202,7 @@ just *what you typed*.
 
 ---
 
-## 9. Splitting the file
+## 10. Splitting the file
 
 ```sshconfig
 # ~/.ssh/config
@@ -183,7 +218,7 @@ sprawling file — handy when hosts are added/removed by a script or synced sepa
 
 ---
 
-## 10. Debugging effective config
+## 11. Debugging effective config
 
 ```bash
 # The single most useful command here: shows the FINAL merged config for a host,
@@ -222,6 +257,16 @@ Host *.internal
 ### "Confirm what ssh will actually do before connecting"
 ```bash
 ssh -G myserver | grep -E '^(hostname|port|user|proxyjump|identityfile) '
+```
+
+### "Always tunnel the remote DB when I connect to this host"
+```sshconfig
+Host dbhost
+    LocalForward 5433 localhost:5432
+    ExitOnForwardFailure yes
+```
+```bash
+ssh dbhost        # tunnel is up for the session; connect tools to localhost:5433
 ```
 
 ### "Speed up repeated connections to the same host"
@@ -263,6 +308,9 @@ mkdir -p -m 700 ~/.ssh/sockets   # ControlPath needs the directory to exist firs
 5. **`ForwardAgent yes` is a trust decision.** Scope it to specific hosts, never `Host *`.
 6. **`ControlPath`'s directory must exist before use** — ssh will not create
    `~/.ssh/sockets/` for you.
+7. **`ExitOnForwardFailure yes` on any host with configured forwards.** Otherwise a taken
+   port produces only a warning and the session proceeds without the tunnel — the failure
+   surfaces later, somewhere confusing.
 
 ## Further reading
 - [ssh_config(5)](https://man.openbsd.org/ssh_config)

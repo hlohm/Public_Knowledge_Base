@@ -20,6 +20,7 @@ An automated test exercising one small unit (a function/class) in isolation, fas
 - [[Mock]]
 - [[Integration Test]]
 - [[Code Coverage]]
+- [[Property-Based Testing]]
 
 ## Further reading
 

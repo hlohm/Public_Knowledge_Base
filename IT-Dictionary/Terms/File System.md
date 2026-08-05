@@ -19,6 +19,7 @@ The scheme an OS uses to organise data on storage into files and directories, tr
 
 - [[Inode]]
 - [[Journaling]]
+- [[Atomic Write]]
 - [[Mount]]
 - [[Permissions]]
 

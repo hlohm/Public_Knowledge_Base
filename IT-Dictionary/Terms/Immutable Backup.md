@@ -20,3 +20,4 @@ A backup that cannot be modified or deleted after it is written, for a defined r
 - [[RPO]]
 - [[RTO]]
 - [[Ransomware]]
+- [[File Versioning]]

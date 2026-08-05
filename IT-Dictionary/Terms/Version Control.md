@@ -24,6 +24,7 @@ A system that records changes to files over time so you can recall any version, 
 - [[Branch]]
 - [[Merge]]
 - [[Repository]]
+- [[File Versioning]]
 
 ## Further reading
 

@@ -7,7 +7,7 @@ tags: [map, media]
 
 > Pixels, codecs, colour, and how humans interact with all of it.
 
-## Terms in this branch (13)
+## Terms in this branch (14)
 
 - [[Accessibility]] — Designing software usable by people with disabilities — visual, motor, auditory, cognitive — via screen-reader support, keyboard navigation, sufficient contrast, captions, and more.
 - [[Codec]] — An algorithm (and its implementation) that codes and decodes a media stream — compressing audio or video for storage/transmission and decompressing it for playback (H.264, AV1, AAC, Opus).
@@ -21,6 +21,7 @@ tags: [map, media]
 - [[Rendering]] — The process of generating a 2D image from a model or scene description — computing colour for each pixel from geometry, materials, and lighting.
 - [[Resolution]] — The amount of detail in an image or display, given as pixel dimensions (1920×1080) or as a density (DPI/PPI).
 - [[Shader]] — A small program that runs on the GPU for every vertex or every pixel — originally to compute shading (hence the name), now the general mechanism for programmable graphics and the ancestor of GPU compute.
+- [[TUI]] — A full-screen interactive interface drawn with characters in a terminal — richer than a command line, runs anywhere SSH does.
 - [[Vector Graphics]] — Images defined by mathematical shapes — points, lines, curves, polygons — rather than a grid of pixels, so they scale to any size without loss of quality.
 
 ---

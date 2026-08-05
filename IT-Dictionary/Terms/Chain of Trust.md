@@ -2,7 +2,7 @@
 type: "term"
 branch: "Security"
 domain: "Cryptography"
-aliases: ["Trust Chain", "Certificate Chain"]
+aliases: ["Trust Chain", "Certificate Chain", "Trust Anchor"]
 tags: ["crypto", "pki"]
 status: "developed"
 ---
@@ -10,7 +10,7 @@ status: "developed"
 # Chain of Trust
 
 > **Domain:** [[03 - Cryptography|Cryptography]]
-> **Also known as:** Trust Chain, Certificate Chain
+> **Also known as:** Trust Chain, Certificate Chain, Trust Anchor
 
 A sequence of cryptographic vouchers from a trusted root down to a leaf, where each link signs the next — so trusting one anchor transitively validates the whole path. Sequence of certs from end-entity → intermediate CA(s) → root CA.
 

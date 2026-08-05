@@ -10,7 +10,7 @@ status: working
 
 > **Area:** [[Linux Administration]]
 
-Disk inspection, mounting, filesystems, LVM, and disk health. See [[btrfs]] for the Btrfs-specific sheet.
+Disk inspection, mounting, filesystems, LVM, and disk health. See [[btrfs]] for the Btrfs-specific sheet and [[filesystems]] for choosing between filesystems.
 
 ---
 

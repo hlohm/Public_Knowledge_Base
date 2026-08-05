@@ -7,8 +7,9 @@ tags: [map, os]
 
 > The layer that turns hardware into something programs can share safely: processes, memory, files, the kernel.
 
-## Terms in this branch (30)
+## Terms in this branch (31)
 
+- [[Atomic Write]] — Updating a file so a crash mid-write leaves either the whole old or whole new content, never a torn mix — write-to-temp, fsync, rename.
 - [[Boot Loader]] — The small program that bridges firmware and OS: loaded by UEFI/BIOS, it loads the kernel (plus initramfs/drivers) and hands over control.
 - [[Capabilities]] — Root's power split into ~40 discrete privileges a process can hold or drop individually.
 - [[Context Switch]] — Saving the state of one process/thread and restoring another's so a single CPU can interleave many of them, creating the illusion of simultaneity.

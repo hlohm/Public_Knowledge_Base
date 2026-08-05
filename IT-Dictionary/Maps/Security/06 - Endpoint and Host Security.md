@@ -22,6 +22,7 @@ tags: [domain]
 - [[LSM]] — Linux Security Modules: the kernel hook framework MAC systems plug into.
 - [[MDR]] — Managed Detection and Response.
 - [[Patch Management]] — Process of testing and deploying vendor fixes.
+- [[PreToolUse Hook]] — Callback fired before an AI agent's tool call executes; a fail-closed enforcement point upstream of the runtime's permission system.
 - [[Remote Attestation]] — Proving to a remote party what software a machine booted.
 - [[Sandbox]] — Isolated execution environment used to analyze suspicious files or run untrusted code safely.
 - [[Sandbox Escape]] — Code breaking out of the isolation meant to contain it, up to and including VM/hypervisor escape.

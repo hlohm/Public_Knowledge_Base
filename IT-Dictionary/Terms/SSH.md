@@ -22,6 +22,7 @@ Secure Shell — the standard protocol for encrypted remote login and command ex
 - [[Bastion Host]]
 - [[Key Exchange]]
 - [[VPN]]
+- [[Deploy Key]]
 
 ## Often confused with
 

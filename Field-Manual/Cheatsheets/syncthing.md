@@ -12,9 +12,11 @@ status: working
 
 Continuous, multi-master file synchronisation over an encrypted peer-to-peer transport — no
 central server, every node a peer. Covers device/folder management, the `syncthing cli`, the
-**untrusted (receive-encrypted)** device model, connectivity (discovery/relays/ports), the GUI,
-and running it as a service. It is **not backup** — its versioning is convenience, not a restore
-guarantee (use [[borgmatic]] for that).
+**untrusted (receive-encrypted)** device model, connectivity (discovery/relays/ports), file
+versioning (§8), the GUI, and running it as a service. Properly deployed it is a full data-management
+plane, not just a copy tool: the mesh handles **replication** (device loss ≠ data loss) and
+per-device **versioning** handles file-level history (§8) — but it is still **not backup**; a
+point-in-time restore guarantee needs a real backup tool (use [[borgmatic]] for that).
 
 > Config moved in **v1.27**: the database/config default shifted from `~/.config/syncthing` to
 > `~/.local/state/syncthing` on Linux. Always resolve the real paths with `syncthing --paths`
@@ -151,6 +153,99 @@ syncthing cli show connections          # check whether a peer is "tcp-client"/"
 
 ---
 
+## 7. Autostart per OS family
+
+Run as the **regular user** (never root) and always with `--no-browser`.
+
+### Linux (systemd)
+
+Upstream packages ship two units — pick one, don't enable both:
+
+```bash
+# user service — starts at login (add lingering for boot-time start on headless boxes)
+systemctl --user enable --now syncthing.service
+sudo loginctl enable-linger <user>          # start user services at boot without a login session
+
+# system service, one instance per user — starts at boot
+sudo systemctl enable --now syncthing@<user>.service
+```
+
+See [[systemd]] for unit/override handling. No unit installed? `systemctl cat syncthing@` to check; get them from the package `syncthing` or upstream's `etc/linux-systemd/`.
+
+### macOS (launchd)
+
+```bash
+brew services start syncthing               # Homebrew: installs + loads a LaunchAgent (login start)
+```
+
+Without Homebrew: put upstream's `syncthing.plist` (from `etc/macos-launchd/` in the release tarball) into `~/Library/LaunchAgents/`, edit the binary path, then:
+
+```bash
+launchctl load ~/Library/LaunchAgents/syncthing.plist
+```
+
+### Windows
+
+No official service. In rough order of preference:
+
+```text
+1. "Syncthing Windows Setup" installer — offers login autostart (and optional service mode).
+2. Startup-folder shortcut: shell:startup → shortcut to syncthing.exe serve --no-console --no-browser
+3. Task Scheduler: trigger "At log on", action = syncthing.exe serve --no-console --no-browser
+   (runs without a visible window; survives UAC oddities better than the startup folder)
+4. True service (runs before login): wrap with NSSM — run as a dedicated non-admin account.
+```
+
+### BSD / others
+
+`pkg install syncthing` ships an rc.d script: `sysrc syncthing_enable=YES && service syncthing start` (FreeBSD; runs as the `syncthing` user — adjust `syncthing_user` in `rc.conf` if syncing your own home). Android: the Syncthing app manages its own background start.
+
+---
+
+## 8. File versioning
+
+Per-folder, per-device history of replaced/deleted files. The one semantic that decides where to
+enable it: **versioning only captures changes arriving *from other devices*.** When a peer's
+update would overwrite or delete a local file, the device stashes the old copy first. Local edits
+are never versioned locally — they get versioned *on the peers* once they sync out.
+
+> **Design pattern:** enable versioning on an **always-on hub node** that holds every folder.
+> Every edit made anywhere else gets a version there within seconds (fs-watcher sync ≈ per-save
+> granularity). That's a first line of recovery for fat-fingered or script/agent-mangled files —
+> cheaper to restore from than a backup archive, but **no substitute for one** (Gotcha #7).
+
+**Types** (per folder, set on the *versioning* device):
+
+| Type | Behaviour | Key params |
+| --- | --- | --- |
+| Trash Can | keeps only deleted/replaced files | `cleanoutDays` (0 = keep forever) |
+| Simple | last N versions per file | `keep` (count) |
+| **Staggered** | thins versions over time: all within the 1st hour → hourly for a day → daily for 30 days → weekly until max age; auto-cleanup | `maxAge` (default 365 d) |
+| External | runs your command per replaced file | `command` |
+
+**Config** — GUI: Folder → Edit → File Versioning. CLI (live-safe):
+
+```bash
+syncthing cli config folders <folder-id> versioning type set staggered
+syncthing cli config folders <folder-id> versioning params set --key maxAge --value 31536000   # seconds
+syncthing cli config folders <folder-id> versioning fs-path set /path/elsewhere               # optional: move versions off-folder
+```
+
+**Where versions live & what they cost:**
+
+- Default: `<folder>/.stversions/`, mirroring the folder tree; files carry a `~YYYYMMDD-HHMMSS`
+  suffix (`note~20260716-141210.md`). `fs-path` relocates this (e.g. another disk).
+- `.stversions` is **excluded from sync** — it grows disk only on the versioning device and never
+  propagates to peers. Growth is full copies (no dedup), so it's trivial for text/documents but
+  can bite on large churny binaries — scope versioning per folder accordingly.
+- Cleanup runs on an interval (`cleanupIntervalS`, default 1 h) — staggered/trashcan enforce
+  their retention then, not at write time.
+
+**Restore:** GUI → Folder → Versions ("Restore Versions" browser, pick file + timestamp), or just
+copy the file out of `.stversions` and strip the suffix.
+
+---
+
 ## Daily workflows
 
 ### "Pair two of my own devices"
@@ -175,6 +270,14 @@ syncthing cli show system               # is discovery up? what's the announced 
 # firewall layers if it's a cloud host (provider edge + host firewall — see [[iptables]]).
 ```
 
+### "Recover a file someone (or something) mangled"
+```bash
+# On the versioning device (the hub, not the machine where the edit happened!):
+# GUI: Folder → Versions → pick the file + timestamp → Restore
+# or by hand: cp '<folder>/.stversions/path/note~20260716-141210.md' '<folder>/path/note.md'
+# The restored file then syncs back out to every peer like any other change.
+```
+
 ### "Move a node's data/config home"
 ```bash
 syncthing cli operations restart        # or stop the service
@@ -194,7 +297,7 @@ syncthing cli operations restart        # or stop the service
 | `…/index-*.db` / database dir | the sync database (large; node-local, not synced) |
 | `<folder>/.stfolder` | folder marker; its absence pauses the folder |
 | `<folder>/.stignore` | per-folder exclude patterns |
-| `<folder>/.stversions/` | local version history (if versioning is enabled) — **not a backup** |
+| `<folder>/.stversions/` | local version history (§8) — excluded from sync; **not a backup** |
 
 ---
 
@@ -212,7 +315,11 @@ syncthing cli operations restart        # or stop the service
 5. **`config.xml` is rewritten on daemon exit.** Stop before hand-editing, or use `syncthing cli`.
 6. **`21027/udp` is LAN-only.** It's broadcast local discovery; forwarding it to the internet
    does nothing. Internet reachability comes from `22000` + global discovery/relays.
-7. **Versioning is not backup.** `.stversions/` and trash can are conveniences; a deletion or
-   corruption can propagate to every peer. Keep a real, separate backup.
-8. **Config path moved in v1.27.** `~/.config/syncthing` → `~/.local/state/syncthing`; resolve
+7. **Versioning is not backup.** It's a strong *recovery layer* (§8) — per-save file history on a
+   hub catches most day-to-day damage — but it lives on the same disk as the data, offers no
+   point-in-time snapshot of a whole folder, and versions only what *arrived via sync*. Keep a
+   real, separate backup.
+8. **Versioning goes on the receiving device.** Enabling it on the machine where the edits happen
+   protects nothing — local changes are only versioned on the *peers* they sync to (§8).
+9. **Config path moved in v1.27.** `~/.config/syncthing` → `~/.local/state/syncthing`; resolve
    with `syncthing --paths` instead of guessing — bites you on upgrades and migrations.

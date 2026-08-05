@@ -7,7 +7,7 @@ tags: [map, se]
 
 > Building software with other humans over time: version control, testing, architecture, process.
 
-## Terms in this branch (27)
+## Terms in this branch (28)
 
 - [[ABI]] — The binary-level contract between compiled components — calling conventions, data type sizes and alignment, struct layout, name mangling — so separately compiled code can link and run together.
 - [[API]] — The defined contract through which one piece of software is used by another — function signatures, endpoints, data formats.
@@ -30,6 +30,7 @@ tags: [map, se]
 - [[Microservices]] — An architectural style structuring an application as a suite of small, independently deployable services communicating over the network, each owning its data.
 - [[Mock]] — A stand-in test object replacing a real dependency (database, API, clock) so a unit test runs fast, deterministic, and isolated.
 - [[Monolith]] — An application built and deployed as a single unit, with all functionality in one codebase and process.
+- [[Property-Based Testing]] — Asserting invariants over generated input classes instead of hand-picked examples, with failing cases automatically shrunk to a minimal counterexample.
 - [[Rebase]] — Reapplying a branch's commits onto a new base commit, producing a linear history as if you'd branched from the new point.
 - [[Semantic Versioning]] — A versioning convention MAJOR.MINOR.PATCH: bump MAJOR for breaking changes, MINOR for backward-compatible features, PATCH for backward-compatible fixes.
 - [[SOLID]] — Five OOP design principles: Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion.

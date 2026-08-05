@@ -11,8 +11,9 @@ status: stable
 > **Area:** [[Networking & Protocols]]
 
 Remote shell over an encrypted channel — plus the file-transfer (`scp`/`sftp`) and tunnelling
-tools built on it. Covers keys, the client config that saves the most typing, and the
-forwarding tricks. Server-side hardening (`sshd_config`) lives under [[Linux Administration]].
+tools built on it. Covers keys, the client config that saves the most typing, the forwarding
+tricks, and per-key `authorized_keys` options. Server-side hardening (`sshd_config`) lives
+under [[Linux Administration]] → [[SSH Server Hardening]].
 
 ---
 
@@ -133,6 +134,87 @@ ssh-keygen -R host           # remove the stale known_hosts entry, then reconnec
 
 ---
 
+## 7. `authorized_keys` options (server side, per key)
+
+Options are prepended to a key line, **comma-separated with no spaces** (spaces only inside
+quotes). They restrict what *that one key* can do — the finest-grained control SSH offers:
+
+```text
+restrict,command="/usr/local/bin/backup.sh",from="203.0.113.7" ssh-ed25519 AAAA... backup@nas
+└─ options ────────────────────────────────────────────────────┘ └─ the key ─────┘ └ comment ┘
+```
+
+| Option | Effect |
+| --- | --- |
+| `restrict` | **deny everything** — pty, all forwarding, agent, X11, user-rc — then re-enable pieces explicitly. Future-proof: options added to OpenSSH later are denied too. Prefer this over stacking `no-*` |
+| `command="cmd"` | force this command, ignoring whatever the client asked for. The client's request lands in `$SSH_ORIGINAL_COMMAND` (dispatch wrappers for rsync/borg check it) |
+| `from="pat,pat"` | accept the key only from matching source hosts — hostnames, IPs, CIDR, `!` negation: `from="10.0.0.0/8,!10.0.0.99"` |
+| `expiry-time="YYYYMMDD[HHMM]"` | key stops working after this timestamp *(OpenSSH 8.2+)* |
+| `permitopen="host:port"` | limit local forwards (`-L`) to this destination only (repeatable) |
+| `permitlisten="[host:]port"` | limit remote forwards (`-R`) to this listen spec only |
+| `pty`, `port-forwarding`, `agent-forwarding`, `X11-forwarding`, `user-rc` | re-enable one capability after `restrict` |
+| `no-pty`, `no-port-forwarding`, `no-agent-forwarding`, `no-X11-forwarding`, `no-user-rc` | piecemeal denies (the pre-`restrict` style — still common in the wild) |
+| `environment="VAR=val"` | set an env var — inert unless `PermitUserEnvironment yes` in `sshd_config` |
+| `cert-authority` | this line is a **CA public key**: any user cert it signed is accepted (see [[SSH Key Management]]) |
+| `principals="a,b"` | with `cert-authority`: only certs carrying one of these principals |
+| `tunnel="n"` | bind this key to tun device *n* (layer-3 VPN mode) |
+| `no-touch-required` / `verify-required` | FIDO (`*-sk`) keys: skip the touch / additionally require PIN |
+
+Recipes:
+
+```text
+# Backup-only key: forced command, locked to one source IP, nothing else allowed
+restrict,command="/usr/local/bin/backup.sh",from="203.0.113.7" ssh-ed25519 AAAA... backup
+
+# Tunnel-only key: may open ONE forward, gets no shell/pty
+restrict,port-forwarding,permitopen="127.0.0.1:5432" ssh-ed25519 AAAA... db-tunnel
+
+# Contractor key that self-destructs at year end
+expiry-time="20261231",restrict,pty ssh-ed25519 AAAA... contractor
+```
+
+- **`command=` is not a shell jail by itself** — combine with `restrict`, or the client can still
+  request forwards/agent and pivot.
+- One key per line; test in a **second session** before closing your working one. Applying these
+  fleet-wide is [[SSH Key Management]]; the daemon-side counterpart is [[SSH Server Hardening]] §4.
+
+---
+
+## 8. Escape sequences, agent hygiene & key extras
+
+`~` at the **start of a line** in a live session is the escape character:
+
+```text
+~.    kill a hung session (the one everyone needs)
+~^Z   suspend ssh into the local shell
+~#    list forwarded connections
+~C    command line — add/remove -L/-R/-D forwards live (OpenSSH ≥ 9.2: needs
+      "EnableEscapeCommandline yes" in ssh_config; disabled by default)
+~~    send a literal ~
+```
+
+Agent hygiene — `ssh -A` (agent forwarding) lets **root on the remote host use your agent** to
+authenticate anywhere your keys reach. Prefer `-J`/`ProxyJump` (keys never leave your machine);
+if you must forward, constrain it:
+
+```bash
+ssh-add -c ~/.ssh/id_ed25519    # confirm locally on every use of the key
+ssh-add -t 1h ~/.ssh/id_ed25519 # auto-expire from the agent
+ssh-add -D                      # flush all loaded keys
+```
+
+`ssh-keygen` beyond generate:
+
+```bash
+ssh-keygen -p -f ~/.ssh/id_ed25519        # change/set the passphrase (in place)
+ssh-keygen -y -f ~/.ssh/id_ed25519        # re-derive the .pub from a private key
+ssh-keygen -t ed25519-sk                  # FIDO2 hardware-backed key (touch to sign)
+ssh-keyscan -t ed25519 host >> ~/.ssh/known_hosts   # pre-pin a host key (verify fingerprint!)
+ssh-keygen -lf <(ssh-keyscan host 2>/dev/null)      # show a remote host's fingerprints
+```
+
+---
+
 ## Daily workflows
 
 ### "Passwordless login to a new server"
@@ -161,7 +243,7 @@ rsync -avz --partial --progress dir/ user@host:/dest/
 | `~/.ssh/config` | client config (Host blocks) — see [[ssh_config]] |
 | `~/.ssh/id_ed25519` / `.pub` | your private / public key |
 | `~/.ssh/known_hosts` | fingerprints of servers you've connected to |
-| `~/.ssh/authorized_keys` | *(on the server)* keys allowed to log in as that user |
+| `~/.ssh/authorized_keys` | *(on the server)* keys allowed to log in as that user — per-key options in §7 |
 | `/etc/ssh/sshd_config` | *(on the server)* daemon config — see [[Linux Administration]] |
 
 ---
@@ -176,6 +258,10 @@ rsync -avz --partial --progress dir/ user@host:/dest/
    documents your hosts.
 5. **Ed25519 keys, passphrase-protected, loaded into the agent.** Never copy a private key onto
    a server.
+6. **Single-purpose keys get `restrict` + `command=` + `from=`.** `command=` alone is not a
+   jail — without `restrict`, the client can still open forwards. (§7)
+7. **Avoid `ssh -A`.** Forwarded agents are usable by root on the remote host; `ProxyJump`
+   gives the same reach without exposing your keys.
 
 ## Further reading
 - [ssh(1)](https://man.openbsd.org/ssh) · [ssh_config(5)](https://man.openbsd.org/ssh_config) ·

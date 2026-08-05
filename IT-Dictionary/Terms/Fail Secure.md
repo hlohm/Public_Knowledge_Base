@@ -18,6 +18,7 @@ When something breaks, default to denying access. Opposite of *fail open*.
 
 ## See also
 
+- [[PreToolUse Hook]]
 - [[Defense in Depth]]
 - [[Least Privilege]]
 - [[Zero Trust]]

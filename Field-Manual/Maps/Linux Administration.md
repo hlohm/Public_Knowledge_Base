@@ -14,6 +14,7 @@ grows (see [[How to Extend]]).
 ## In this area
 - **[[systemd]]** — services, units, timers, journald (`systemctl` / `journalctl`)
 - **[[systemd.exec]]** *(unit hardening / sandboxing)*
+- **[[filesystems]]** — the landscape & decision reference: ext4/XFS/Btrfs/ZFS, interchange (exFAT/NTFS), network (NFS/SMB), special-purpose (tmpfs/overlayfs)
 - **[[btrfs]]** *(incl. snapper)*
 - **[[linux-users]]** — `useradd`, groups, `sudo`, file modes, ACLs, PAM
 - **[[linux-packages]]** — apt / dnf / pacman / apk side by side

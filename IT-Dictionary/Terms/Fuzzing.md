@@ -18,6 +18,7 @@ Feeding malformed/random input to find crashes and security bugs.
 
 - [[DAST]]
 - [[Buffer Overflow]]
+- [[Property-Based Testing]]
 
 ## Further reading
 
