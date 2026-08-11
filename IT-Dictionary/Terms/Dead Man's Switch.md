@@ -20,6 +20,7 @@ A monitor that triggers when an expected signal *stops* arriving, rather than wh
 - [[Monitoring]]
 - [[Observability]]
 - [[Honeypot]]
+- [[Maintenance Window]]
 
 ## Further reading
 

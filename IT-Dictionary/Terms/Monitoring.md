@@ -19,6 +19,8 @@ Collecting and watching predefined signals — metrics, logs, health checks — 
 - [[SLI]]
 - [[SLO]]
 - [[SIEM]]
+- [[Maintenance Window]]
+- [[S.M.A.R.T.]]
 
 ## Often confused with
 

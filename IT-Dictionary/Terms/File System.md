@@ -22,6 +22,8 @@ The scheme an OS uses to organise data on storage into files and directories, tr
 - [[Atomic Write]]
 - [[Mount]]
 - [[Permissions]]
+- [[FUSE]]
+- [[ZFS]]
 
 ## Further reading
 

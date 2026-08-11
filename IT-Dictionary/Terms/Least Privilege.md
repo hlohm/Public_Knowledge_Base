@@ -24,6 +24,7 @@ Give every user and process the minimum access required to do its job. The bedro
 - [[RBAC]]
 - [[JIT Access]]
 - [[Separation of Duties]]
+- [[Forced Command]]
 
 ## Further reading
 

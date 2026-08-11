@@ -29,6 +29,7 @@ tags: [domain]
 - [[Firewall]] — Filters traffic based on rules.
 - [[Honeypot]] — Decoy system designed to attract attackers, gather intel, and waste their time.
 - [[IDS and IPS]] — Intrusion Detection / Prevention System.
+- [[IP Reputation]] — The score mail providers attach to an IP from its history — poor reputation gets mail junked regardless of correct SPF/DKIM/DMARC.
 - [[Microsegmentation]] — Segmentation at workload or process level, often in cloud or SDN environments.
 - [[Mixnet]] — Anonymity network that batches, reorders, and delays messages to defeat traffic analysis.
 - [[MTA-STS]] — A policy that lets a domain require inbound SMTP be delivered over authenticated TLS, published over HTTPS and discovered via a DNS TXT record — the non-DNSSEC alternative to DANE.

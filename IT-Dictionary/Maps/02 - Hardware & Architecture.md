@@ -7,7 +7,7 @@ tags: [map, hardware]
 
 > What the machine is physically made of and how the CPU actually executes — registers, caches, buses, ISAs.
 
-## Terms in this branch (38)
+## Terms in this branch (42)
 
 - [[ALU]] — The combinational circuit that actually computes — integer add/subtract, AND/OR/XOR, shifts, comparisons — taking operands from registers and setting status flags (zero, carry, overflow).
 - [[BIOS]] — The original PC firmware: initialize hardware (POST), find a boot device, load the first sector (MBR), go.
@@ -34,19 +34,23 @@ tags: [map, hardware]
 - [[Out-of-Order Execution]] — A CPU technique that executes instructions as their inputs become ready rather than in strict program order, while retiring results in order, to keep execution units busy through stalls.
 - [[Pipeline]] — Overlapping the stages of consecutive instructions (fetch, decode, execute…) like an assembly line, so a new instruction can start before the previous finishes.
 - [[Protection Ring]] — Hardware-enforced privilege levels that bound what code may do.
+- [[RAID]] — Combining several physical drives into one logical volume for redundancy, performance, or both — striping (0), mirroring (1), parity (5/6).
 - [[RAM]] — Fast, volatile working memory the CPU reads and writes directly.
 - [[Register]] — A tiny, extremely fast storage location inside the CPU holding a value the processor is working on right now.
 - [[RISC]] — A design philosophy favouring a small set of simple, fixed-length instructions that each do little but execute fast, leaning on the compiler to compose them.
 - [[SIMD]] — An execution model in which one instruction operates on several data elements at once, through wide vector registers and parallel lanes.
 - [[SIMT]] — The GPU execution model in which many threads are programmed as if independent, but the hardware runs them in fixed-size lockstep groups that share one instruction stream.
+- [[S.M.A.R.T.]] — A drive's built-in self-monitoring — counters, thresholds, and self-tests the disk exposes so the host can spot impending failure.
 - [[Speculative Execution]] — Executing instructions before it is certain they are needed — typically past a predicted branch — and discarding the work if the guess was wrong.
 - [[SSD]] — Non-volatile storage built from flash memory with no moving parts, vastly faster than a spinning hard disk, especially for random access.
+- [[SSD Endurance]] — The rated amount of data an SSD can absorb before its flash wears out — TBW or DWPD; NVMe reports consumption as Percentage Used.
 - [[Streaming Multiprocessor]] — The core building block of an NVIDIA GPU: a self-contained processor with its own warp schedulers, register file, execution units and L1/shared memory.
 - [[Systolic Array]] — A hardware architecture: a regular grid of simple processing elements that rhythmically pass data to their neighbours, computing operations like matrix multiplication with minimal control logic and memory traffic.
 - [[Tensor Core]] — A specialised GPU execution unit that performs a small matrix multiply-accumulate as a single operation, sharply accelerating the dense linear algebra at the heart of deep learning.
 - [[TPM]] — A dedicated secure crypto-processor (a discrete chip, or a firmware equivalent) that stores keys, performs cryptographic operations, and holds integrity measurements in tamper-resistant Platform Configuration Registers (PCRs).
 - [[UEFI]] — The modern replacement for legacy BIOS: the [[Firmware]] interface that initialises hardware and hands control to an operating-system [[Boot Loader]].
 - [[Warp]] — The fixed-size group of GPU threads (32 on NVIDIA hardware) that execute one instruction in lockstep under the SIMT model.
+- [[Wear Leveling]] — The SSD controller technique of spreading writes across all flash blocks so no block exhausts its limited program/erase cycles early.
 
 ---
 ← Back to [[_Home]]

@@ -7,7 +7,7 @@ tags: [map, devops]
 
 > Shipping and operating software continuously and reliably — pipelines, observability, error budgets.
 
-## Terms in this branch (23)
+## Terms in this branch (24)
 
 - [[Blue-green Deployment]] — A release strategy running two identical production environments (blue = current, green = new); you switch traffic to green and can roll back instantly by switching back.
 - [[Canary Release]] — Rolling out a change to a small subset of users first, monitoring it, then gradually expanding if healthy — limiting the blast radius of a bad release.
@@ -22,6 +22,7 @@ tags: [map, devops]
 - [[File Versioning]] — Automatically keeping superseded copies of individual files for quick per-file rollback — the fat-finger recovery layer, not a backup.
 - [[GitOps]] — An operational model where a Git repository is the single source of truth for declarative infrastructure and apps, and an agent continuously reconciles the live system to match it.
 - [[Immutable Backup]] — A backup that can't be altered or deleted after writing (object lock / append-only) — the core ransomware defense.
+- [[Maintenance Window]] — A pre-announced period during which a system may be down for planned work — and monitoring is expected to hold its fire.
 - [[Monitoring]] — Collecting and watching predefined signals — metrics, logs, health checks — and alerting when they cross thresholds.
 - [[Observability]] — The ability to understand a system's internal state from its external outputs — built on the three pillars: metrics, logs, and traces.
 - [[Postmortem]] — A written analysis after an incident — timeline, impact, root causes, and corrective actions — ideally blameless, focused on systemic fixes rather than fault.

@@ -26,6 +26,7 @@ tags: [domain]
 - [[Factor]] — Something you know (password), have (token, phone), are (biometric), or are located (geo/IP).
 - [[Federation]] — Trust relationship across organizational boundaries enabling SSO between them.
 - [[FIDO2 and WebAuthn]] — Modern open standards for passwordless and phishing-resistant authentication.
+- [[Forced Command]] — An SSH restriction pinning a key to a single server-side command — least privilege for automation keys.
 - [[IAM]] — Identity and Access Management.
 - [[Identity]] — A digital representation of a user, service, or device.
 - [[IdP and SP]] — Identity Provider and Service Provider.
