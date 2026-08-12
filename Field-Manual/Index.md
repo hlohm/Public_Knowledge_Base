@@ -27,7 +27,7 @@ what you actually run into; it's a checklist, not a contract.
 - runbooks: **[[Backup Restore Drill]]** · **[[Bare Metal Restore]]**
 
 ### [[Linux Administration]]
-- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]**
+- **[[systemd]]** · **[[systemd.exec]]** · **[[btrfs]]** · **[[linux-users]]** · **[[linux-packages]]** · **[[linux-locales]]** · **[[linux-networking]]** · **[[linux-processes]]** · **[[linux-storage]]** · **[[linux-logging]]** · **[[linux-timers]]**
 - playbooks: **[[Service Down — Triage & Recovery]]** · **[[Disk Full]]** · **[[Out of Memory]]** · **[[SSH Key Management]]** · **[[Agentic AI Sandboxing]]**
 - runbooks: **[[SSH Server Hardening]]** · **[[Hardened Syncthing Node on an Untrusted Host]]** · [[Hardened Golden Base Image for a Single-Purpose Host]]
 - snippets: **[[systemd Service and Timer]]** · **[[Swap File Setup]]**
@@ -48,7 +48,7 @@ what you actually run into; it's a checklist, not a contract.
 
 ## By type
 
-- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[claude-code]] · [[css]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[html]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[latex]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[markdown]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[powershell-cmdlets]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[ssh_config]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[windows-users]] · [[winget]] · [[wsl]] · [[zsh]]
+- **Cheatsheets:** [[awk]] · [[bash]] · [[borgmatic]] · [[btrfs]] · [[c]] · [[claude-code]] · [[css]] · [[curl]] · [[dns]] · [[docker]] · [[dockerfile]] · [[find]] · [[fish]] · [[fzf]] · [[git]] · [[html]] · [[java]] · [[javascript]] · [[jq]] · [[kubectl]] · [[latex]] · [[linux-locales]] · [[linux-logging]] · [[linux-networking]] · [[linux-packages]] · [[linux-processes]] · [[linux-storage]] · [[linux-timers]] · [[linux-users]] · [[markdown]] · [[nc]] · [[nvim]] · [[openssl]] · [[perl]] · [[podman]] · [[powershell]] · [[powershell-cmdlets]] · [[python]] · [[restic]] · [[ripgrep]] · [[rsync]] · [[rsync-snapshots]] · [[scp-sftp]] · [[sed]] · [[sh]] · [[sql]] · [[ssh]] · [[ssh_config]] · [[syncthing]] · [[systemd]] · [[systemd.exec]] · [[tar]] · [[tmux]] · [[windows-events]] · [[windows-services]] · [[windows-users]] · [[winget]] · [[wsl]] · [[zsh]]
 - **Runbooks:** [[Backup Restore Drill]] · [[Bare Metal Restore]] · [[SSH Server Hardening]] · [[Hardened Syncthing Node on an Untrusted Host]] · [[Hardened Golden Base Image for a Single-Purpose Host]] · [[Primary Domain Controller — New Forest Setup]]
 - **Playbooks:** [[Service Down — Triage & Recovery]] · [[Disk Full]] · [[Out of Memory]] · [[SSH Key Management]] · [[Unix OS Hardening]] · [[Windows OS Hardening]] · [[Windows Boot Failure]] · [[Network Infrastructure Hardening]] · [[Agentic AI Sandboxing]]
 - **Snippets:** [[Argument Parsing Skeleton]] · [[Bash Strict Mode Header]] · [[getopts Template]] · [[Swap File Setup]] · [[systemd Service and Timer]]

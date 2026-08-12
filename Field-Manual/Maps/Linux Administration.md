@@ -16,6 +16,7 @@ grows (see [[How to Extend]]).
 - **[[systemd.exec]]** *(unit hardening / sandboxing)*
 - **[[filesystems]]** — the landscape & decision reference: ext4/XFS/Btrfs/ZFS, interchange (exFAT/NTFS), network (NFS/SMB), special-purpose (tmpfs/overlayfs)
 - **[[btrfs]]** *(incl. snapper)*
+- **[[linux-fhs]]** — the directory tree & layout conventions: FHS top-level map, `/etc` drop-in patterns, `/var` triage, where to put your own scripts/services/data, XDG user dirs
 - **[[linux-users]]** — `useradd`, groups, `sudo`, file modes, ACLs, PAM
 - **[[linux-packages]]** — apt / dnf / pacman / apk side by side
 - **[[linux-networking]]** — `ip`, `ss`, `nmcli`, routing, DNS resolution
