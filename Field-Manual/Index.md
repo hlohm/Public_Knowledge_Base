@@ -41,7 +41,8 @@ what you actually run into; it's a checklist, not a contract.
 - **[[python]]** · **[[javascript]]** · **[[sql]]** · **[[c]]** · **[[java]]** · **[[perl]]**
 
 ### [[Networking & Protocols]]
-- **[[ssh]]** · **[[ssh_config]]** · **[[dns]]** (dig/host) · HTTP *(see [[curl]])* · **[[scp-sftp]]** · **[[openssl]]** (TLS) · **[[nc]]** (netcat) · **[[syncthing]]**
+- **[[ssh]]** · **[[ssh_config]]** · **[[dns]]** (dig/host) · HTTP *(see [[curl]])* · **[[scp-sftp]]** · **[[openssl]]** (TLS) · **[[nc]]** (netcat) · **[[syncthing]]** · **[[wireshark]]** · **[[tshark]]** (dumpcap/capinfos) · **[[tcpdump]]** (BPF)
+- playbooks: **[[Packet-Capture Augury]]**
 
 ### [[Writing & Docs]]
 - **[[markdown]]** · **[[latex]]** · **[[html]]** · **[[css]]**
