@@ -9,6 +9,7 @@ tags: [domain]
 
 ## Terms in this domain
 
+- [[Amplification Attack]] — Spoof the victim as sender, pick a service that answers big, let strangers deliver the flood.
 - [[APT]] — Advanced Persistent Threat.
 - [[BEC]] — Business Email Compromise.
 - [[Botnet]] — Network of compromised hosts ('zombies') under attacker control.

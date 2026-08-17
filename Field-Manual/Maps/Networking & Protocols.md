@@ -23,6 +23,7 @@ The *concepts* (what TCP, DNS, TLS are) live in the IT-Dictionary; this is the
 - **[[wireshark]]** — GUI packet analysis: capturing, display filters, name resolution, the time column, statistics, artifact extraction
 - **[[tshark]]** — the CLI family: `dumpcap` capture & ring buffers, tshark filtering/field extraction, `capinfos`/`mergecap`/`editcap`
 - **[[tcpdump]]** — capture on the box that has nothing else installed: BPF filter language, flag surgery, rotation, remote-capture-into-GUI
+- **[[postfix]]** — running an MTA: the process/queue model, `main.cf` vs `master.cf`, lookup tables, `postqueue`/`postsuper`/`postmap`, restriction lists, reading the mail log
 
 ## Playbooks
 - **[[Network Infrastructure Hardening]]** — decision-tree hardening reference for routers, switches, firewalls, DNS, VPN gateways, and wireless infrastructure; covers the three-plane model (management/control/data), BGP/RPKI, L2 security, DNSSEC, and OOB management across Cisco IOS, JunOS, Arista EOS, VyOS, and pfSense

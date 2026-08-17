@@ -7,7 +7,7 @@ tags: [map, web]
 
 > The application-layer world built on the network: HTTP, DNS, browsers, the request/response lifecycle.
 
-## Terms in this branch (20)
+## Terms in this branch (25)
 
 - [[CDN]] — A geographically distributed network of caching servers that serve content from a location near each user, cutting latency and origin load.
 - [[Cookie]] — A small key–value string a server sets in the browser and that the browser echoes back on later requests — the original way to add state to stateless HTTP.
@@ -20,6 +20,11 @@ tags: [map, web]
 - [[HTTPS]] — HTTP carried inside a TLS-encrypted connection, providing confidentiality, integrity, and server authentication.
 - [[IndexedDB]] — The browser's built-in transactional, asynchronous client-side database for large amounts of structured data, held in object stores and queried by key or index.
 - [[JSON]] — A lightweight, human-readable data format of nested objects, arrays, strings, numbers, booleans, and null — the default for web APIs.
+- [[MDA]] — Mail Delivery Agent — the component that writes a message into the recipient's actual mailbox, at the end of the mail path.
+- [[Milter]] — A protocol letting an external process inspect and modify a message while the SMTP transaction is still open — how DKIM signing and spam scoring bolt onto an MTA.
+- [[MSA]] — Mail Submission Agent — the authenticated front door (port 587) where a mail client hands a new message to the infrastructure.
+- [[MTA]] — Mail Transfer Agent — the server that accepts mail over SMTP, spools it to a queue, and retries until it is delivered or expires.
+- [[Null Client]] — A send-only MTA: listens on nothing, delivers nothing locally, forwards everything to a smarthost. The right shape for almost every server.
 - [[POST]] — The HTTP method for submitting data to be processed, typically creating a resource or triggering a state change.
 - [[REST]] — An architectural style (Fielding) for web APIs: resources identified by URLs, manipulated with standard HTTP methods, stateless interactions.
 - [[Reverse Proxy]] — A server sitting in front of backend servers, receiving client requests and forwarding them — handling TLS, caching, compression, and routing.

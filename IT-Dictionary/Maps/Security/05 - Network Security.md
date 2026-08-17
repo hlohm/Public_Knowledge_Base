@@ -11,6 +11,7 @@ tags: [domain]
 
 - [[Air Gap]] — Physical isolation from other networks.
 - [[Bastion Host]] — Hardened entry point used to reach internal systems.
+- [[Backscatter]] — Bounce messages sent to an innocent third party, because a server accepted mail with a forged sender and only then found it undeliverable.
 - [[CAA Record]] — A DNS record listing which CAs are permitted to issue certificates for a domain.
 - [[CDS and CDNSKEY]] — Child-published records that signal the desired DS (CDS) or key (CDNSKEY) to the parent, so DS updates can be automated instead of hand-carried to the registrar.
 - [[Cover Traffic]] — Fake traffic sent to mask the pattern of the real messages.
@@ -27,6 +28,7 @@ tags: [domain]
 - [[Entry Guard]] — The persistent, IP-seeing first hop of a Tor circuit.
 - [[Envelope Sender]] — The address given in the SMTP `MAIL FROM` command — the transport-level sender, where bounces go — as opposed to the `From:` header the recipient actually sees.
 - [[Firewall]] — Filters traffic based on rules.
+- [[Greylisting]] — Temporarily rejecting a first delivery attempt from an unknown sender triple, on the bet that only a real MTA will retry.
 - [[Honeypot]] — Decoy system designed to attract attackers, gather intel, and waste their time.
 - [[IDS and IPS]] — Intrusion Detection / Prevention System.
 - [[IP Reputation]] — The score mail providers attach to an IP from its history — poor reputation gets mail junked regardless of correct SPF/DKIM/DMARC.
@@ -42,6 +44,7 @@ tags: [domain]
 - [[Proxy]] — Intermediary between client and server.
 - [[RRSIG]] — The signature record covering a set of DNS records of one type/name — the actual cryptographic proof a validating resolver checks against the zone's DNSKEY.
 - [[SDN]] — Software-Defined Networking.
+- [[Open Relay]] — An SMTP server that will carry mail from strangers to strangers; a misconfiguration that gets your IP blocklisted within a day.
 - [[SPF]] — Sender Policy Framework — DNS list of authorized sending IPs.
 - [[Sphinx Packet Format]] — Fixed-size onion packet format for mix networks; unlinkable, replay-resistant, supports anonymous replies.
 - [[SRS]] — A scheme for rewriting the envelope sender when _forwarding_ mail, so the forwarded message still passes SPF at the final destination.

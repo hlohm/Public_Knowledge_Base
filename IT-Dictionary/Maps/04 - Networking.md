@@ -7,7 +7,7 @@ tags: [map, net]
 
 > Moving bytes between machines reliably and in order — the stack from cables to sockets.
 
-## Terms in this branch (28)
+## Terms in this branch (50)
 
 - [[A Record]] — The DNS record mapping a name to an IP address — A for IPv4, AAAA for IPv6.
 - [[ARP]] — How a host on a LAN learns which MAC address owns an IP: broadcast 'who has 192.168.1.1?', cache the answer.
@@ -39,6 +39,7 @@ tags: [map, net]
 - [[OSI Model]] — A 7-layer reference model (Physical, Data Link, Network, Transport, Session, Presentation, Application) for reasoning about network functions.
 - [[Packet]] — The unit of data at the network layer: a header (addresses, TTL, protocol) plus payload.
 - [[Port]] — A 16-bit number (0–65535) that identifies a specific service endpoint on a host, so one IP address can host many conversations.
+- [[Portmapper]] — The Sun-RPC directory service on port 111: RPC programs register the port they landed on, clients ask it where to connect.
 - [[PTR Record]] — The reverse mapping: from an IP address back to a name, served out of the special `in-addr.arpa` (IPv4) / `ip6.arpa` (IPv6) zones.
 - [[QUIC]] — A UDP-based transport with built-in TLS 1.3, multiplexed streams, and 0/1-RTT setup — the foundation of HTTP/3.
 - [[RDMA]] — Network technology that lets one machine read or write another's memory directly, bypassing both CPUs and the OS networking stack.

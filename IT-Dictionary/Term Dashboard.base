@@ -18,7 +18,10 @@ views:
       - branch
       - domain
       - status
+      - file.mtime
     sort:
+      - property: file.mtime
+        direction: DESC
       - property: file.name
         direction: ASC
     columnSize:

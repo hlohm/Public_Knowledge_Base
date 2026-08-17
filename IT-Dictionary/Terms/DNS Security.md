@@ -1,7 +1,7 @@
 ---
-type: term
-branch: Security
-domain: Network Security
+type: "term"
+branch: "Security"
+domain: "Network Security"
 aliases:
   - '"DoH"'
   - '"DoT"'

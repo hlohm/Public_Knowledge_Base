@@ -18,6 +18,7 @@ status: "developed"
 
 ## See also
 
+- [[Amplification Attack]]
 - [[Botnet]]
 - [[CIA Triad]]
 
