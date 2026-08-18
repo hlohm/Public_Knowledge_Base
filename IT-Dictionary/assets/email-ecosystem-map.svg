@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 812" width="1200" height="812" font-family="Inter, -apple-system, 'Segoe UI', Roboto, sans-serif" role="img" aria-label="The Email Ecosystem — a topological map of participants, the path a message takes, sender authentication, and transport security">
+<title>The Email Ecosystem</title>
+<desc>A message travels in three stages: authenticated submission, anonymous transfer between servers across the public internet, and delivery into the recipient's mailbox. Alongside sit other participants (forwarders, mailing lists, bulk senders, null clients, backup MX, archivers, abuse desks). Below, the two judgement layers: sender authentication via SPF, DKIM and DMARC, and transport security via STARTTLS, MTA-STS and DANE.</desc>
+
+<style>
+  .nm{font-size:12.5px;font-weight:600;fill:#2C2C2A}
+  .rl{font-size:10px;fill:#5F5E5A}
+  .zl{font-size:11.5px;font-weight:600;letter-spacing:.03em}
+  .fl{font-size:9.5px;font-weight:600;fill:#5F5E5A}
+  .ttl{font-size:23px;font-weight:600;fill:#2C2C2A}
+  .sub{font-size:12.5px;fill:#888780}
+  .cap{font-size:9.5px;fill:#5F5E5A}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9.5px;fill:#888780}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1D1C19}
+    .nm{fill:#E7E5DF} .rl{fill:#A9A79F} .fl{fill:#A9A79F}
+    .ttl{fill:#E7E5DF} .sub{fill:#828078} .cap{fill:#A9A79F} .mono{fill:#828078}
+    .z-mua{fill:#39222C} .z-msa{fill:#33202E} .z-mta{fill:#173029}
+    .z-mda{fill:#1A2A3B} .z-dns{fill:#282647} .z-sec{fill:#332C16}
+    .z-ext{fill:#2B2A25} .z-alert{fill:#382318}
+  }
+</style>
+
+<rect class="bg" width="1200" height="812" fill="#faf9f5"/>
+
+<text class="ttl" x="24" y="38">The Email Ecosystem</text>
+<text class="sub" x="24" y="58">One message, end to end — and the two layers of judgement applied to it. Transport layer and above.</text>
+
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/>
+  </marker>
+</defs>
+
+<!-- ============ stage zones ============ -->
+<rect class="z-msa" x="20" y="84" width="868" height="132" rx="12" fill="#F7EAF3" stroke="#B0538F" stroke-opacity=".28"/>
+<text class="zl" x="34" y="104" fill="#B0538F">1 · SUBMISSION — authenticated, inside your own house</text>
+
+<rect class="z-mta" x="20" y="240" width="868" height="132" rx="12" fill="#E1F5EE" stroke="#1D9E75" stroke-opacity=".28"/>
+<text class="zl" x="34" y="260" fill="#1D9E75">2 · TRANSFER &amp; ACCEPTANCE — anonymous, across the open internet</text>
+
+<rect class="z-mda" x="20" y="396" width="868" height="132" rx="12" fill="#E6F1FB" stroke="#378ADD" stroke-opacity=".28"/>
+<text class="zl" x="34" y="416" fill="#378ADD">3 · DELIVERY &amp; RETRIEVAL — inside the recipient’s house</text>
+
+<rect class="z-ext" x="906" y="84" width="274" height="444" rx="12" fill="#F1EFE8" stroke="#888780" stroke-opacity=".28"/>
+<text class="zl" x="920" y="104" fill="#888780">OTHER PARTICIPANTS</text>
+
+<!-- ============ stage 1 ============ -->
+<rect class="z-mua" x="40" y="110" width="176" height="54" rx="9" fill="#FBEAF0" stroke="#D4537E" stroke-width="1.7"/>
+<text class="nm" x="53" y="132">Mail client (MUA)</text><text class="rl" x="53" y="148">Author writes and sends</text>
+
+<rect class="z-msa" x="250" y="110" width="176" height="54" rx="9" fill="#F7EAF3" stroke="#B0538F" stroke-width="1.7"/>
+<text class="nm" x="263" y="132">MSA — submission</text><text class="rl" x="263" y="148">587 · authenticated</text>
+
+<rect class="z-mta" x="460" y="110" width="176" height="54" rx="9" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.7"/>
+<text class="nm" x="473" y="132">Sending MTA</text><text class="rl" x="473" y="148">Outbound queue · retries</text>
+
+<rect class="z-dns" x="670" y="110" width="176" height="54" rx="9" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.7"/>
+<text class="nm" x="683" y="132">DNS</text><text class="rl" x="683" y="148">MX · SPF · DKIM · TLSA</text>
+
+<path d="M216 137 L250 137" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M426 137 L460 137" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M636 137 L670 137" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<text class="fl" x="233" y="131" text-anchor="middle">submit</text>
+<text class="fl" x="443" y="131" text-anchor="middle">queue</text>
+<text class="fl" x="653" y="131" text-anchor="middle">lookup</text>
+
+<!-- wrap edge -->
+<path d="M548 164 L548 205 L128 205 L128 266" fill="none" stroke="#5F5E5A" stroke-opacity=".75" stroke-width="2" marker-end="url(#a)"/>
+<text class="fl" x="338" y="199" text-anchor="middle">SMTP :25 — across the public internet, no authentication</text>
+
+<!-- ============ stage 2 ============ -->
+<rect class="z-mta" x="40" y="266" width="176" height="54" rx="9" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.7"/>
+<text class="nm" x="53" y="288">Receiving MX</text><text class="rl" x="53" y="304">Open to all senders</text>
+
+<rect class="z-sec" x="250" y="266" width="176" height="54" rx="9" fill="#FAF2D8" stroke="#B08205" stroke-width="1.7"/>
+<text class="nm" x="263" y="288">Connection policy</text><text class="rl" x="263" y="304">Cheap rejection, pre-DATA</text>
+
+<rect class="z-sec" x="460" y="266" width="176" height="54" rx="9" fill="#FAF2D8" stroke="#B08205" stroke-width="1.7"/>
+<text class="nm" x="473" y="288">Content filtering</text><text class="rl" x="473" y="304">Scoring, not certainty</text>
+
+<rect class="z-dns" x="670" y="266" width="176" height="54" rx="9" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.7"/>
+<text class="nm" x="683" y="288">Reputation services</text><text class="rl" x="683" y="304">DNSBL · allow-lists · FBL</text>
+
+<path d="M216 293 L250 293" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M426 293 L460 293" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M636 293 L670 293" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a)"/>
+<text class="fl" x="233" y="287" text-anchor="middle">connect</text>
+<text class="fl" x="443" y="287" text-anchor="middle">DATA</text>
+
+<path d="M548 320 L548 361 L128 361 L128 422" fill="none" stroke="#5F5E5A" stroke-opacity=".75" stroke-width="2" marker-end="url(#a)"/>
+<text class="fl" x="338" y="355" text-anchor="middle">accepted — responsibility now transferred</text>
+
+<!-- ============ stage 3 ============ -->
+<rect class="z-mda" x="40" y="422" width="176" height="54" rx="9" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.7"/>
+<text class="nm" x="53" y="444">MDA — delivery</text><text class="rl" x="53" y="460">LMTP · Sieve rules</text>
+
+<rect class="z-mda" x="250" y="422" width="176" height="54" rx="9" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.7"/>
+<text class="nm" x="263" y="444">Mailbox store</text><text class="rl" x="263" y="460">The irreplaceable part</text>
+
+<rect class="z-mda" x="460" y="422" width="176" height="54" rx="9" fill="#E6F1FB" stroke="#378ADD" stroke-width="1.7"/>
+<text class="nm" x="473" y="444">Retrieval</text><text class="rl" x="473" y="460">IMAP 993 · POP3 995 · JMAP</text>
+
+<rect class="z-mua" x="670" y="422" width="176" height="54" rx="9" fill="#FBEAF0" stroke="#D4537E" stroke-width="1.7"/>
+<text class="nm" x="683" y="444">Recipient MUA</text><text class="rl" x="683" y="460">Renders · and decides</text>
+
+<path d="M216 449 L250 449" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M426 449 L460 449" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M636 449 L670 449" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<text class="fl" x="233" y="443" text-anchor="middle">write</text>
+<text class="fl" x="443" y="443" text-anchor="middle">read</text>
+<text class="fl" x="653" y="443" text-anchor="middle">sync</text>
+
+<!-- ============ rail ============ -->
+<rect class="z-ext" x="924" y="110" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="130">Forwarder / alias</text><text class="rl" x="936" y="145">Breaks SPF · SRS repairs it</text>
+
+<rect class="z-ext" x="924" y="166" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="186">Mailing list</text><text class="rl" x="936" y="201">Edits content · breaks DKIM · ARC</text>
+
+<rect class="z-ext" x="924" y="222" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="242">ESP / bulk sender</text><text class="rl" x="936" y="257">Newsletters · transactional mail</text>
+
+<rect class="z-ext" x="924" y="278" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="298">Smarthost / null client</text><text class="rl" x="936" y="313">How servers send, and only send</text>
+
+<rect class="z-ext" x="924" y="334" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="354">Secondary MX</text><text class="rl" x="936" y="369">Intuitive — and usually a mistake</text>
+
+<rect class="z-ext" x="924" y="390" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="410">Archive / journal</text><text class="rl" x="936" y="425">Compliance copy at the MTA</text>
+
+<rect class="z-ext" x="924" y="446" width="238" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1.5"/>
+<text class="nm" x="936" y="466">Abuse desk / postmaster</text><text class="rl" x="936" y="481">The human layer (RFC 2142)</text>
+
+<!-- ============ judgement layers ============ -->
+<rect class="z-dns" x="20" y="552" width="570" height="176" rx="12" fill="#EEEDFE" stroke="#7F77DD" stroke-opacity=".28"/>
+<text class="zl" x="34" y="572" fill="#7F77DD">IS THE SENDER WHO THEY CLAIM? — layered on DNS</text>
+
+<rect x="40" y="588" width="170" height="60" rx="9" fill="#fff" fill-opacity=".55" stroke="#7F77DD" stroke-width="1.5"/>
+<text class="nm" x="52" y="610">SPF</text><text class="rl" x="52" y="626">Is this IP allowed to send</text><text class="rl" x="52" y="639">for the envelope domain?</text>
+
+<rect x="220" y="588" width="170" height="60" rx="9" fill="#fff" fill-opacity=".55" stroke="#7F77DD" stroke-width="1.5"/>
+<text class="nm" x="232" y="610">DKIM</text><text class="rl" x="232" y="626">Was the content signed</text><text class="rl" x="232" y="639">by that domain’s key?</text>
+
+<rect x="400" y="588" width="170" height="60" rx="9" fill="#fff" fill-opacity=".55" stroke="#B08205" stroke-width="1.7"/>
+<text class="nm" x="412" y="610">DMARC</text><text class="rl" x="412" y="626">Do those results align</text><text class="rl" x="412" y="639">with the visible From:?</text>
+
+<path d="M210 618 L220 618" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5"/>
+<path d="M390 618 L400 618" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+
+<text class="cap" x="40" y="672">Envelope (MAIL FROM) and header (From:) are separate identities and may differ. SPF checks the first,</text>
+<text class="cap" x="40" y="686">DMARC compares the second. Forwarding breaks SPF; DKIM survives it — which is why DMARC accepts either.</text>
+<text class="mono" x="40" y="710">v=spf1 include:_spf.example.net -all   ·   selector._domainkey   ·   _dmarc  v=DMARC1; p=reject</text>
+
+<rect class="z-sec" x="610" y="552" width="570" height="176" rx="12" fill="#FAF2D8" stroke="#B08205" stroke-opacity=".28"/>
+<text class="zl" x="624" y="572" fill="#B08205">WAS THE HOP PRIVATE? — and can that be enforced</text>
+
+<rect class="z-alert" x="630" y="588" width="170" height="60" rx="9" fill="#FAECE7" stroke="#D85A30" stroke-width="1.7"/>
+<text class="nm" x="642" y="610">STARTTLS</text><text class="rl" x="642" y="626">Opportunistic: encrypt if</text><text class="rl" x="642" y="639">we can, cleartext if not</text>
+
+<rect x="810" y="588" width="170" height="60" rx="9" fill="#fff" fill-opacity=".55" stroke="#B08205" stroke-width="1.5"/>
+<text class="nm" x="822" y="610">MTA-STS</text><text class="rl" x="822" y="626">Policy over HTTPS —</text><text class="rl" x="822" y="639">trust root is the web PKI</text>
+
+<rect x="990" y="588" width="170" height="60" rx="9" fill="#fff" fill-opacity=".55" stroke="#B08205" stroke-width="1.5"/>
+<text class="nm" x="1002" y="610">DANE</text><text class="rl" x="1002" y="626">TLSA pinned in DNS —</text><text class="rl" x="1002" y="639">trust root is DNSSEC</text>
+
+<path d="M800 618 L810 618" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M980 618 L990 618" fill="none" stroke="#5F5E5A" stroke-opacity=".5" stroke-width="1.5"/>
+<text class="fl" x="985" y="660" text-anchor="middle">or</text>
+
+<text class="cap" x="630" y="672">Between servers TLS is opportunistic by default, so an active attacker can strip it. MTA-STS and DANE both</text>
+<text class="cap" x="630" y="686">remove that fallback; they differ only in where trust is rooted. TLS-RPT reports when either silently fails.</text>
+<text class="mono" x="630" y="710">_mta-sts TXT + policy over HTTPS   ·   _25._tcp TLSA + DNSSEC   ·   _smtp._tls TXT</text>
+
+<!-- ============ footer ============ -->
+<line x1="20" y1="748" x2="1180" y2="748" stroke="#D3D1C7"/>
+<text class="cap" x="20" y="770">Authentication proves a message came from the domain it claims — not that the domain deserves trust. Reputation, not cryptography, decides the inbox.</text>
+<text class="cap" x="20" y="788">Interactive version with five detail views (path · stack &amp; ports · identity · security &amp; deliverability · common setups): email-ecosystem-map.html   ·   IT-Dictionary   ·   example domains per RFC 2606</text>
+</svg>

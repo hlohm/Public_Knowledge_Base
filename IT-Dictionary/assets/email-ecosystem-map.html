@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Email Ecosystem — a topological map</title>
+<meta name="description" content="An at-a-glance map of how email works: participants, protocol stack and ports, the authentication chain, transport security and deliverability, and the deployment shapes you meet in practice.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231D1C19'/><path d='M10 20h44v24H10z' fill='none' stroke='%23B4B2A9' stroke-width='3'/><path d='M10 20l22 16 22-16' fill='none' stroke='%231D9E75' stroke-width='3'/></svg>">
+<style>
+  :root{
+    --bg:#faf9f5; --card:#fff; --ink:#2C2C2A; --ink2:#5F5E5A; --muted:#888780;
+    --line:#D3D1C7; --border:#B4B2A9;
+    --mua:#D4537E; --msa:#B0538F; --mta:#1D9E75; --mda:#378ADD; --dns:#7F77DD;
+    --sec:#B08205; --ext:#888780; --alert:#D85A30;
+    --mua-l:#FBEAF0; --msa-l:#F7EAF3; --mta-l:#E1F5EE; --mda-l:#E6F1FB; --dns-l:#EEEDFE;
+    --sec-l:#FAF2D8; --ext-l:#F1EFE8; --alert-l:#FAECE7;
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --bg:#1D1C19; --card:#262521; --ink:#E7E5DF; --ink2:#A9A79F; --muted:#828078;
+    --line:#3B3934; --border:#57544C;
+    --mua-l:#39222C; --msa-l:#33202E; --mta-l:#173029; --mda-l:#1A2A3B; --dns-l:#282647;
+    --sec-l:#332C16; --ext-l:#2B2A25; --alert-l:#382318;
+    --sec:#D9A83C;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5;
+    transition:background .15s ease,color .15s ease}
+  header{padding:18px 24px 14px;border-bottom:1px solid var(--line);display:flex;
+    align-items:center;gap:16px;flex-wrap:wrap}
+  h1{font-size:20px;margin:0;font-weight:600;letter-spacing:-.01em}
+  header .sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .spacer{flex:1}
+  button.btn{border:1px solid var(--border);background:var(--card);border-radius:8px;
+    padding:7px 12px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--ink2)}
+  button.btn:hover{background:var(--ext-l)}
+
+  #views{display:flex;gap:0;flex-wrap:wrap;padding:14px 24px 0}
+  .vbtn{border:1px solid var(--border);background:var(--card);color:var(--ink2);
+    font-family:inherit;font-size:12.5px;padding:8px 14px;cursor:pointer;position:relative;
+    border-right-width:0;transition:background .12s ease,color .12s ease;white-space:nowrap}
+  .vbtn:first-child{border-radius:9px 0 0 9px}
+  .vbtn:last-child{border-radius:0 9px 9px 0;border-right-width:1px}
+  .vbtn:hover{background:var(--ext-l)}
+  .vbtn.on{background:var(--mta);color:#fff;border-color:var(--mta);z-index:1}
+  .vbtn .k{font-weight:700;margin-right:5px;opacity:.75}
+  .vbtn.on .k{opacity:.9}
+  @media(max-width:900px){.vbtn{border-right-width:1px;border-radius:9px !important;margin:0 5px 5px 0}}
+
+  #viewbar{margin:14px 24px 0;border:1px solid var(--line);border-left:4px solid var(--mta);
+    border-radius:10px;background:var(--card);padding:12px 16px;max-width:1180px}
+  #viewbar h2{margin:0 0 3px;font-size:15px;font-weight:600}
+  #viewbar p{margin:0;font-size:13px;color:var(--ink2)}
+
+  .wrap{display:flex;gap:20px;padding:16px 24px 40px;align-items:flex-start}
+  .mapcol{flex:1 1 auto;min-width:0}
+  svg{width:100%;height:auto;display:block}
+  aside{flex:0 0 360px;position:sticky;top:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:20px;min-height:440px}
+  @media(max-width:1180px){.wrap{flex-direction:column}aside{position:static;width:100%;flex-basis:auto}}
+
+  .node{cursor:pointer}
+  .node .box{transition:stroke-width .1s ease}
+  .node:hover .box{stroke-width:3}
+  .node:focus{outline:none}
+  .node:focus-visible .box{stroke-width:3.5}
+  .node.selected .box{stroke-width:3.5}
+
+  .name{font-weight:600;font-size:12.5px;fill:var(--ink)}
+  .role{font-size:10px;fill:var(--ink2)}
+  .mono{font-size:10px;fill:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace}
+  .zt{font-weight:600;font-size:11.5px;letter-spacing:.03em}
+  .lg{font-size:10px;fill:var(--ink2)}
+  .lk{fill:none}
+  .flowlbl{font-size:9.5px;font-weight:600;fill:var(--ink2)}
+  .hdrow{font-weight:700;font-size:10.5px;fill:var(--muted);letter-spacing:.05em}
+
+  .p-empty{color:var(--muted);font-size:13px}
+  .p-empty b{color:var(--ink2)}
+  .p-name{font-size:19px;font-weight:600;margin:0 0 5px;word-break:break-word}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+  .chip{font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;color:#fff}
+  .chip.ghost{background:transparent;border:1px solid var(--border);color:var(--ink2)}
+  .p-role{font-size:13.5px;color:var(--ink2);margin:0 0 14px}
+  .p-row{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:8px 0;
+    border-top:1px solid var(--line);font-size:12.5px}
+  .p-row .k{color:var(--muted);font-weight:500}
+  .p-row .v{color:var(--ink);word-break:break-word}
+  code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;
+    background:var(--ext-l);padding:1px 5px;border-radius:4px}
+  .note{font-size:12.5px;color:var(--ink2);background:var(--ext-l);border-radius:8px;
+    padding:10px 12px;margin-top:14px}
+  .note.warn{background:var(--sec-l);color:var(--ink)}
+  .note.alert{background:var(--alert-l);color:var(--ink)}
+  .note b{color:var(--ink)}
+  .terms{margin-top:14px;font-size:11.5px;color:var(--muted)}
+  .terms b{color:var(--ink2);font-weight:600}
+  footer{padding:0 24px 48px;font-size:12px;color:var(--muted);max-width:1180px;line-height:1.6}
+  footer h3{font-size:13px;color:var(--ink2);margin:20px 0 6px}
+  footer code{font-size:11px}
+  footer a{color:var(--mda)}
+</style>
+<script>
+  document.documentElement.dataset.theme =
+    localStorage.getItem('pkb-theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+</script>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>The Email Ecosystem</h1>
+    <div class="sub">Who the participants are, what they speak, and how a message is judged — transport layer and above</div>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn" id="theme">Theme</button>
+</header>
+
+<div id="views"></div>
+<div id="viewbar"><h2></h2><p></p></div>
+
+<div class="wrap">
+  <div class="mapcol"><div id="map"></div></div>
+  <aside id="panel"></aside>
+</div>
+
+<footer>
+  <h3>How to read this</h3>
+  <p>Five views, each answering a different question. <b>Path</b> is the backbone — everything else is a
+  detail lens on it. Click any box for the substance; nothing is explained on the diagram itself, so the
+  picture stays legible.</p>
+  <p>Colour encodes <i>role</i>, not vendor: <span style="color:var(--mua)">■</span> client-side,
+  <span style="color:var(--msa)">■</span> submission, <span style="color:var(--mta)">■</span> transfer,
+  <span style="color:var(--mda)">■</span> delivery &amp; storage, <span style="color:var(--dns)">■</span> DNS-backed,
+  <span style="color:var(--sec)">■</span> policy &amp; security, <span style="color:var(--ext)">■</span> other participants.
+  Dashed edges are lookups and side-channels rather than the message itself.</p>
+  <h3>The one idea to take away</h3>
+  <p>Email has no single authority. Every property people expect from it — that the sender is who they claim,
+  that the hop was encrypted, that the message is not spam — is a <i>layer added later</i> on top of a 1982
+  protocol that assumed a small network of trusted hosts. Almost everything in views 3 and 4 exists because
+  SMTP itself verifies nothing. Read them as archaeology: each mechanism is a patch over a specific hole,
+  and knowing which hole explains the design.</p>
+  <p style="margin-top:18px">All hostnames are the RFC 2606 reserved examples. Part of the
+  <a href="../_Home.md">IT-Dictionary</a>; companion note: <code>Maps/Email Ecosystem.md</code>.</p>
+</footer>
+
+<script>
+"use strict";
+
+const NW = 176, NH = 54;
+
+/* ---------------------------------------------------------------- data --- */
+
+const VIEWS = [
+{
+  key:'path', label:'Path', title:'Actors & the path a message takes',
+  blurb:'Follow one message from the author’s keyboard to the recipient’s screen. Three stages, each with a different trust model — and the other participants you meet once mail stops being a straight line.',
+  w:1200, h:600,
+  zones:[
+    {x:20,y:74,w:868,h:132,label:'1 · SUBMISSION — authenticated, inside your own house',c:'msa'},
+    {x:20,y:232,w:868,h:132,label:'2 · TRANSFER & ACCEPTANCE — anonymous, across the open internet',c:'mta'},
+    {x:20,y:390,w:868,h:132,label:'3 · DELIVERY & RETRIEVAL — inside the recipient’s house',c:'mda'},
+    {x:906,y:74,w:274,h:448,label:'OTHER PARTICIPANTS',c:'ext'}
+  ],
+  nodes:[
+    {id:'mua_s',x:40,y:100,k:'mua',name:'Mail client (MUA)',role:'Author writes and sends',
+      panel:{role:'The Mail User Agent — Thunderbird, Outlook, a phone app, a webmail front-end. It composes the message, then hands it to infrastructure. It never talks to the recipient’s server directly.',
+      rows:[['Speaks','SMTP submission out; IMAP/POP3/JMAP back in'],['Authenticates','Yes — username + password or OAuth'],['Builds','The MIME structure: text part, HTML part, attachments']],
+      note:'A webmail interface is a MUA that happens to run on the provider’s server. Same role, different place.',
+      terms:['MUA','MIME','Message-ID','SMTP']}},
+    {id:'msa',x:250,y:100,k:'msa',name:'MSA — submission',role:'Port 587 · authenticated front door',
+      panel:{role:'The Mail Submission Agent: the only door where <i>new</i> mail enters the system, and the only one that demands credentials. Separating it from port 25 is what lets a server relay for its own users without being an open relay to the world.',
+      rows:[['Port','587 (STARTTLS) or 465 (implicit TLS)'],['Auth','Always — SASL, or OAuth at large providers'],['May rewrite','Adds Message-ID and Date, fixes the envelope sender, enforces the From: identity']],
+      note:'<b>Why a separate port at all?</b> Before RFC 2476 (1998) clients submitted on 25 like servers did, so a server could not tell "my user sending mail" from "a stranger asking me to forward". Splitting the roles by port made authentication enforceable on one and not the other.',
+      terms:['MSA','SMTP','Open Relay']}},
+    {id:'mta_o',x:460,y:100,k:'mta',name:'Sending MTA',role:'Outbound queue · retries',
+      panel:{role:'The Mail Transfer Agent on the way out. It takes the accepted message, finds where it must go, and keeps trying until it is delivered or expires. The queue is the reason email survives an outage the way HTTP cannot.',
+      rows:[['Looks up','MX records for each recipient domain'],['Retries','Minutes, then hours, typically giving up after 4–5 days'],['Emits','A bounce (DSN) to the envelope sender on final failure']],
+      note:'Store-and-forward is the defining property of email. A message is <i>accepted responsibility</i>, not just passed along: once an MTA says 250 OK, it has promised to deliver or to tell someone it could not.',
+      terms:['MTA','MX Record','Bounce']}},
+    {id:'dns_l',x:670,y:100,k:'dns',name:'DNS',role:'Where every decision starts',
+      panel:{role:'Email is a DNS application wearing a trench coat. Routing, sender authentication, encryption policy and reputation all resolve to records in the recipient’s or sender’s zone.',
+      rows:[['Routing','<code>MX</code> — which hosts accept mail for this domain, by priority'],['Identity','<code>TXT</code> for SPF, <code>selector._domainkey</code> for DKIM, <code>_dmarc</code> for policy'],['Encryption','<code>TLSA</code> for DANE, <code>_mta-sts</code> for MTA-STS'],['Reputation','DNSBL lookups are ordinary A queries against a blocklist zone']],
+      note:'If DNS is wrong or unsigned, everything above it degrades quietly rather than failing loudly. That is the recurring failure mode of email operations.',
+      terms:['DNS','MX Record','TXT Record']}},
+    {id:'mx_in',x:40,y:258,k:'mta',name:'Receiving MX',role:'Port 25 · anonymous, open to all',
+      panel:{role:'The border MTA named in the domain’s MX records. It must accept connections from the entire internet — that is what being an MX means — so all of its defence happens <i>during</i> the SMTP conversation rather than at a login prompt.',
+      rows:[['Port','25, no authentication, ever'],['Accepts for','Only the domains it is responsible for'],['Refuses','Anything else — <code>554 Relay access denied</code>']],
+      note:'<b>Anonymous inbound is not a hole.</b> The whole internet must be able to reach you or nobody can send you mail. The security boundary is the recipient address, not the sender’s identity.',
+      terms:['MTA','MX Record','HELO','Open Relay']}},
+    {id:'policy',x:250,y:258,k:'sec',name:'Connection-stage policy',role:'Cheap rejection, before DATA',
+      panel:{role:'Checks that can be made from the TCP connection and the SMTP envelope alone — before the message body is transferred. Rejecting here costs almost nothing and never generates backscatter, because the sending server is still on the line to be told no.',
+      rows:[['Client checks','Reverse DNS, FCrDNS, HELO validity, DNSBL listing'],['Behaviour','Greylisting, rate limits, early-talker detection'],['Envelope','Does the recipient exist? Is relaying permitted?']],
+      note:'<b>Reject early or not at all.</b> Accepting a message and bouncing it later turns a spam problem into a backscatter problem — you become the one sending unwanted mail to a forged address.',
+      terms:['Greylisting','Backscatter','DNSBL']}},
+    {id:'filter',x:460,y:258,k:'sec',name:'Content filtering',role:'After DATA · scoring, not certainty',
+      panel:{role:'Once the body has arrived, the message can be scored: statistical classifiers, rule engines, URL and attachment analysis, plus the authentication results from view 3. The output is a probability, which is why filtering is tuned rather than solved.',
+      rows:[['Inputs','Auth results, reputation, content heuristics, user feedback'],['Attaches','<code>Authentication-Results:</code> and score headers'],['Outcomes','Deliver · junk folder · quarantine · silently discard']],
+      note:'Filtering integrates with the MTA through a milter or a proxy so it can act while the transaction is still open — the difference between rejecting a message and accepting one you did not want.',
+      terms:['Milter','DNSBL','DMARC']}},
+    {id:'rbl',x:670,y:258,k:'dns',name:'Reputation services',role:'DNSBL · allow-lists · FBL',
+      panel:{role:'Third-party judgement about an IP address or domain, consulted over DNS. A blocklist is just a zone where the presence of a record means "this address has been observed sending abuse".',
+      rows:[['Query','reverse the octets: <code>10.100.51.198.bl.example.net</code> → a <code>127.0.0.x</code> answer means listed'],['Kinds','IP blocklists, domain/URL lists, allow-lists, hash-sharing'],['Feedback','FBLs report "my user marked this as spam" back to the sender']],
+      note:'Reputation attaches to whatever is stable: the sending IP, the DKIM signing domain, the visible From: domain. This is why a shared IP means inheriting strangers’ behaviour.',
+      terms:['DNSBL','IP Reputation','Feedback Loop']}},
+    {id:'mda',x:40,y:416,k:'mda',name:'MDA — delivery',role:'Writes into the mailbox',
+      panel:{role:'The Mail Delivery Agent performs the final write: appending to a Maildir or mbox, or handing to a mailbox store over LMTP. This is also where per-user rules run.',
+      rows:[['Speaks','LMTP (24) from the MTA, or invoked as a local binary'],['Runs','Sieve filters — sort, file, forward, vacation'],['Produces','The last chance for a delivery failure to become a bounce']],
+      note:'LMTP exists because SMTP promises to queue and retry, which a final delivery step must not do — it needs to report per-recipient success or failure immediately.',
+      terms:['MDA','LMTP','Sieve']}},
+    {id:'store',x:250,y:416,k:'mda',name:'Mailbox store',role:'The messages at rest',
+      panel:{role:'Where mail lives between delivery and reading — a Maildir tree, an mbox file, or a purpose-built store with its own indexes. At provider scale this is a distributed database with search, threading and shared folders.',
+      rows:[['Formats','Maildir (one file per message), mbox (one file per folder), proprietary'],['Holds','Message bodies, flags, folder structure, per-user indexes'],['Backed by','Quotas, snapshots, and the only truly irreplaceable data in the system']],
+      note:'Everything else in this map can be rebuilt from configuration. The store cannot. Back it up accordingly.',
+      terms:['Maildir','Maildir']}},
+    {id:'retr',x:460,y:416,k:'mda',name:'Retrieval protocol',role:'IMAP · POP3 · JMAP',
+      panel:{role:'How the reader’s client gets at the store. The choice determines whether the mailbox is a synchronised shared state or a one-way download.',
+      rows:[['IMAP','993 — server is authoritative, folders and flags sync across devices'],['POP3','995 — download (usually delete); a single-device model from the dial-up era'],['JMAP','443 — modern JSON-over-HTTP alternative: batched, push-friendly, mobile-first']],
+      note:'IMAP won because people acquired second devices. JMAP is the current attempt to fix its chattiness and awkward push story without changing the mailbox model.',
+      terms:['IMAP','POP3','JMAP']}},
+    {id:'mua_r',x:670,y:416,k:'mua',name:'Recipient MUA',role:'Renders · and decides what you see',
+      panel:{role:'The reading client. It renders MIME, decides whether to load remote images, shows or hides authentication results, and applies its own junk logic on top of the server’s.',
+      rows:[['Renders','MIME multipart — plain text and HTML alternatives'],['Privacy','Remote images are tracking pixels; blocking them is now the default'],['Trust cues','Junk warnings, BIMI logos, "this sender is new to you" hints']],
+      note:'The last mile of email security is a rendering decision. Most successful phishing passes every server-side check and fails only at the point of human judgement.',
+      terms:['MUA','MIME','BIMI']}},
+
+    {id:'fwd',x:924,y:100,w:238,h:46,k:'ext',name:'Forwarder / alias',role:'Re-sends to a real mailbox',
+      panel:{role:'Accepts mail for an address and immediately re-sends it elsewhere, keeping no mailbox. Alias services and university "address for life" schemes are the common shapes.',
+      rows:[['Breaks','SPF — the forwarder’s IP is not authorised for the original sender’s domain'],['Repairs','SRS rewrites the envelope sender so bounces still work'],['Survives','DKIM, provided the body is not modified — which is why DKIM carries DMARC across the hop']],
+      note:'Forwarding is the single most instructive edge case in email. It is where the envelope/header split, SPF’s limits, DKIM’s value and ARC’s purpose all become concrete at once.',
+      terms:['SRS','SPF','ARC']}},
+    {id:'mlist',x:924,y:156,w:238,h:46,k:'ext',name:'Mailing list',role:'Fans out, and often edits',
+      panel:{role:'Receives one message and re-sends it to many, usually altering it — subject tags, footers, header rewriting. Every alteration invalidates the original DKIM signature.',
+      rows:[['Classic fix','Rewrite From: to the list address ("From: Alice via List")'],['Modern fix','ARC — seal the original authentication results so a DMARC-strict domain still passes'],['Tension','DMARC at p=reject broke mailing lists industry-wide in 2014']],
+      note:'The 2014 collision between Yahoo publishing p=reject and the world’s mailing lists is why ARC exists. It is a good example of a security policy with large unintended blast radius.',
+      terms:['ARC','DMARC','Mailing List']}},
+    {id:'esp',x:924,y:212,w:238,h:46,k:'ext',name:'ESP / bulk sender',role:'Newsletters, transactional mail',
+      panel:{role:'An Email Service Provider sends on your behalf at volume — marketing campaigns, receipts, password resets. You delegate authentication to them and inherit the reputation of their sending pools.',
+      rows:[['Setup','SPF include, DKIM keys published as CNAMEs into their zone, a custom return-path'],['Pools','Shared IPs (cheap, noisy neighbours) or dedicated (yours to warm and to ruin)'],['Obliged','One-click unsubscribe (RFC 8058), honest list acquisition, prompt suppression']],
+      note:'Since 2024 Gmail and Yahoo enforce bulk-sender rules: authentication, one-click unsubscribe, and a spam-complaint rate under roughly 0.3 %. Bulk mail is now a compliance discipline.',
+      terms:['ESP','SPF','DKIM']}},
+    {id:'smart',x:924,y:268,w:238,h:46,k:'ext',name:'Smarthost / null client',role:'How servers send mail',
+      panel:{role:'A machine that needs to <i>send</i> (cron output, alerts, application mail) but should never receive. It listens on nothing, delivers nothing locally, and relays everything to one designated host.',
+      rows:[['Listens','Loopback only, or not at all'],['Sends to','A single smarthost, authenticated or on a trusted network'],['Why','Correct shape for almost every server — no queue to poison, no surface to attack']],
+      note:'The alternative — a full MTA on every host, each with its own reputation and its own way to be misconfigured into an open relay — is how estates accumulate mail problems nobody owns.',
+      terms:['Null Client','Smarthost','MTA']}},
+    {id:'secmx',x:924,y:324,w:238,h:46,k:'ext',name:'Secondary MX',role:'Backup — usually a mistake',
+      panel:{role:'A lower-priority MX that accepts mail when the primary is down, then forwards it on. Intuitive, and mostly counterproductive.',
+      rows:[['Intent','Do not lose mail during an outage'],['Reality','Senders already queue and retry for days — the outage was covered anyway'],['Cost','Spammers target the backup precisely because it usually has weaker filtering']],
+      note:'<b>Worth understanding as a trap.</b> A secondary MX that does not enforce the same recipient validation and filtering as the primary becomes the preferred way in. If both are equally strict, it added nothing the sender’s own queue did not.',
+      terms:['MX Record','MTA']}},
+    {id:'arch',x:924,y:380,w:238,h:46,k:'ext',name:'Archive / journal',role:'Compliance copy',
+      panel:{role:'A tamper-evident copy of everything sent and received, taken at the MTA rather than the mailbox so users cannot alter or delete it. Required in regulated sectors.',
+      rows:[['Captured','Journaling at the transfer stage, before user rules run'],['Retention','Fixed periods set by regulation, typically 6–10 years'],['Tension','Directly at odds with data-minimisation and with end-to-end encryption']],
+      terms:['MTA','Bounce']}},
+    {id:'abuse',x:924,y:436,w:238,h:46,k:'ext',name:'Abuse desk / postmaster',role:'The human layer',
+      panel:{role:'Every domain that sends mail is expected to read <code>abuse@</code> and <code>postmaster@</code> (RFC 2142). This is where blocklist delisting, compromised-account reports and peer complaints arrive.',
+      rows:[['Required','Reachable role addresses, unfiltered enough to actually be read'],['Handles','Delisting requests, FBL reports, outbound compromise'],['Reputation','Responsiveness here measurably affects how peers treat your mail']],
+      note:'Deliverability at scale is a relationship business as much as a technical one. The address nobody staffs is the one that ends the conversation.',
+      terms:['Feedback Loop','Feedback Loop']}}
+  ],
+  edges:[
+    {a:'mua_s',b:'msa',l:'submit'},
+    {a:'msa',b:'mta_o',l:'queue'},
+    {a:'mta_o',b:'dns_l',l:'MX lookup',dash:1},
+    {a:'mta_o',b:'mx_in',l:'SMTP :25 — across the public internet',
+      d:'M548 154 L548 200 L128 200 L128 258',big:1},
+    {a:'mx_in',b:'policy',l:'connect'},
+    {a:'policy',b:'filter',l:'DATA'},
+    {a:'filter',b:'rbl',l:'lookups',dash:1},
+    {a:'filter',b:'mda',l:'accepted',d:'M548 312 L548 358 L128 358 L128 416'},
+    {a:'mda',b:'store',l:'write'},
+    {a:'store',b:'retr',l:'read'},
+    {a:'retr',b:'mua_r',l:'sync'}
+  ]
+},
+
+{
+  key:'stack', label:'Stack & ports', title:'Protocol stack and ports',
+  blurb:'What speaks to what, on which port, in which direction, and where TLS sits. The port is the single most reliable clue to a component’s role — and to whether authentication is expected.',
+  w:1200, h:612,
+  zones:[
+    {x:20,y:74,w:380,h:500,label:'THE STACK, BOTTOM-UP',c:'mta'},
+    {x:420,y:74,w:760,h:500,label:'PORTS AND WHAT THEY MEAN',c:'mda'}
+  ],
+  nodes:[
+    {id:'l_tcp',x:40,y:490,w:340,h:56,k:'ext',name:'TCP',role:'Layer 4 — reliable ordered bytes',
+      panel:{role:'Everything above is a text or binary conversation carried on a TCP connection. Email inherits TCP’s properties: connection-oriented, ordered, and slow to fail — which suits store-and-forward well.',
+      rows:[['Why it matters','Connection-level facts (source IP, reverse DNS) are the cheapest and hardest-to-forge signals a receiver has'],['Not used','UDP appears only in the DNS lookups alongside, never for message transfer']],
+      terms:['TCP','DNS']}},
+    {id:'l_tls',x:40,y:420,w:340,h:56,k:'sec',name:'TLS',role:'Confidentiality + server identity',
+      panel:{role:'Sits between TCP and the mail protocol. Two arrangements exist and the difference is worth internalising: <b>implicit</b> TLS negotiates before any mail command, <b>STARTTLS</b> begins in cleartext and upgrades on request.',
+      rows:[['Implicit','465 (submission), 993 (IMAP), 995 (POP3) — encrypted from byte one'],['STARTTLS','587, and 25 between servers — upgrade requested mid-conversation'],['Weakness','STARTTLS can be stripped by an active attacker unless a policy forbids the downgrade']],
+      note:'<b>Between servers, TLS is opportunistic by default.</b> If the handshake fails, mail is normally sent in cleartext rather than not at all — chosen deliberately in the 1990s so encryption could be deployed without breaking delivery. MTA-STS and DANE (view 4) exist to take that fallback away.',
+      terms:['TLS','STARTTLS','MTA-STS']}},
+    {id:'l_app',x:40,y:350,w:340,h:56,k:'mta',name:'SMTP · IMAP · POP3 · JMAP',
+      role:'The application protocols',
+      panel:{role:'Line-oriented text dialogues (except JMAP, which is JSON over HTTP). SMTP moves messages between systems; IMAP, POP3 and JMAP let a person read the resulting mailbox. They share nothing but the message format.',
+      rows:[['SMTP','Push — a sender offers a message to a receiver'],['IMAP/POP3/JMAP','Pull — a reader fetches from their own store'],['Consequence','You cannot "send" via IMAP, and you cannot read a mailbox over SMTP. Different halves of the system.']],
+      terms:['SMTP','IMAP','JMAP']}},
+    {id:'l_mime',x:40,y:280,w:340,h:56,k:'mda',name:'MIME',role:'Message structure',
+      panel:{role:'The original message was 7-bit US-ASCII text and nothing else. MIME adds a tree of parts with content types and encodings, which is how attachments, HTML alternatives, inline images and non-Latin scripts exist at all.',
+      rows:[['Structure','<code>multipart/alternative</code> for text+HTML, <code>multipart/mixed</code> for attachments'],['Encodings','base64 and quoted-printable, to survive 7-bit-only relays'],['Headers','RFC 2047 encoded-words for non-ASCII subjects and names']],
+      note:'MIME is also the attack surface: nested parts, encoding tricks and content-type confusion are standard evasion techniques against filters that parse less carefully than the mail client does.',
+      terms:['MIME','MIME']}},
+    {id:'l_auth',x:40,y:210,w:340,h:56,k:'dns',name:'SPF · DKIM · DMARC · ARC',
+      role:'Identity, layered on DNS',
+      panel:{role:'Not part of SMTP at all — a separate authentication layer that publishes claims in DNS and verifies them at the receiver. It can be bolted on precisely because SMTP never had a notion of identity to conflict with.',
+      rows:[['Carried in','DNS TXT records plus one message header (DKIM-Signature)'],['Verified by','The receiving side, independently, at its own discretion'],['Detail','View 3']],
+      terms:['SPF','DKIM','DMARC','ARC']}},
+    {id:'l_ux',x:40,y:140,w:340,h:56,k:'mua',name:'Rendering & human judgement',
+      role:'The layer that actually gets attacked',
+      panel:{role:'Above every protocol sits a person deciding whether to trust what they see. Display-name spoofing, lookalike domains and urgency cues all operate here, untouched by anything below.',
+      rows:[['Signals','Junk warnings, BIMI logos, first-contact hints, external-sender banners'],['Reality','A phish can pass SPF, DKIM and DMARC perfectly — from a domain the attacker legitimately owns']],
+      note:'Authentication proves a message came from the domain it claims. It says nothing about whether that domain deserves trust. Conflating the two is the most common misreading of DMARC.',
+      terms:['Phishing','BIMI','DMARC']}},
+
+    {id:'p_hdr',x:440,y:104,w:720,h:34,k:'hdr',name:'',role:'',hdr:['PORT','PROTOCOL','DIRECTION / ROLE','TLS']},
+    {id:'p25',x:440,y:142,w:720,h:38,k:'mta',name:'25',role:'SMTP relay',
+      cols:['25','SMTP','Server → server, anonymous','STARTTLS, opportunistic'],
+      panel:{role:'The transfer port. Anonymous by necessity, since any server on the internet must be able to deliver to you. Never used by mail clients today, and blocked outbound by most consumer ISPs and several clouds.',
+      rows:[['Auth','None — the recipient address is the security boundary'],['Blocked','Residential ISPs and many cloud providers block it outbound by default to limit botnet spam'],['Implication','Getting it unblocked is the first practical hurdle to self-hosting outbound mail']],
+      terms:['SMTP','MTA','Open Relay']}},
+    {id:'p587',x:440,y:180,w:720,h:38,k:'msa',name:'587',role:'Submission',
+      cols:['587','SMTP submission','Client → MSA, authenticated','STARTTLS, required'],
+      panel:{role:'The modern submission port. Authentication is mandatory, which is exactly what distinguishes it from 25.',
+      rows:[['RFC','6409 (originally 2476, 1998)'],['Auth','SASL PLAIN/LOGIN over TLS, or OAuth bearer tokens'],['Policy','Servers should refuse STARTTLS-less sessions here, not merely offer it']],
+      terms:['MSA','SMTP','SASL']}},
+    {id:'p465',x:440,y:218,w:720,h:38,k:'msa',name:'465',role:'Submission, implicit TLS',
+      cols:['465','STARTTLS','Client → MSA, authenticated','Implicit, from byte one'],
+      panel:{role:'Deprecated in 1998, un-deprecated in 2018 by RFC 8314, which recommends implicit TLS over STARTTLS for submission. A rare case of the industry reversing itself for good reason.',
+      rows:[['Why back','No cleartext phase means no downgrade attack; simpler to reason about'],['Status','Both 465 and 587 are correct today; 465 is the safer default for new deployments']],
+      note:'The old name "SMTPS" is discouraged — it invites the wrong analogy with HTTPS, where the split is much cleaner.',
+      terms:['STARTTLS','TLS','MSA']}},
+    {id:'p143',x:440,y:256,w:720,h:38,k:'mda',name:'143',role:'IMAP, cleartext/STARTTLS',
+      cols:['143','IMAP','Client ← store','STARTTLS'],
+      panel:{role:'The historical IMAP port. Still widely open, but RFC 8314 recommends 993 instead so there is no unencrypted phase to strip.',
+      rows:[['Use today','Mostly legacy and internal networks'],['Better','993']],
+      terms:['IMAP','TLS']}},
+    {id:'p993',x:440,y:294,w:720,h:38,k:'mda',name:'993',role:'IMAP over TLS',
+      cols:['993','IMAPS','Client ← store, synchronised','Implicit'],
+      panel:{role:'The standard way clients read mail. The server holds authoritative state — folders, read flags, drafts — so every device sees the same mailbox.',
+      rows:[['Model','Server-authoritative; the client is a cache'],['Features','Server-side search, IDLE for push, shared and virtual folders'],['Cost','Chatty; a poor fit for high-latency mobile links, which motivated JMAP']],
+      terms:['IMAP','JMAP']}},
+    {id:'p995',x:440,y:332,w:720,h:38,k:'mda',name:'995',role:'POP3 over TLS',
+      cols:['995','POP3S','Client ← store, download','Implicit'],
+      panel:{role:'Fetch and (usually) delete. A single-device model from when mailboxes were small and connections were metered.',
+      rows:[['Still useful','Pulling mail into a local archive, or a one-way gateway into another system'],['Trap','"Leave messages on server" plus several devices reproduces the state problems IMAP solved']],
+      terms:['POP3','IMAP']}},
+    {id:'p443',x:440,y:370,w:720,h:38,k:'mda',name:'443',role:'JMAP · webmail · MTA-STS policy',
+      cols:['443','HTTPS','Client ← store; also policy fetch','Implicit'],
+      panel:{role:'Three unrelated things ride HTTPS: JMAP as a modern IMAP replacement, ordinary webmail, and the MTA-STS policy file that tells other servers to require TLS.',
+      rows:[['JMAP','RFC 8620/8621 — JSON, batched requests, push over standard web plumbing'],['MTA-STS','<code>https://mta-sts.example.com/.well-known/mta-sts.txt</code>'],['Why HTTPS','Reuses web infrastructure — proxies, CDNs, certificates, mobile-friendly connection handling']],
+      terms:['JMAP','MTA-STS','HTTPS']}},
+    {id:'p4190',x:440,y:408,w:720,h:38,k:'mda',name:'4190',role:'ManageSieve',
+      cols:['4190','ManageSieve','Client → server, rule editing','STARTTLS'],
+      panel:{role:'Lets a mail client edit the server-side filtering rules that run at delivery, so sorting happens even when no client is connected.',
+      rows:[['Language','Sieve (RFC 5228) — a deliberately non-Turing-complete filter language'],['Why not client rules','Client-side rules only run when that client is open; server-side always applies']],
+      terms:['Sieve','MDA']}},
+    {id:'p24',x:440,y:446,w:720,h:38,k:'mda',name:'24',role:'LMTP — final delivery',
+      cols:['24','LMTP','MTA → mailbox store','Usually internal'],
+      panel:{role:'SMTP with the queue removed. Where SMTP says "I have accepted responsibility, I will retry", LMTP must answer per recipient immediately: delivered, or not.',
+      rows:[['RFC','2033'],['Why','A final delivery agent has nowhere to retry <i>to</i>; it must succeed or report failure now'],['Scope','Internal hop, effectively never exposed to the internet']],
+      terms:['LMTP','MDA','SMTP']}},
+    {id:'p8891',x:440,y:484,w:720,h:38,k:'sec',name:'8891 etc.',role:'Milter — filter sidecar',
+      cols:['8891 (typical)','Milter','MTA ↔ filter, mid-transaction','Internal'],
+      panel:{role:'A protocol letting an external process inspect and modify a message <i>while the SMTP transaction is still open</i>. This is how DKIM signing, spam scoring and virus scanning attach to an MTA without living inside it.',
+      rows:[['Can','Add headers, alter the body, and — critically — reject before the sender is released'],['Used by','OpenDKIM, OpenDMARC, rspamd, ClamAV integrations'],['Origin','Sendmail’s API, adopted by Postfix; rspamd offers its own proxy protocol as an alternative']],
+      note:'Acting inside the transaction is the whole point: it is the difference between refusing a message and accepting one you will then have to bounce.',
+      terms:['Milter','MTA','DKIM']}},
+    {id:'p53',x:440,y:522,w:720,h:38,k:'dns',name:'53',role:'DNS — underpins everything',
+      cols:['53','DNS','Lookups in every direction','DNSSEC / DoT'],
+      panel:{role:'Not a mail protocol, but no mail decision happens without it: routing, authentication, encryption policy and blocklists are all DNS queries.',
+      rows:[['Critical','DANE requires a <i>validating</i> resolver — the AD bit must reach the MTA, not merely exist upstream'],['Trap','A local stub resolver that does not propagate AD silently disables DANE while it appears configured']],
+      note:'This is a recurring shape in email: a security feature that fails open and quiet. Verify from the machine that makes the decision, not from a convenient shell nearby.',
+      terms:['DNS','DNSSEC','DANE']}}
+  ],
+  edges:[]
+},
+
+{
+  key:'auth', label:'Identity', title:'Identity and the authentication chain',
+  blurb:'SMTP lets anyone claim to be anyone. SPF, DKIM and DMARC are three separate patches over that, and they only make sense once you see the split between the envelope and the headers.',
+  w:1200, h:660,
+  zones:[
+    {x:20,y:74,w:1160,h:150,label:'A · THE TWO IDENTITIES IN EVERY MESSAGE',c:'mua'},
+    {x:20,y:244,w:1160,h:210,label:'B · WHAT THE RECEIVER CHECKS',c:'dns'},
+    {x:20,y:474,w:1160,h:160,label:'C · WHY FORWARDING BREAKS IT — AND WHAT REPAIRS IT',c:'sec'}
+  ],
+  nodes:[
+    {id:'env',x:44,y:106,w:520,h:100,k:'mta',name:'The envelope — what the servers act on',
+      role:'MAIL FROM: <bounce@example.com>   ·   RCPT TO: <you@example.net>',
+      panel:{role:'The SMTP conversation itself. The receiving server routes and accepts or refuses on these values, and the sender in particular is where bounces go. The recipient never sees it.',
+      rows:[['MAIL FROM','Envelope sender, a.k.a. return-path or bounce address'],['RCPT TO','Envelope recipient — the <i>only</i> thing that decides delivery'],['Checked by','SPF, which asks: is this IP allowed to send for this domain?']],
+      note:'<b>The postal analogy.</b> The envelope is what the postman reads. The headers are the letterhead on the paper inside. Routing never looks at the letterhead.',
+      terms:['SMTP','SPF','Envelope Sender','Bounce']}},
+    {id:'hdr',x:600,y:106,w:556,h:100,k:'mua',name:'The headers — what the human sees',
+      role:'From: Alice <alice@example.com>   ·   To:   ·   Subject:   ·   DKIM-Signature:',
+      panel:{role:'Part of the message body as far as SMTP is concerned — free text the sender writes. Your mail client displays <code>From:</code> and nothing else, which is precisely why it is the interesting thing to forge.',
+      rows:[['From:','What the reader sees. Unverified by SMTP itself'],['To: / Cc:','Decorative — the real recipients were the RCPT TO commands'],['Checked by','DMARC, which requires this domain to align with an authenticated one']],
+      note:'The two can disagree completely and the mail still delivers. Legitimate systems rely on this: mailing lists, forwarders and ESPs all set an envelope sender different from the visible From:.',
+      terms:['DMARC','DKIM','MIME']}},
+
+    {id:'spf',x:44,y:280,w:250,h:66,k:'dns',name:'SPF',role:'Is this IP allowed to send for that domain?',
+      panel:{role:'The domain owner publishes, in DNS, a list of IP addresses and ranges permitted to send mail using that domain in the <i>envelope</i> sender. The receiver compares the connecting IP against it.',
+      rows:[['Record','<code>v=spf1 ip4:198.51.100.0/24 include:_spf.example.net -all</code>'],['Checks','The envelope sender domain — not the visible From:'],['Limit','Ten DNS lookups maximum; exceeding it is a <code>permerror</code>, which fails open in practice'],['Breaks on','Forwarding — the forwarder’s IP is not in the original domain’s list']],
+      note:'<code>-all</code> (hard fail) versus <code>~all</code> (soft fail) is the single most consequential character in the record. Many domains never leave <code>~all</code> because they are unsure they have enumerated all their senders.',
+      terms:['SPF','DNS','SRS']}},
+    {id:'dkim',x:314,y:280,w:250,h:66,k:'dns',name:'DKIM',role:'Was this content signed by that domain?',
+      panel:{role:'The sender signs selected headers and the body with a private key; the public key is published in DNS under a selector. Any receiver can verify the signature, and it survives being relayed — because it travels with the message rather than depending on the connection.',
+      rows:[['Record','<code>selector._domainkey.example.com</code> TXT, holding the public key'],['Signs','Chosen headers (always From:) plus a body hash'],['Header','<code>DKIM-Signature:</code> carries <code>d=</code> (the signing domain) and <code>s=</code> (the selector)'],['Breaks on','Any modification of the signed content — footers, subject tags, re-encoding']],
+      note:'<b>DKIM is the load-bearing one.</b> Because it is independent of the connection, it is what lets DMARC survive a forwarding hop that destroys SPF.',
+      terms:['DKIM','DMARC','Milter']}},
+    {id:'dmarc',x:584,y:280,w:250,h:66,k:'sec',name:'DMARC',role:'Do those results align with the visible From:?',
+      panel:{role:'Ties the two mechanisms to the identity the human actually sees. DMARC passes if SPF or DKIM passes <i>and</i> the domain that passed aligns with the <code>From:</code> header domain. Then it tells the receiver what to do on failure.',
+      rows:[['Record','<code>_dmarc.example.com</code> TXT — <code>v=DMARC1; p=reject; rua=mailto:…</code>'],['Policy','<code>none</code> (observe) → <code>quarantine</code> → <code>reject</code>'],['Alignment','<code>relaxed</code> allows subdomains; <code>strict</code> demands an exact match'],['Reports','Aggregate (rua) and forensic (ruf) XML sent back to the domain owner']],
+      note:'<b>Always start at <code>p=none</code> and read the reports.</b> They are the only way to discover the legitimate senders you had forgotten about. Publishing <code>p=reject</code> first is how organisations block their own invoices.',
+      terms:['DMARC','SPF','DKIM']}},
+    {id:'authres',x:854,y:280,w:302,h:66,k:'mda',name:'Authentication-Results',role:'The verdict, written into the message',
+      panel:{role:'The receiving system records what it found in a header, so that later stages — filters, clients, the reader — can act on it without redoing the cryptography.',
+      rows:[['Example','<code>spf=pass smtp.mailfrom=example.com; dkim=pass header.d=example.com; dmarc=pass</code>'],['Trust','Only meaningful when added by <i>your own</i> boundary; the same header from outside is unverified text'],['Used by','Junk scoring, BIMI display decisions, ARC sealing']],
+      terms:['DMARC','ARC','DNSBL']}},
+    {id:'spf_dns',x:44,y:368,w:250,h:64,k:'ext',name:'TXT at the apex',role:'v=spf1 … -all',
+      panel:{role:'One SPF record per domain — exactly one. Two records is a <code>permerror</code>, and a common outage when two teams each add their own.',
+      rows:[['Trap','The ten-lookup limit is consumed fast by chained <code>include:</code> of large providers'],['Fix','Flattening (resolving includes into literal IPs) trades accuracy for headroom, and goes stale silently']],
+      terms:['SPF','TXT Record']}},
+    {id:'dkim_dns',x:314,y:368,w:250,h:64,k:'ext',name:'selector._domainkey',role:'Public key in DNS',
+      panel:{role:'Selectors let a domain hold several valid keys at once, which is what makes rotation possible without a gap.',
+      rows:[['Rotation','Publish the new selector, start signing with it, retire the old after the mail in flight has drained'],['Size','2048-bit RSA is standard; Ed25519 exists (RFC 8463) but adoption is partial'],['Delegation','Providers usually have you publish a CNAME into their zone so they can rotate for you']],
+      terms:['DKIM','DNS']}},
+    {id:'dmarc_dns',x:584,y:368,w:250,h:64,k:'ext',name:'_dmarc TXT',role:'Policy + reporting addresses',
+      panel:{role:'The policy record. <code>sp=</code> sets a separate policy for subdomains, which matters because unused subdomains are a favourite spoofing target.',
+      rows:[['Rollout','none → quarantine with <code>pct=</code> → reject'],['Watch','Aggregate reports arrive as gzipped XML; a parser or a hosted analyser makes them readable']],
+      terms:['DMARC']}},
+    {id:'bimi',x:854,y:368,w:302,h:64,k:'sec',name:'BIMI',role:'Your logo, once you have earned it',
+      panel:{role:'Brand Indicators for Message Identification: publish a logo in DNS and participating clients display it beside your messages — but only if DMARC is already enforced at quarantine or reject.',
+      rows:[['Requires','DMARC at <code>p=quarantine</code> or <code>p=reject</code>, plus an SVG Tiny PS logo'],['Often also','A Verified Mark Certificate — a paid attestation that you own the trademark'],['Status','Supported by several large mailbox providers; not a standard everyone honours']],
+      note:'Read BIMI as an incentive scheme rather than a security control: its real function is to give marketing departments a reason to fund the DMARC work.',
+      terms:['BIMI','DMARC']}},
+
+    {id:'fwd_p',x:44,y:508,w:280,h:100,k:'alert',name:'The forwarding problem',
+      role:'A forwarder re-sends from its own IP',
+      panel:{role:'When mail is forwarded, the receiving server sees the forwarder’s IP, not the original sender’s. SPF checks that IP against the <i>original</i> domain’s record and fails — correctly, by its own logic, but wrongly in effect.',
+      rows:[['SPF','Fails — the forwarder was never authorised'],['DKIM','Survives, if the forwarder did not modify the message'],['DMARC','Still passes on the DKIM leg alone — which is the whole reason DKIM matters']],
+      note:'This is the concrete case that explains why DMARC accepts <i>either</i> mechanism instead of requiring both.',
+      terms:['SPF','DKIM','SRS']}},
+    {id:'srs',x:344,y:508,w:280,h:100,k:'mta',name:'SRS',role:'Repairs the envelope sender',
+      panel:{role:'Sender Rewriting Scheme: the forwarder rewrites the envelope sender into its own domain, so SPF is evaluated against a domain that <i>does</i> authorise it. The original address is encoded in the new one so bounces can be routed back.',
+      rows:[['Rewrites','<code>alice@example.com</code> → <code>SRS0=hash=tt=example.com=alice@fwd.example.net</code>'],['Fixes','SPF, and the return path for bounces'],['Does not fix','DMARC alignment — that still rides on DKIM']],
+      terms:['SRS','SPF','Bounce']}},
+    {id:'arc',x:644,y:508,w:280,h:100,k:'sec',name:'ARC',role:'Carries the verdict across hops',
+      panel:{role:'Authenticated Received Chain: an intermediary that must modify a message seals what it saw — the original authentication results — so the next hop can choose to trust that testimony instead of re-deriving it from a message that is now altered.',
+      rows:[['Adds','<code>ARC-Seal</code>, <code>ARC-Message-Signature</code>, <code>ARC-Authentication-Results</code>'],['For','Mailing lists and filtering gateways that legitimately rewrite content'],['Trust','Advisory — a receiver may honour a chain from an intermediary it already trusts, or ignore it entirely']],
+      note:'ARC does not prove anything by itself. It is a mechanism for a trusted party to vouch, which means its value depends entirely on reputation.',
+      terms:['ARC','DMARC','Mailing List']}},
+    {id:'mlist_p',x:944,y:508,w:212,h:100,k:'ext',name:'Why lists broke',
+      role:'2014 — DMARC vs the world',
+      panel:{role:'When a large consumer provider published <code>p=reject</code>, every mailing list that added a subject tag or footer suddenly produced messages that failed DMARC in the sender’s name — and were rejected en masse.',
+      rows:[['Immediate fix','Lists rewrote From: to their own address, losing the real author'],['Long fix','ARC'],['Lesson','A domain-level policy can have consequences far outside the domain that sets it']],
+      terms:['DMARC','ARC','Mailing List']}}
+  ],
+  edges:[
+    {a:'env',b:'spf',l:'envelope domain',d:'M304 206 L304 240 L169 240 L169 280',dash:1},
+    {a:'hdr',b:'dmarc',l:'From: domain',d:'M878 206 L878 250 L709 250 L709 280',dash:1},
+    {a:'spf',b:'dmarc',l:'result'},
+    {a:'dkim',b:'dmarc',l:'result'},
+    {a:'dmarc',b:'authres',l:'verdict'},
+    {a:'spf',b:'spf_dns',l:'',dash:1},
+    {a:'dkim',b:'dkim_dns',l:'',dash:1},
+    {a:'dmarc',b:'dmarc_dns',l:'',dash:1},
+    {a:'fwd_p',b:'srs',l:'repair'},
+    {a:'srs',b:'arc',l:'and/or'}
+  ]
+},
+
+{
+  key:'sec', label:'Security & delivery', title:'Transport security and deliverability',
+  blurb:'Two questions that sound similar and are not: was the hop private, and will the message land in the inbox? The first is cryptography; the second is reputation, and reputation is the harder one.',
+  w:1200, h:620,
+  zones:[
+    {x:20,y:74,w:570,h:510,label:'SECURING THE HOP — from opportunistic to enforced',c:'sec'},
+    {x:610,y:74,w:570,h:510,label:'REACHING THE INBOX — reputation and hygiene',c:'mta'}
+  ],
+  nodes:[
+    {id:'opp',x:40,y:110,w:530,h:70,k:'alert',name:'Opportunistic STARTTLS — the default, and the problem',
+      role:'Encrypt if we can, send in the clear if we cannot',
+      panel:{role:'Between servers, TLS is negotiated only if the receiver advertises STARTTLS and the handshake succeeds. If anything goes wrong, the default behaviour is to deliver unencrypted rather than not at all.',
+      rows:[['Good','Allowed encryption to be deployed across the internet without breaking delivery'],['Bad','An active attacker can strip the STARTTLS advertisement and watch the session in cleartext'],['Worse','Certificates are typically not validated on port 25, so a passive upgrade proves very little']],
+      note:'Everything below exists to remove the fallback — to let a domain say "for me, TLS is not optional" in a way an attacker cannot erase.',
+      terms:['STARTTLS','TLS','MTA-STS']}},
+    {id:'implicit',x:40,y:196,w:530,h:60,k:'sec',name:'Implicit TLS',role:'465 / 993 / 995 — no cleartext phase at all',
+      panel:{role:'The connection is TLS from the first byte, so there is no plaintext negotiation to tamper with. RFC 8314 recommends this over STARTTLS for client-facing protocols.',
+      rows:[['Applies to','Submission and retrieval — the client-facing ports'],['Not to','Port 25 between servers, where the port is fixed by decades of deployment']],
+      terms:['TLS','STARTTLS','IMAP']}},
+    {id:'mtasts',x:40,y:272,w:530,h:70,k:'sec',name:'MTA-STS',role:'Policy over HTTPS — "TLS is required for my domain"',
+      panel:{role:'A domain publishes a policy file over HTTPS stating that senders must use validated TLS. Senders cache it, so an attacker cannot strip the requirement — they would have to have broken the web PKI first.',
+      rows:[['Discovery','<code>_mta-sts.example.com</code> TXT points at a policy version'],['Policy','<code>https://mta-sts.example.com/.well-known/mta-sts.txt</code>'],['Modes','<code>testing</code> (report only) → <code>enforce</code>'],['Trust root','The web PKI — ordinary certificates']],
+      note:'Deliberately built on HTTPS rather than DNSSEC, on the reasoning that far more operators already run working web PKI than working DNSSEC. That trade-off is the entire difference from DANE.',
+      terms:['MTA-STS','TLS','TLS-RPT']}},
+    {id:'dane',x:40,y:358,w:530,h:70,k:'sec',name:'DANE',role:'TLSA records in DNSSEC-signed DNS',
+      panel:{role:'The same goal by the other route: the domain pins its certificate or issuer in a DNS record, and DNSSEC makes that record unforgeable. No third-party certificate authority is involved.',
+      rows:[['Record','<code>_25._tcp.mx.example.com</code> TLSA'],['Requires','A DNSSEC-signed zone, and a <i>validating</i> resolver at the sender'],['Strength','Removes the CA from the trust path entirely'],['Weakness','Useless unless the sender validates DNSSEC — many do not']],
+      note:'<b>The classic silent failure.</b> If the resolver in front of your MTA does not pass the AD bit through, DANE looks configured and does nothing. Verify from the machine that makes the decision.',
+      terms:['DANE','DNSSEC','TLS']}},
+    {id:'tlsrpt',x:40,y:444,w:530,h:60,k:'dns',name:'TLS-RPT',role:'Find out when it silently failed',
+      panel:{role:'A reporting channel: senders mail you a daily summary of TLS negotiation successes and failures against your domain. Without it, a broken MTA-STS or DANE setup is invisible from your side.',
+      rows:[['Record','<code>_smtp._tls.example.com</code> TXT with a reporting address'],['Delivers','JSON reports of successful and failed sessions, per sending organisation']],
+      terms:['TLS-RPT','MTA-STS','DANE']}},
+    {id:'e2e',x:40,y:520,w:530,h:50,k:'ext',name:'End-to-end encryption — a different axis',
+      role:'S/MIME · OpenPGP — content, not transport',
+      panel:{role:'Everything above protects the <i>hop</i>. The server still reads the message. S/MIME and OpenPGP encrypt the content itself, so intermediaries cannot — at the cost of key management, broken server-side search and filtering, and metadata that stays visible regardless.',
+      rows:[['S/MIME','Certificate-based, common in enterprise and government'],['OpenPGP','Web-of-trust or manual key exchange; entrenched among technical users'],['Never hidden','Subject lines (in most setups), and all envelope metadata']],
+      terms:['S/MIME','OpenPGP','MIME']}},
+
+    {id:'rep',x:630,y:110,w:530,h:70,k:'mta',name:'Reputation — the actual gatekeeper',
+      role:'Attached to IP, to domain, and to the DKIM d=',
+      panel:{role:'Once a message passes authentication, whether it reaches the inbox is decided almost entirely by the sender’s history. Reputation is tracked per sending IP, per visible domain, and per DKIM signing domain, so changing one does not shed the others.',
+      rows:[['Built from','Complaint rates, spam-trap hits, engagement, volume consistency'],['Slow up','Weeks of steady, wanted mail'],['Fast down','One campaign to a stale list']],
+      note:'<b>Authentication is table stakes, not a delivery guarantee.</b> A perfectly authenticated message from a domain with a bad history still lands in junk. This surprises people who have just finished configuring SPF, DKIM and DMARC.',
+      terms:['IP Reputation','DKIM','DMARC']}},
+    {id:'warm',x:630,y:196,w:255,h:64,k:'mta',name:'IP warm-up',role:'New addresses have no history',
+      panel:{role:'A fresh sending IP is not trusted — it is unknown, which receivers treat as suspicious. Volume is ramped over weeks so a reputation can form.',
+      rows:[['Pattern','Start small, favour engaged recipients first, increase gradually'],['Watch','Deferrals (4xx) are the normal signal that you are moving too fast']],
+      terms:['IP Reputation','Deliverability']}},
+    {id:'dnsbl',x:905,y:196,w:255,h:64,k:'dns',name:'DNSBL / RBL',role:'Third-party blocklists',
+      panel:{role:'Zones you query over DNS where a returned record means "this address has been seen sending abuse". Cheap, fast, and consulted at the connection stage.',
+      rows:[['Kinds','IP lists, domain/URL lists, and allow-lists'],['Delisting','Usually self-service, once the cause is fixed'],['Care','Weight lists rather than blocking on any single one']],
+      terms:['DNSBL','IP Reputation']}},
+    {id:'grey',x:630,y:276,w:255,h:64,k:'sec',name:'Greylisting',role:'Temporarily refuse, see who returns',
+      panel:{role:'Answer an unfamiliar sender with a temporary failure. A real MTA queues and retries; much throwaway spam software never comes back.',
+      rows:[['Cost','Delays first contact by minutes to hours'],['Effectiveness','Much reduced — modern spam operations retry properly'],['Today','More often a scoring input than a hard gate']],
+      terms:['Greylisting','MTA']}},
+    {id:'rate',x:905,y:276,w:255,h:64,k:'sec',name:'Rate limiting',role:'4xx means "slow down"',
+      panel:{role:'Receivers throttle per IP, per domain and per recipient. A temporary 4xx is an instruction to back off, not a failure — how a sender responds to it is itself a reputation signal.',
+      rows:[['Right','Honour the deferral, retry with backoff'],['Wrong','Hammer immediately, and get a worse limit or a block']],
+      terms:['Deliverability','MTA']}},
+    {id:'bounce',x:630,y:356,w:255,h:64,k:'mta',name:'Bounces',role:'Hard 5xx vs soft 4xx',
+      panel:{role:'A Delivery Status Notification back to the envelope sender. Hard bounces are permanent (no such user); soft are temporary (mailbox full, throttled).',
+      rows:[['Hard','Suppress that address immediately and permanently'],['Soft','Retry, but suppress after repeated failures'],['Signal','A high hard-bounce rate reads as list buying and is punished quickly']],
+      terms:['Bounce','Backscatter']}},
+    {id:'backs',x:905,y:356,w:255,h:64,k:'alert',name:'Backscatter',role:'Bouncing to a forged address',
+      panel:{role:'Accept a message for a non-existent recipient, then bounce it — and since the envelope sender was forged, the bounce goes to an innocent third party. You are now the one sending unwanted mail.',
+      rows:[['Cause','Accepting first and validating recipients later'],['Fix','Reject unknown recipients during the SMTP transaction'],['Consequence','Backscatter gets you listed on blocklists as a spam source']],
+      terms:['Backscatter','Bounce','DNSBL']}},
+    {id:'hyg',x:630,y:436,w:255,h:64,k:'mta',name:'List hygiene',role:'Consent, and pruning the dead',
+      panel:{role:'Confirmed opt-in, prompt unsubscribes, and removing addresses that never engage. Old addresses get recycled into spam traps, which is the fastest route to a blocklist.',
+      rows:[['Traps','Pristine (never used) and recycled (abandoned, then reactivated)'],['Rule','Never mail a purchased list — it is a trap field by construction']],
+      terms:['Deliverability','Spam Trap']}},
+    {id:'fbl',x:905,y:436,w:255,h:64,k:'mda',name:'Feedback loops',role:'"My user marked this as spam"',
+      panel:{role:'Large mailbox providers will report complaints back to senders who register. Acting on them — suppressing the complainer at once — is expected.',
+      rows:[['Header','<code>List-Unsubscribe</code> and one-click, RFC 8058'],['Threshold','Gmail publishes roughly 0.3 % complaints as the line not to cross']],
+      terms:['Feedback Loop','ESP']}},
+    {id:'bulk',x:630,y:516,w:530,h:54,k:'sec',name:'Bulk sender requirements (2024–)',
+      role:'The current state of the art, and it is enforcement',
+      panel:{role:'Gmail and Yahoo now require, for anyone sending at volume: authentication with SPF and DKIM, a DMARC record, alignment, one-click unsubscribe, and complaint rates below roughly 0.3 %. Yahoo and Microsoft have followed with comparable rules.',
+      rows:[['Effect','Turned a decade of "best practice" into a hard gate, quickly'],['Meaning','Email authentication is no longer optional for any organisation that mails customers']],
+      note:'If you want the single sentence that describes where email is now: the large mailbox providers set the de facto standard, and they have started enforcing it.',
+      terms:['DMARC','Deliverability','ESP']}}
+  ],
+  edges:[
+    {a:'opp',b:'implicit',l:''},
+    {a:'implicit',b:'mtasts',l:''},
+    {a:'mtasts',b:'dane',l:'or'},
+    {a:'dane',b:'tlsrpt',l:'monitor'}
+  ]
+},
+
+{
+  key:'setups', label:'Common setups', title:'The shapes you meet in practice',
+  blurb:'The same components, assembled three ways. Which one you are looking at determines which problems are yours and which belong to somebody else.',
+  w:1200, h:620,
+  zones:[
+    {x:20,y:74,w:376,h:520,label:'PERSONAL / SELF-HOSTED',c:'mua'},
+    {x:412,y:74,w:376,h:520,label:'SMALL & MEDIUM BUSINESS',c:'mda'},
+    {x:804,y:74,w:376,h:520,label:'PROVIDER / LARGE SCALE',c:'mta'}
+  ],
+  nodes:[
+    {id:'pe1',x:40,y:112,w:336,h:74,k:'mda',name:'Own domain, hosted mailbox',
+      role:'The default recommendation',
+      panel:{role:'Point your domain’s MX at a mailbox provider and keep the domain in your own registrar account. You own the identity; they run the machinery.',
+      rows:[['You configure','MX, plus the SPF and DKIM records they give you'],['You keep','Portability — moving providers is a DNS change, not a migration of identity'],['They handle','Uptime, spam filtering, reputation, storage, abuse']],
+      note:'<b>The key insight is that the valuable thing is the domain, not the server.</b> Owning the domain gives you the exit; running the SMTP daemon mostly gives you work.',
+      terms:['MX Record','SPF','DKIM']}},
+    {id:'pe2',x:40,y:198,w:336,h:74,k:'ext',name:'Alias forwarder in front',
+      role:'One mailbox, many addresses',
+      panel:{role:'A forwarding layer that accepts many addresses and relays to one real mailbox — per-service addresses that can be disabled individually when one starts receiving spam.',
+      rows:[['Gives','Compartmentalisation, and a signal about who leaked your address'],['Costs','A forwarding hop, with its SPF and SRS consequences (view 3)'],['Note','Replies need care — answering from the alias requires authenticated submission through the forwarder']],
+      terms:['SRS','SPF','SRS']}},
+    {id:'pe3',x:40,y:284,w:336,h:88,k:'alert',name:'Fully self-hosted',
+      role:'Every role on your own hardware',
+      panel:{role:'MX, filtering, mailbox store and submission, all yours. Entirely achievable and genuinely instructive — but understand what you are taking on.',
+      rows:[['Hard part','Not the setup. Deliverability: a new IP has no reputation, and consumer ranges are widely distrusted'],['Needs','Port 25 unblocked, a clean IP, correct PTR and FCrDNS, SPF/DKIM/DMARC, working TLS'],['Ongoing','Blocklist monitoring, patching, spam tuning, and backups of the one irreplaceable thing — the store']],
+      note:'A common middle path: self-host <i>inbound</i> and forwarding, but relay outbound through a provider with established reputation. You keep control and sidestep the hardest problem.',
+      terms:['MTA','IP Reputation','DNSBL']}},
+    {id:'pe4',x:40,y:384,w:336,h:74,k:'ext',name:'Null client on every server',
+      role:'For machines that only send',
+      panel:{role:'Servers generate mail — cron, monitoring, package managers. Each should relay to one smarthost rather than run its own queue.',
+      rows:[['Config','No listener, one relayhost, a sane envelope sender'],['Trap','Mail to local <code>root</code> that goes nowhere is worse than no mail at all — it looks like monitoring while being none']],
+      note:'A disk warning sitting unread in a local mailbox for months is a classic. If mail is your alerting path, test that it arrives somewhere a human looks.',
+      terms:['Null Client','Smarthost']}},
+    {id:'pe5',x:40,y:470,w:336,h:74,k:'sec',name:'What you still owe',
+      role:'Even with everything hosted',
+      panel:{role:'Delegating the mailbox does not delegate the domain’s reputation or its authentication posture.',
+      rows:[['Yours','The DMARC policy and its reports; keeping SPF to one record; DKIM key rotation if self-managed'],['Yours','Protecting unused domains and subdomains with a null SPF and <code>p=reject</code> so they cannot be spoofed']],
+      terms:['DMARC','SPF']}},
+
+    {id:'sm1',x:432,y:112,w:336,h:74,k:'mda',name:'Hosted suite',role:'Microsoft 365 · Google Workspace · others',
+      panel:{role:'Mailboxes, calendar and identity from one vendor. The overwhelmingly common shape, and the one most operational email work is actually about.',
+      rows:[['Configure','MX to the vendor, their SPF include, DKIM enabled in their console'],['Watch','The SPF ten-lookup limit — one include can consume several'],['Identity','Mail becomes tied to the same directory as everything else, which raises the stakes on account compromise']],
+      terms:['SPF','DKIM','MX Record']}},
+    {id:'sm2',x:432,y:198,w:336,h:74,k:'mta',name:'Application & transactional mail',
+      role:'The part that gets forgotten',
+      panel:{role:'The CRM, the invoicing system, the ticketing tool, the website contact form — each wants to send as your domain, and each is a separate sender to authorise.',
+      rows:[['Route','Through the suite’s relay, or through an ESP with its own subdomain'],['Best practice','A dedicated subdomain per stream so marketing cannot damage transactional reputation'],['Discovery','DMARC aggregate reports are how you find the senders nobody documented']],
+      note:'This is where most DMARC rollouts stall: someone publishes <code>p=reject</code> and discovers a decade of undocumented systems mailing as the company.',
+      terms:['ESP','DMARC','SPF']}},
+    {id:'sm3',x:432,y:284,w:336,h:88,k:'sec',name:'DMARC rollout',role:'none → quarantine → reject',
+      panel:{role:'The standard project, and it is mostly inventory work rather than configuration.',
+      rows:[['1','Publish <code>p=none</code> with <code>rua=</code>. Change nothing else'],['2','Read reports for weeks. Enumerate every legitimate sender'],['3','Fix each: SPF authorisation and DKIM signing, aligned to the visible From:'],['4','Move to <code>quarantine</code>, then <code>reject</code>. Add <code>sp=reject</code> for subdomains']],
+      note:'The failure mode is skipping step 2 because the record change is trivial. The record is trivial; the inventory is the work.',
+      terms:['DMARC','SPF','DKIM']}},
+    {id:'sm4',x:432,y:384,w:336,h:74,k:'ext',name:'Gateway in front',
+      role:'Filtering before the suite',
+      panel:{role:'A security vendor’s MX in front of the mailbox provider — sandboxing, URL rewriting, data-loss prevention, or a policy the suite cannot express.',
+      rows:[['Effect','Your MX now points at them, and they forward inward'],['Consequence','Another forwarding hop: they must be trusted with ARC and must not break DKIM'],['Question worth asking','What it adds over the provider’s own filtering, which is now very good']],
+      terms:['ARC','DNSBL','MX Record']}},
+    {id:'sm5',x:432,y:470,w:336,h:74,k:'mua',name:'The human layer',role:'Where the losses actually happen',
+      panel:{role:'Business email compromise beats technical controls by not violating them: a real account, or a lookalike domain, and a plausible request to change bank details.',
+      rows:[['Controls','MFA on submission, external-sender banners, out-of-band verification for payments'],['Reality','No DNS record prevents an authenticated user from being deceived']],
+      terms:['Phishing','MFA','DMARC']}},
+
+    {id:'pr1',x:824,y:112,w:336,h:74,k:'mta',name:'MX pool + border gateways',
+      role:'Inbound at scale',
+      panel:{role:'Many equal-priority MX hosts behind anycast or DNS round-robin, each doing connection-stage rejection before anything expensive happens.',
+      rows:[['Design','Reject as early and as cheaply as possible — most inbound volume is abuse'],['Stateless','Border nodes hold no mailboxes, so they can be added, rebuilt or lost freely']],
+      terms:['MX Record','MTA','DNSBL']}},
+    {id:'pr2',x:824,y:198,w:336,h:74,k:'mda',name:'Store cluster over LMTP',
+      role:'Where the mail actually lives',
+      panel:{role:'Border MTAs hand accepted mail to a mailbox cluster over LMTP. The store is sharded, replicated and indexed for search — the genuinely hard engineering in a mail provider.',
+      rows:[['Why LMTP','Per-recipient success or failure, immediately, with no second queue'],['Hard parts','Search at scale, quotas, per-user consistency, and never losing a message']],
+      terms:['LMTP','MDA','Maildir']}},
+    {id:'pr3',x:824,y:284,w:336,h:74,k:'msa',name:'Submission cluster',
+      role:'Separate from the MX, always',
+      panel:{role:'Authenticated customer submission is a different trust domain from anonymous inbound, and is scaled, rate-limited and monitored separately.',
+      rows:[['Watches for','Compromised accounts — a customer whose credentials leaked is now your outbound spam problem'],['Controls','Per-account rate limits, anomaly detection, forced re-auth']],
+      terms:['MSA','SMTP','MFA']}},
+    {id:'pr4',x:824,y:370,w:336,h:74,k:'mta',name:'Outbound pools & reputation',
+      role:'Segmented on purpose',
+      panel:{role:'Outbound IPs are partitioned by traffic class so one stream cannot poison another — transactional apart from marketing, paid customers apart from free tiers.',
+      rows:[['Manages','Warm-up for new ranges, retirement of damaged ones, per-pool monitoring'],['Staffs','An abuse desk, FBL processing, and relationships with major receivers']],
+      terms:['IP Reputation','Feedback Loop','ESP']}},
+    {id:'pr5',x:824,y:456,w:336,h:74,k:'dns',name:'Key & policy management',
+      role:'DKIM at operational scale',
+      panel:{role:'Many domains, many selectors, scheduled rotation, and cryptographic material that must be identical across every node that signs — generated once and distributed, never per-node.',
+      rows:[['Rotation','Overlapping selectors so mail in flight still verifies'],['Custody','Private keys are the domain’s identity; their compromise is an impersonation incident']],
+      terms:['DKIM','DNS']}},
+    {id:'pr6',x:824,y:542,w:336,h:50,k:'sec',name:'Standards participation',
+      role:'These rules get written somewhere',
+      panel:{role:'At this scale you are not only implementing the standards but shaping them — M3AAWG, the IETF working groups, and the informal coordination between large receivers that decides what "required" means next.',
+      rows:[['Recent','The 2024 bulk-sender requirements came from exactly this layer, not from an RFC']],
+      terms:['Deliverability','Deliverability']}}
+  ],
+  edges:[
+    {a:'pe1',b:'pe2',l:''},{a:'pe2',b:'pe3',l:'or'},{a:'pe3',b:'pe4',l:''},{a:'pe4',b:'pe5',l:''},
+    {a:'sm1',b:'sm2',l:''},{a:'sm2',b:'sm3',l:''},{a:'sm3',b:'sm4',l:''},{a:'sm4',b:'sm5',l:''},
+    {a:'pr1',b:'pr2',l:''},{a:'pr2',b:'pr3',l:''},{a:'pr3',b:'pr4',l:''},{a:'pr4',b:'pr5',l:''},{a:'pr5',b:'pr6',l:''}
+  ]
+}
+];
+
+/* ------------------------------------------------------------ rendering --- */
+
+const KC = {mua:'--mua',msa:'--msa',mta:'--mta',mda:'--mda',dns:'--dns',sec:'--sec',ext:'--ext',alert:'--alert',hdr:'--ext'};
+const KL = {mua:'--mua-l',msa:'--msa-l',mta:'--mta-l',mda:'--mda-l',dns:'--dns-l',sec:'--sec-l',ext:'--ext-l',alert:'--alert-l',hdr:'--ext-l'};
+const esc = s => String(s==null?'':s).replace(/&(?![a-z#]+;)/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function nodeGeom(n){ return {x:n.x, y:n.y, w:n.w||NW, h:n.h||NH}; }
+
+function anchor(a,b){
+  const A=nodeGeom(a), B=nodeGeom(b);
+  const ac={x:A.x+A.w/2,y:A.y+A.h/2}, bc={x:B.x+B.w/2,y:B.y+B.h/2};
+  if(Math.abs(bc.x-ac.x) >= Math.abs(bc.y-ac.y)){
+    return bc.x>ac.x ? [{x:A.x+A.w,y:ac.y},{x:B.x,y:bc.y}] : [{x:A.x,y:ac.y},{x:B.x+B.w,y:bc.y}];
+  }
+  return bc.y>ac.y ? [{x:ac.x,y:A.y+A.h},{x:bc.x,y:B.y}] : [{x:ac.x,y:A.y},{x:bc.x,y:B.y+B.h}];
+}
+
+function render(v){
+  const byId = Object.fromEntries(v.nodes.map(n=>[n.id,n]));
+  let s = `<svg viewBox="0 0 ${v.w} ${v.h}" role="img" aria-label="${esc(v.title)}">`;
+  s += `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--ink2)"/></marker></defs>`;
+
+  for(const z of v.zones){
+    s += `<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="12" fill="var(${KL[z.c]})" stroke="var(${KC[z.c]})" stroke-opacity=".28"/>`;
+    s += `<text class="zt" x="${z.x+14}" y="${z.y+20}" fill="var(${KC[z.c]})">${esc(z.label)}</text>`;
+  }
+
+  for(const e of v.edges){
+    const a=byId[e.a], b=byId[e.b]; if(!a||!b) continue;
+    let d = e.d, mid;
+    if(d){ const m=d.match(/([\d.]+)\s+([\d.]+)/g); mid = m ? m[Math.floor(m.length/2)].split(/\s+/) : null; }
+    else { const [p,q]=anchor(a,b); d=`M${p.x} ${p.y} L${q.x} ${q.y}`; mid=[(p.x+q.x)/2,(p.y+q.y)/2]; }
+    s += `<path class="lk" d="${d}" stroke="var(--ink2)" stroke-opacity="${e.big?'.75':'.5'}" stroke-width="${e.big?2:1.5}"${e.dash?' stroke-dasharray="5 4"':''} marker-end="url(#ah)"/>`;
+    if(e.l && mid) s += `<text class="flowlbl" x="${+mid[0]}" y="${+mid[1]-6}" text-anchor="middle">${esc(e.l)}</text>`;
+  }
+
+  for(const n of v.nodes){
+    const g=nodeGeom(n);
+    if(n.k==='hdr'){
+      const cw=[110,170,300,140]; let cx=g.x+14;
+      s += `<g>`;
+      n.hdr.forEach((t,i)=>{ s+=`<text class="hdrow" x="${cx}" y="${g.y+22}">${esc(t)}</text>`; cx+=cw[i]; });
+      s += `<line x1="${g.x}" y1="${g.y+30}" x2="${g.x+g.w}" y2="${g.y+30}" stroke="var(--line)"/></g>`;
+      continue;
+    }
+    s += `<g class="node" data-id="${n.id}" tabindex="0" role="button" aria-label="${esc(n.name||n.cols&&n.cols[1]||'')}">`;
+    s += `<rect class="box" x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}" rx="9" fill="var(${KL[n.k]})" stroke="var(${KC[n.k]})" stroke-width="1.7"/>`;
+    if(n.cols){
+      const cw=[110,170,300,140]; let cx=g.x+14;
+      n.cols.forEach((t,i)=>{
+        const cls = i===0 ? 'name' : (i===3 ? 'mono' : 'role');
+        s+=`<text class="${cls}" x="${cx}" y="${g.y+g.h/2+4}">${esc(t)}</text>`; cx+=cw[i];
+      });
+    } else {
+      const two = g.h >= 66;
+      s += `<text class="name" x="${g.x+13}" y="${g.y+(two?24:22)}">${esc(n.name)}</text>`;
+      if(n.role) s += wrapText(n.role, g.x+13, g.y+(two?42:38), g.w-26, two?2:1);
+    }
+    s += `</g>`;
+  }
+  return s+`</svg>`;
+}
+
+function wrapText(t,x,y,maxw,lines){
+  const words=String(t).split(' '); const per=Math.ceil(maxw/5.6); const out=[]; let cur='';
+  for(const w of words){ if((cur+' '+w).trim().length>per){ out.push(cur.trim()); cur=w; if(out.length===lines) break; } else cur+=' '+w; }
+  if(out.length<lines && cur.trim()) out.push(cur.trim());
+  return out.slice(0,lines).map((l,i)=>`<text class="role" x="${x}" y="${y+i*13}">${esc(l)}</text>`).join('');
+}
+
+/* ---------------------------------------------------------------- panel --- */
+
+const KLABEL={mua:'client',msa:'submission',mta:'transfer',mda:'delivery',dns:'DNS-backed',sec:'policy',ext:'participant',alert:'pitfall'};
+
+function showPanel(n){
+  const p=document.getElementById('panel');
+  if(!n){ p.innerHTML=`<div class="p-empty">Select any box on the map.<br><br><b>Tip:</b> the five views are the same subject at different zoom levels — start with <b>Path</b>, then use the others to explain what happens at each step.</div>`; return; }
+  const d=n.panel||{};
+  let h=`<div class="p-name">${esc(n.name||(n.cols&&n.cols[1])||'')}</div>`;
+  h+=`<div class="chips"><span class="chip" style="background:var(${KC[n.k]})">${KLABEL[n.k]||n.k}</span>`;
+  if(n.role) h+=`<span class="chip ghost">${esc(n.role).slice(0,46)}</span>`;
+  h+=`</div>`;
+  if(d.role) h+=`<p class="p-role">${d.role}</p>`;
+  for(const [k,val] of (d.rows||[])) h+=`<div class="p-row"><div class="k">${esc(k)}</div><div class="v">${val}</div></div>`;
+  if(d.note) h+=`<div class="note ${/pitfall|alert/.test(KLABEL[n.k])?'alert':'warn'}">${d.note}</div>`;
+  if(d.terms&&d.terms.length) h+=`<div class="terms"><b>Dictionary:</b> ${d.terms.map(esc).join(' · ')}</div>`;
+  p.innerHTML=h;
+}
+
+/* ----------------------------------------------------------------- wire --- */
+
+let cur=0;
+
+function draw(){
+  const v=VIEWS[cur];
+  document.querySelectorAll('.vbtn').forEach((b,i)=>b.classList.toggle('on',i===cur));
+  const bar=document.getElementById('viewbar');
+  bar.querySelector('h2').textContent=v.title;
+  bar.querySelector('p').textContent=v.blurb;
+  document.getElementById('map').innerHTML=render(v);
+  showPanel(null);
+  const byId=Object.fromEntries(v.nodes.map(n=>[n.id,n]));
+  document.querySelectorAll('#map .node').forEach(g=>{
+    const pick=()=>{
+      document.querySelectorAll('#map .node').forEach(o=>o.classList.remove('selected'));
+      g.classList.add('selected'); showPanel(byId[g.dataset.id]);
+    };
+    g.addEventListener('click',pick);
+    g.addEventListener('keydown',ev=>{ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); pick(); }});
+  });
+  try{ localStorage.setItem('email-map-view', v.key); }catch(e){}
+}
+
+const vb=document.getElementById('views');
+vb.innerHTML=VIEWS.map((v,i)=>`<button class="vbtn" data-i="${i}"><span class="k">${i+1}</span>${esc(v.label)}</button>`).join('');
+vb.querySelectorAll('.vbtn').forEach(b=>b.addEventListener('click',()=>{cur=+b.dataset.i;draw();}));
+
+document.getElementById('theme').addEventListener('click',()=>{
+  const d=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  document.documentElement.dataset.theme=d;
+  try{ localStorage.setItem('pkb-theme',d); }catch(e){}
+});
+
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT') return;
+  const i=parseInt(e.key,10);
+  if(i>=1&&i<=VIEWS.length){ cur=i-1; draw(); }
+});
+
+try{
+  const saved=localStorage.getItem('email-map-view');
+  const idx=VIEWS.findIndex(v=>v.key===saved);
+  if(idx>=0) cur=idx;
+}catch(e){}
+draw();
+</script>
+</body>
+</html>

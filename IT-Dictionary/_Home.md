@@ -29,6 +29,7 @@ Read a branch Map top-to-bottom, or just follow your nose through the links.
 
 ## Cross-cutting maps
 
+- 📬 [[Email Ecosystem]] — a full topical tour of email, basics to state of the art, with an illustrated map
 - 🗺️ [[Concept Map]] — how the branches relate
 - ⚠️ [[Often Confused Pairs]] — the false friends, across all of IT
 - 📇 [[Term Index]] — full A–Z + the roadmap toward fuller coverage

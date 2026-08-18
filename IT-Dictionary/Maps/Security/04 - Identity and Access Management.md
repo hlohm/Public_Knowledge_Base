@@ -48,6 +48,7 @@ tags: [domain]
 - [[Proof of Possession]] — Sender-constrained credentials: the holder must prove possession of a bound key, not merely present the token.
 - [[RBAC]] — Role-Based Access Control.
 - [[SAML]] — Security Assertion Markup Language.
+- [[SASL]] — A framework letting a protocol negotiate an authentication mechanism instead of hard-coding one; how SMTP and IMAP authenticate.
 - [[Scope]] — Granular permission requested by an OAuth client (`read:email`, `write:files`).
 - [[Secret]] — Anything that authenticates a workload: API key, DB password, token, cert private key.
 - [[Secrets Manager]] — Tool that stores and rotates secrets (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault).

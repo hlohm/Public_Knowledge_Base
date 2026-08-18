@@ -12,6 +12,8 @@ status: working
 
 Operating the Postfix MTA: the process model, the two config files, lookup tables, the queue, and how to read the log. Covers the commands you drive it with (`postconf`, `postqueue`, `postsuper`, `postmap`, `postcat`) and the parameters you actually touch. Does **not** cover mailbox storage (Dovecot), webmail, or the DNS-side auth records — those are SPF/DKIM/DMARC/MTA-STS in the dictionary and [[dns]] here.
 
+> For the conceptual picture this fits into — participants, ports, the authentication chain, transport security, and how personal / SMB / provider deployments differ — see the **Email Ecosystem** map in the IT-Dictionary (`IT-Dictionary/Maps/Email Ecosystem.md`, with an interactive version in `IT-Dictionary/assets/`).
+
 > Postfix 3.x assumed. Two things moved in the 3.x line: logging can go through `postlogd` instead of syslog (§7), and `default_database_type` moved from `hash` to `lmdb` on several distros — check yours before writing `hash:` into a config (§4).
 
 ---

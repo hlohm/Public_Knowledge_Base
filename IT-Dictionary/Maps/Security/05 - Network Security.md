@@ -10,8 +10,10 @@ tags: [domain]
 ## Terms in this domain
 
 - [[Air Gap]] — Physical isolation from other networks.
-- [[Bastion Host]] — Hardened entry point used to reach internal systems.
+- [[ARC]] — Authenticated Received Chain — lets an intermediary that must modify a message seal the authentication results it saw, so a later hop can trust that testimony.
 - [[Backscatter]] — Bounce messages sent to an innocent third party, because a server accepted mail with a forged sender and only then found it undeliverable.
+- [[Bastion Host]] — Hardened entry point used to reach internal systems.
+- [[BIMI]] — Publishing a brand logo in DNS for display beside authenticated mail — available only to domains already enforcing DMARC.
 - [[CAA Record]] — A DNS record listing which CAs are permitted to issue certificates for a domain.
 - [[CDS and CDNSKEY]] — Child-published records that signal the desired DS (CDS) or key (CDNSKEY) to the parent, so DS updates can be automated instead of hand-carried to the registrar.
 - [[Cover Traffic]] — Fake traffic sent to mask the pattern of the real messages.
@@ -19,14 +21,17 @@ tags: [domain]
 - [[DKIM]] — DomainKeys Identified Mail — cryptographic signature on outbound mail.
 - [[DMARC]] — Ties SPF + DKIM to the visible From:, sets a fail policy, and reports.
 - [[DMZ]] — DeMilitarized Zone.
+- [[DNS Security]] — Protecting name resolution.
+- [[DNSBL]] — A blocklist distributed as a DNS zone: a record for a reversed IP means that address was seen sending abuse.
 - [[DNSKEY]] — The record publishing a zone's public signing key(s).
 - [[DNSSEC]] — Extensions that add origin authentication and integrity to DNS by signing records, so a resolver can verify an answer genuinely came from the zone's owner and wasn't forged in transit.
-- [[DNS Security]] — Protecting name resolution.
 - [[DPI]] — Deep Packet Inspection.
 - [[DS Record]] — A record in the _parent_ zone holding a hash of the child zone's signing key — the link that lets the parent vouch for the child in the DNSSEC chain.
 - [[East-West vs North-South Traffic]] — North-south = client ↔ data center (external); east-west = server ↔ server (internal).
 - [[Entry Guard]] — The persistent, IP-seeing first hop of a Tor circuit.
 - [[Envelope Sender]] — The address given in the SMTP `MAIL FROM` command — the transport-level sender, where bounces go — as opposed to the `From:` header the recipient actually sees.
+- [[FCrDNS]] — The check that an IP's reverse record resolves to a name whose forward lookup points back to the same IP — a round trip only someone controlling both zones can close.
+- [[Feedback Loop]] — A mailbox provider reporting back that one of its users marked your message as spam.
 - [[Firewall]] — Filters traffic based on rules.
 - [[Greylisting]] — Temporarily rejecting a first delivery attempt from an unknown sender triple, on the bet that only a real MTA will retry.
 - [[Honeypot]] — Decoy system designed to attract attackers, gather intel, and waste their time.
@@ -40,11 +45,12 @@ tags: [domain]
 - [[NGFW]] — Next-Generation Firewall.
 - [[NSEC]] — The DNSSEC mechanism for _signing a negative answer_ — proving that a name (or record type) genuinely does not exist, since you can't sign a record that isn't there.
 - [[Onion Routing]] — Nested per-hop encryption so no single relay knows both ends.
+- [[Open Relay]] — An SMTP server that will carry mail from strangers to strangers; a misconfiguration that gets your IP blocklisted within a day.
 - [[Pluggable Transport]] — Reshapes Tor traffic to evade DPI (obfs4, Snowflake, meek).
 - [[Proxy]] — Intermediary between client and server.
 - [[RRSIG]] — The signature record covering a set of DNS records of one type/name — the actual cryptographic proof a validating resolver checks against the zone's DNSKEY.
 - [[SDN]] — Software-Defined Networking.
-- [[Open Relay]] — An SMTP server that will carry mail from strangers to strangers; a misconfiguration that gets your IP blocklisted within a day.
+- [[Spam Trap]] — An address that exists only to receive unwanted mail, so anything arriving proves the sender had no consent.
 - [[SPF]] — Sender Policy Framework — DNS list of authorized sending IPs.
 - [[Sphinx Packet Format]] — Fixed-size onion packet format for mix networks; unlinkable, replay-resistant, supports anonymous replies.
 - [[SRS]] — A scheme for rewriting the envelope sender when _forwarding_ mail, so the forwarded message still passes SPF at the final destination.
@@ -52,6 +58,7 @@ tags: [domain]
 - [[SSH Tunneling]] — Forwarding arbitrary TCP connections through an authenticated SSH session (local, remote/reverse, dynamic).
 - [[SURB]] — Single-Use Reply Block: a sealed return path for replying to an anonymous sender.
 - [[TLS Inspection]] — Terminating TLS at a gateway to inspect content, then re-encrypting.
+- [[TLS-RPT]] — Daily reports from sending servers on TLS negotiation successes and failures — the observability layer for MTA-STS and DANE.
 - [[Tor]] — Volunteer anonymity network; layered encryption across three relays.
 - [[Tor Bridge]] — Unlisted Tor entry, for reaching Tor where it's blocked.
 - [[VLAN]] — Virtual Local Area Network.

@@ -7,7 +7,7 @@ tags: [map, net]
 
 > Moving bytes between machines reliably and in order — the stack from cables to sockets.
 
-## Terms in this branch (50)
+## Terms in this branch (51)
 
 - [[A Record]] — The DNS record mapping a name to an IP address — A for IPv4, AAAA for IPv6.
 - [[ARP]] — How a host on a LAN learns which MAC address owns an IP: broadcast 'who has 192.168.1.1?', cache the answer.
@@ -35,6 +35,7 @@ tags: [map, net]
 - [[MX Record]] — The DNS record naming the mail servers that accept email for a domain, each with a preference number (lower = tried first).
 - [[NAT]] — Rewriting IP addresses/ports at a boundary so many private hosts share one public address.
 - [[NS Record]] — The record naming the authoritative nameservers for a zone.
+- [[Null MX]] — A single `MX 0 .` record declaring that a domain accepts no mail, so senders fail instantly instead of retrying for days.
 - [[NXDOMAIN]] — The DNS response code meaning _this name does not exist_ (no records of any type, and no such name).
 - [[OSI Model]] — A 7-layer reference model (Physical, Data Link, Network, Transport, Session, Presentation, Application) for reasoning about network functions.
 - [[Packet]] — The unit of data at the network layer: a header (addresses, TTL, protocol) plus payload.
